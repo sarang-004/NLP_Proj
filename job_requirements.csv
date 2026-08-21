@@ -1,0 +1,16 @@
+job_id,job_title,preferred_degree,accepted_degrees,preferred_course,accepted_courses,minimum_total_experience_years,required_skills
+JOB001,Data Scientist,B.Tech,B.Tech|M.Tech|M.Sc,Data Science,Data Science|Computer Science|Artificial Intelligence|Statistics,2,Python|SQL|Machine Learning
+JOB002,Machine Learning Engineer,M.Tech,B.Tech|M.Tech|Integrated M.Tech,Artificial Intelligence,Artificial Intelligence|Artificial Intelligence and Machine Learning|Computer Science|Data Science,2,Python|Machine Learning|SQL
+JOB003,Software Engineer,B.Tech,B.Tech|B.E.|M.Tech|MCA,Computer Science and Engineering,Computer Science and Engineering|Information Technology|Computer Engineering|Computer Applications,1,Python|Java|C++|SQL
+JOB004,Backend Developer,B.Tech,B.Tech|B.E.|MCA,Computer Science and Engineering,Computer Science and Engineering|Information Technology|Computer Engineering|Computer Applications,1,Java|Python|SQL
+JOB005,Data Analyst,B.Sc,B.Sc|B.Tech|M.Sc|M.Tech,Statistics,Statistics|Data Science|Computer Science|Mathematics,1,Python|SQL|Excel
+JOB006,Cloud Engineer,B.Tech,B.Tech|B.E.|M.Tech,Information Technology,Information Technology|Computer Science and Engineering|Computer Engineering,2,AWS|Cloud Computing|Shell Scripting|Python
+JOB007,Cyber Security Engineer,B.Tech,B.Tech|B.E.|M.Tech|MCA,Cyber Security,Cyber Security|Computer Science and Engineering|Information Technology,2,CISCO|Linux|Python|Networking
+JOB008,Database Administrator,B.Tech,B.Tech|B.E.|MCA|M.Sc,Computer Science and Engineering,Computer Science and Engineering|Information Technology|Computer Applications,2,SQL|Oracle|Databases|MySQL
+JOB009,ETL Developer,B.Tech,B.Tech|B.E.|MCA|M.Sc,Computer Science and Engineering,Computer Science and Engineering|Information Technology|Computer Applications,2,ETL|Informatica|SQL|Databases
+JOB010,Business Analyst,MBA,MBA|BBA|B.Tech|B.E.,Business Administration,Business Administration|Computer Science and Engineering|Information Technology|Finance,2,Documentation|SQL|Excel|Operations
+JOB011,HR Analyst,MBA,MBA|BBA|M.Com,Human Resources,Human Resources|Business Administration|Commerce,1,Excel|Documentation|HR Management
+JOB012,Financial Analyst,B.Com,B.Com|BBA|MBA|M.Com,Finance,Commerce|Commerce and Finance|Finance,1,Excel|SQL|Documentation
+JOB013,Operations Manager,MBA,MBA|BBA|B.Tech|B.E.,Operations Management,Operations Management|Business Administration,4,Operations|Documentation|Excel
+JOB014,Frontend Developer,B.Tech,B.Tech|B.E.|MCA|BCA,Computer Science and Engineering,Computer Science and Engineering|Information Technology|Computer Applications,1,HTML|CSS|JavaScript|Bootstrap
+JOB015,DevOps Engineer,B.Tech,B.Tech|B.E.|M.Tech,Computer Science and Engineering,Computer Science and Engineering|Information Technology|Computer Engineering,2,AWS|Automation|Shell Scripting|Cloud Computing

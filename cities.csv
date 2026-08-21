@@ -1,0 +1,51 @@
+city_id,city,state,city_tier
+CT001,Mumbai,Maharashtra,1
+CT002,Delhi,Delhi,1
+CT003,Bengaluru,Karnataka,1
+CT004,Chennai,Tamil Nadu,1
+CT005,Hyderabad,Telangana,1
+CT006,Pune,Maharashtra,1
+CT007,Kolkata,West Bengal,1
+CT008,Ahmedabad,Gujarat,1
+CT009,Gurugram,Haryana,1
+CT010,Noida,Uttar Pradesh,1
+CT011,Chandigarh,Chandigarh,2
+CT012,Jaipur,Rajasthan,2
+CT013,Kochi,Kerala,2
+CT014,Coimbatore,Tamil Nadu,2
+CT015,Indore,Madhya Pradesh,2
+CT016,Lucknow,Uttar Pradesh,2
+CT017,Bhopal,Madhya Pradesh,2
+CT018,Bhubaneswar,Odisha,2
+CT019,Visakhapatnam,Andhra Pradesh,2
+CT020,Nagpur,Maharashtra,2
+CT021,Vadodara,Gujarat,2
+CT022,Surat,Gujarat,2
+CT023,Mangaluru,Karnataka,2
+CT024,Mysuru,Karnataka,2
+CT025,Thiruvananthapuram,Kerala,2
+CT026,Patna,Bihar,2
+CT027,Ranchi,Jharkhand,2
+CT028,Dehradun,Uttarakhand,2
+CT029,Guwahati,Assam,2
+CT030,Nashik,Maharashtra,2
+CT031,Vellore,Tamil Nadu,3
+CT032,Tiruchirappalli,Tamil Nadu,3
+CT033,Erode,Tamil Nadu,3
+CT034,Salem,Tamil Nadu,3
+CT035,Madurai,Tamil Nadu,3
+CT036,Tirunelveli,Tamil Nadu,3
+CT037,Kottayam,Kerala,3
+CT038,Thrissur,Kerala,3
+CT039,Kozhikode,Kerala,3
+CT040,Alappuzha,Kerala,3
+CT041,Aurangabad,Maharashtra,3
+CT042,Kolhapur,Maharashtra,3
+CT043,Amravati,Maharashtra,3
+CT044,Warangal,Telangana,3
+CT045,Guntur,Andhra Pradesh,3
+CT046,Nellore,Andhra Pradesh,3
+CT047,Jalandhar,Punjab,3
+CT048,Amritsar,Punjab,3
+CT049,Shimla,Himachal Pradesh,3
+CT050,Jammu,Jammu and Kashmir,3

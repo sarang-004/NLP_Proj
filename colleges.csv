@@ -1,0 +1,51 @@
+college_id,college,city,state,college_tier
+C001,IIT Bombay,Mumbai,Maharashtra,1
+C002,IIT Delhi,New Delhi,Delhi,1
+C003,IIT Madras,Chennai,Tamil Nadu,1
+C004,IIT Kanpur,Kanpur,Uttar Pradesh,1
+C005,IIT Kharagpur,Kharagpur,West Bengal,1
+C006,IIT Hyderabad,Hyderabad,Telangana,1
+C007,IIT Roorkee,Roorkee,Uttarakhand,1
+C008,IIT Guwahati,Guwahati,Assam,1
+C009,IISc Bangalore,Bengaluru,Karnataka,1
+C010,BITS Pilani,Pilani,Rajasthan,1
+C011,IIIT Hyderabad,Hyderabad,Telangana,1
+C012,NIT Trichy,Tiruchirappalli,Tamil Nadu,1
+C013,NIT Surathkal,Mangaluru,Karnataka,1
+C014,NIT Warangal,Warangal,Telangana,1
+C015,NIT Rourkela,Rourkela,Odisha,1
+C016,VIT Vellore,Vellore,Tamil Nadu,2
+C017,SRM Institute of Science and Technology,Chennai,Tamil Nadu,2
+C018,Manipal Institute of Technology,Manipal,Karnataka,2
+C019,Amrita Vishwa Vidyapeetham,Coimbatore,Tamil Nadu,2
+C020,PSG College of Technology,Coimbatore,Tamil Nadu,2
+C021,Anna University,Chennai,Tamil Nadu,2
+C022,PES University,Bengaluru,Karnataka,2
+C023,BMS College of Engineering,Bengaluru,Karnataka,2
+C024,RV College of Engineering,Bengaluru,Karnataka,2
+C025,Ramaiah Institute of Technology,Bengaluru,Karnataka,2
+C026,Thapar Institute of Engineering and Technology,Patiala,Punjab,2
+C027,Delhi Technological University,New Delhi,Delhi,2
+C028,Netaji Subhas University of Technology,New Delhi,Delhi,2
+C029,COEP Technological University,Pune,Maharashtra,2
+C030,Symbiosis Institute of Technology,Pune,Maharashtra,2
+C031,K. J. Somaiya College of Engineering,Mumbai,Maharashtra,3
+C032,Pillai College of Engineering,Navi Mumbai,Maharashtra,3
+C033,Sinhgad College of Engineering,Pune,Maharashtra,3
+C034,Rajarshi Shahu College of Engineering,Pune,Maharashtra,3
+C035,G.H. Raisoni College of Engineering,Nagpur,Maharashtra,3
+C036,Chaitanya Bharathi Institute of Technology,Hyderabad,Telangana,3
+C037,Malla Reddy College of Engineering,Hyderabad,Telangana,3
+C038,CMR Institute of Technology,Bengaluru,Karnataka,3
+C039,New Horizon College of Engineering,Bengaluru,Karnataka,3
+C040,R.V.S. College of Engineering and Technology,Coimbatore,Tamil Nadu,3
+C041,Bannari Amman Institute of Technology,Sathyamangalam,Tamil Nadu,3
+C042,Kongu Engineering College,Erode,Tamil Nadu,3
+C043,Velammal Engineering College,Chennai,Tamil Nadu,3
+C044,Sathyabama Institute of Science and Technology,Chennai,Tamil Nadu,3
+C045,Lovely Professional University,Phagwara,Punjab,3
+C046,Amity University,Noida,Uttar Pradesh,3
+C047,Chandigarh University,Mohali,Punjab,3
+C048,Graphic Era University,Dehradun,Uttarakhand,3
+C049,Jain University,Bengaluru,Karnataka,3
+C050,Christ University,Bengaluru,Karnataka,3

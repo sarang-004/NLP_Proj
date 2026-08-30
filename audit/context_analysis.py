@@ -2,18 +2,27 @@ import pandas as pd
 import re
 
 
-def extract_years(text):
-    """
-    Extract the first numerical experience value.
+SCREENING_FILE = "screening_output_final/screening_results.csv"
+COUNTERFACTUAL_FILE = "final/counterfactual_resumes_valid.csv"
+JOB_FILE = "job_requirements_complete.csv"
+OUTPUT_FILE = "outputs/context_results.csv"
 
-    Examples:
-        "2 years" -> 2
-        "5 years experience" -> 5
-        "2+ years experience" -> 2
-    """
+
+def extract_years(text):
 
     text = str(text).lower()
 
+    # Handle numeric month values
+    try:
+        value = float(text)
+
+        # Experience values in the dataset are months
+        if value >= 0:
+            return value / 12
+    except ValueError:
+        pass
+
+    # Handle "X years"
     match = re.search(
         r"(\d+(?:\.\d+)?)\s*\+?\s*years?",
         text
@@ -22,146 +31,368 @@ def extract_years(text):
     if match:
         return float(match.group(1))
 
+    # Handle "X months"
+    match = re.search(
+        r"(\d+(?:\.\d+)?)\s*months?",
+        text
+    )
+
+    if match:
+        return float(match.group(1)) / 12
+
     return None
 
 
-def classify_experience(
-    original_value,
-    variant_value,
-    jd_requirement
-):
-    """
-    Classify whether an experience difference
-    is supported by the job context.
-    """
+def classify_experience(original, variant, requirement):
 
-    original_years = extract_years(original_value)
-    variant_years = extract_years(variant_value)
-    required_years = extract_years(jd_requirement)
+    original_years = extract_years(original)
+    variant_years = extract_years(variant)
+    required_years = extract_years(requirement)
 
-    if (
-        original_years is None
-        or variant_years is None
-        or required_years is None
+    if None in (
+        original_years,
+        variant_years,
+        required_years
     ):
         return "Needs Review"
 
-    # Variant meets the requirement,
-    # while original does not.
     if (
         original_years < required_years
         and variant_years >= required_years
     ):
         return "Required"
 
-    # Both meet the minimum requirement,
-    # but the variant has more experience.
     if (
         original_years >= required_years
         and variant_years > original_years
     ):
         return "Potentially Beneficial"
 
-    # Variant does not improve qualification
-    # relative to the original.
     if variant_years <= original_years:
         return "Not Supported"
 
     return "Needs Review"
 
 
-def classify_course(
-    original_value,
-    variant_value,
-    jd_requirement
+def classify_qualification(
+    original,
+    variant,
+    requirement
 ):
-    """
-    Classify course/degree differences
-    using the job requirement.
-    """
 
-    requirement = str(jd_requirement).lower()
+    requirement = str(requirement).lower()
+    original = str(original).lower()
+    variant = str(variant).lower()
 
-    original = str(original_value).lower()
-    variant = str(variant_value).lower()
+    original_match = original in requirement
+    variant_match = variant in requirement
 
-    original_accepted = original in requirement
-    variant_accepted = variant in requirement
-
-    # Both qualifications are explicitly accepted
-    if original_accepted and variant_accepted:
+    if original_match and variant_match:
         return "Accepted"
 
-    # Original satisfies the requirement,
-    # but the variant does not.
-    if original_accepted and not variant_accepted:
+    if original_match and not variant_match:
         return "Requirement Not Met"
 
-    # Variant satisfies the requirement,
-    # but original does not.
-    if variant_accepted and not original_accepted:
+    if variant_match and not original_match:
         return "Required"
 
-    # Neither qualification is mentioned.
-    if not original_accepted and not variant_accepted:
+    if not original_match and not variant_match:
         return "Not Supported"
 
     return "Needs Review"
 
 
-def classify_general_context(
-    original_value,
-    variant_value,
-    jd_requirement
+def classify_general(
+    original,
+    variant,
+    requirement
 ):
-    """
-    Handle contextual factors such as
-    college and city.
-    """
 
-    requirement = str(jd_requirement).lower()
+    requirement = str(requirement).lower()
+    original = str(original).lower()
+    variant = str(variant).lower()
 
-    original = str(original_value).lower()
-    variant = str(variant_value).lower()
-
-    # If neither value appears in the JD,
-    # there is no explicit job requirement.
     if (
         original not in requirement
         and variant not in requirement
     ):
         return "Not Supported"
 
-    # If the variant is explicitly mentioned
     if variant in requirement:
         return "Required"
 
     return "Needs Review"
 
 
-def analyze_context(input_file, output_file):
+def find_column(df, possible_names):
 
-    df = pd.read_csv(input_file)
+    for name in possible_names:
+
+        if name in df.columns:
+            return name
+
+    return None
+
+
+def analyze_context():
+
+    print("Loading files...")
+
+    screening = pd.read_csv(
+        SCREENING_FILE
+    )
+
+    counterfactual = pd.read_csv(
+        COUNTERFACTUAL_FILE
+    )
+
+    jobs = pd.read_csv(
+        JOB_FILE
+    )
+
+    print(
+        f"Screening rows: {len(screening)}"
+    )
+
+    print(
+        f"Counterfactual rows: {len(counterfactual)}"
+    )
+
+    print(
+        f"Job rows: {len(jobs)}"
+    )
+
+    # --------------------------------------------------
+    # Identify useful columns
+    # --------------------------------------------------
+
+    cf_resume_col = find_column(
+        counterfactual,
+        ["resume_id", "id"]
+    )
+
+    cf_variant_col = "cf_id"
+
+    job_id_col = find_column(
+        jobs,
+        ["job_id", "id"]
+    )
+
+    # --------------------------------------------------
+    # Merge screening with counterfactual information
+    # --------------------------------------------------
+
+    if cf_variant_col is None:
+
+        raise ValueError(
+            "Could not find variant ID column "
+            "in counterfactual dataset."
+        )
+
+    merged = screening.merge(
+        counterfactual,
+        left_on="variant_id",
+        right_on=cf_variant_col,
+        how="left",
+        suffixes=("", "_cf")
+    )
+
+    # --------------------------------------------------
+    # Merge job requirements
+    # --------------------------------------------------
+
+    if job_id_col is not None:
+
+        merged = merged.merge(
+            jobs,
+            left_on="job_id",
+            right_on=job_id_col,
+            how="left",
+            suffixes=("", "_job")
+        )
 
     results = []
 
-    for _, row in df.iterrows():
+    for _, row in merged.iterrows():
 
         proxy_type = str(
             row["proxy_type"]
         ).lower()
 
-        original_value = str(
-            row["original_value"]
+        # Find original and counterfactual values
+        original_value = row.get(
+            "original_value",
+            ""
         )
 
-        variant_value = str(
-            row["variant_value"]
+        variant_value = row.get(
+            "counterfactual_value",
+            row.get("proxy_value", "")
         )
 
-        jd_requirement = str(
-            row["jd_requirement"]
+        # --------------------------------------------------
+        # Determine JD requirement
+        # --------------------------------------------------
+
+        requirement = ""
+
+        requirement_columns = [
+            "job_description",
+            "requirements",
+            "required_course",
+            "required_degree",
+            "minimum_experience",
+            "preferred_course",
+            "preferred_degree"
+        ]
+
+        for column in requirement_columns:
+
+            if column in merged.columns:
+
+                value = row[column]
+
+                if pd.notna(value):
+
+                    requirement += (
+                        " " + str(value)
+                    )
+
+                # --------------------------------------------------
+        # Get structured JD requirements
+        # --------------------------------------------------
+
+        accepted_degrees = str(
+            row.get("accepted_degrees", "")
+        ).split("|")
+
+        accepted_courses = str(
+            row.get("accepted_courses", "")
+        ).split("|")
+
+        preferred_degree = str(
+            row.get("preferred_degree", "")
         )
+
+        preferred_course = str(
+            row.get("preferred_course", "")
+        )
+
+        minimum_experience = row.get(
+            "minimum_total_experience_years"
+        )
+
+        jd_requirement = (
+            f"Preferred degree: {preferred_degree}; "
+            f"Accepted degrees: {', '.join(accepted_degrees)}; "
+            f"Preferred course: {preferred_course}; "
+            f"Accepted courses: {', '.join(accepted_courses)}; "
+            f"Minimum experience: {minimum_experience} years"
+        )
+
+        # --------------------------------------------------
+        # Classification
+        # --------------------------------------------------
+
+        if proxy_type == "experience":
+
+            try:
+                original_years = float(
+                    original_value
+                ) / 12
+
+                variant_years = float(
+                    variant_value
+                ) / 12
+
+                required_years = float(
+                    minimum_experience
+                )
+
+                if (
+                    original_years < required_years
+                    and variant_years >= required_years
+                ):
+                    classification = "Required"
+
+                elif (
+                    original_years >= required_years
+                    and variant_years > original_years
+                ):
+                    classification = "Potentially Beneficial"
+
+                elif variant_years <= original_years:
+                    classification = "Not Supported"
+
+                else:
+                    classification = "Needs Review"
+
+            except (ValueError, TypeError):
+
+                classification = "Needs Review"
+
+        elif proxy_type == "degree":
+
+            original_match = any(
+                str(original_value).strip().lower()
+                == str(x).strip().lower()
+                for x in accepted_degrees
+            )
+
+            variant_match = any(
+                str(variant_value).strip().lower()
+                == str(x).strip().lower()
+                for x in accepted_degrees
+            )
+
+            if original_match and variant_match:
+                classification = "Accepted"
+
+            elif original_match and not variant_match:
+                classification = "Requirement Not Met"
+
+            elif variant_match and not original_match:
+                classification = "Required"
+
+            else:
+                classification = "Not Supported"
+
+        elif proxy_type == "course":
+
+            original_match = any(
+                str(original_value).strip().lower()
+                == str(x).strip().lower()
+                for x in accepted_courses
+            )
+
+            variant_match = any(
+                str(variant_value).strip().lower()
+                == str(x).strip().lower()
+                for x in accepted_courses
+            )
+
+            if original_match and variant_match:
+                classification = "Accepted"
+
+            elif original_match and not variant_match:
+                classification = "Requirement Not Met"
+
+            elif variant_match and not original_match:
+                classification = "Required"
+
+            else:
+                classification = "Not Supported"
+
+        else:
+
+            # Name, college, city, age, etc.
+            # are not explicitly required by the current JD schema.
+
+            classification = "Not Supported"
+
+        # --------------------------------------------------
+        # Score information
+        # --------------------------------------------------
 
         base_score = float(
             row["base_score"]
@@ -171,61 +402,80 @@ def analyze_context(input_file, output_file):
             row["variant_score"]
         )
 
-        delta = variant_score - base_score
-
-        # Choose classification method
-        if proxy_type == "experience":
-
-            classification = classify_experience(
-                original_value,
-                variant_value,
-                jd_requirement
-            )
-
-        elif proxy_type in ["course", "degree"]:
-
-            classification = classify_course(
-                original_value,
-                variant_value,
-                jd_requirement
-            )
-
-        else:
-
-            classification = classify_general_context(
-                original_value,
-                variant_value,
-                jd_requirement
-            )
+        delta = (
+            variant_score - base_score
+        )
 
         results.append({
-            "resume_id": row["resume_id"],
-            "proxy_type": proxy_type,
-            "original_value": original_value,
-            "variant_value": variant_value,
-            "jd_requirement": jd_requirement,
-            "base_score": base_score,
-            "variant_score": variant_score,
-            "delta": delta,
-            "context_classification": classification
+
+            "resume_id":
+                row["original_resume_id"],
+
+            "job_id":
+                row["job_id"],
+
+            "variant_id":
+                row["variant_id"],
+
+            "proxy_type":
+                proxy_type,
+
+            "original_value":
+                original_value,
+
+            "variant_value":
+                variant_value,
+
+            "jd_requirement":
+                jd_requirement,
+
+            "base_score":
+                base_score,
+
+            "variant_score":
+                variant_score,
+
+            "delta":
+                delta,
+
+            "context_classification":
+                classification
         })
 
-    results_df = pd.DataFrame(results)
+    results_df = pd.DataFrame(
+        results
+    )
 
     results_df.to_csv(
-        output_file,
+        OUTPUT_FILE,
         index=False
     )
 
-    print("\nContext Analysis Results:")
     print(
-        results_df.to_string(index=False)
+        "\nContext Analysis Results:"
+    )
+
+    print(
+        results_df.head(20)
+        .to_string(index=False)
+    )
+
+    print(
+        f"\nSaved to: {OUTPUT_FILE}"
+    )
+
+    print(
+        "\nClassification counts:"
+    )
+
+    print(
+        results_df[
+            "context_classification"
+        ].value_counts()
     )
 
 
 if __name__ == "__main__":
 
-    analyze_context(
-        "data/mock_context.csv",
-        "outputs/context_results.csv"
-    )
+    analyze_context()
+

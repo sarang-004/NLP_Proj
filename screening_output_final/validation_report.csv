@@ -1,0 +1,2 @@
+base_resumes_total,base_resumes_scored,base_resumes_unmapped,counterfactual_total,counterfactuals_scored,duplicate_variant_ids,max_base_scores_per_resume,max_job_ids_per_resume,score_delta_min,score_delta_max
+200,200,0,2806,2806,0,1,1,-0.177531,0.177256

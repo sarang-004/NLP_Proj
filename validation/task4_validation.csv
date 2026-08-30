@@ -1,0 +1,1481 @@
+cf_id,original_resume_id,changed_attribute,changed_columns,missing_expected_change,unexpected_changes,valid,error,dataset
+R001_CF_COLLEGE_CITY,R001,college+city,"['college', 'city']",False,[],True,,Task 4
+R001_CF_COLLEGE_NAME,R001,college+name,"['name', 'college']",False,[],True,,Task 4
+R001_CF_NAME_CITY,R001,name+city,"['name', 'city']",False,[],True,,Task 4
+R001_CF_COLLEGE_EXPERIENCE,R001,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R001_CF_NAME_AGE,R001,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R002_CF_COLLEGE_CITY,R002,college+city,"['college', 'city']",False,[],True,,Task 4
+R002_CF_DEGREE_COURSE,R002,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R002_CF_COLLEGE_NAME,R002,college+name,"['name', 'college']",False,[],True,,Task 4
+R002_CF_NAME_CITY,R002,name+city,"['name', 'city']",False,[],True,,Task 4
+R002_CF_DEGREE_AGE,R002,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R002_CF_COURSE_EXPERIENCE,R002,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R002_CF_COLLEGE_EXPERIENCE,R002,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R002_CF_NAME_AGE,R002,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R003_CF_COLLEGE_CITY,R003,college+city,"['college', 'city']",False,[],True,,Task 4
+R003_CF_DEGREE_COURSE,R003,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R003_CF_COLLEGE_NAME,R003,college+name,"['name', 'college']",False,[],True,,Task 4
+R003_CF_NAME_CITY,R003,name+city,"['name', 'city']",False,[],True,,Task 4
+R003_CF_DEGREE_AGE,R003,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R003_CF_COURSE_EXPERIENCE,R003,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R003_CF_COLLEGE_EXPERIENCE,R003,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R003_CF_NAME_AGE,R003,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R004_CF_COLLEGE_CITY,R004,college+city,"['college', 'city']",False,[],True,,Task 4
+R004_CF_DEGREE_COURSE,R004,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R004_CF_COLLEGE_NAME,R004,college+name,"['name', 'college']",False,[],True,,Task 4
+R004_CF_NAME_CITY,R004,name+city,"['name', 'city']",False,[],True,,Task 4
+R004_CF_DEGREE_AGE,R004,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R004_CF_COURSE_EXPERIENCE,R004,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R004_CF_COLLEGE_EXPERIENCE,R004,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R004_CF_NAME_AGE,R004,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R005_CF_COLLEGE_CITY,R005,college+city,"['college', 'city']",False,[],True,,Task 4
+R005_CF_DEGREE_COURSE,R005,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R005_CF_COLLEGE_NAME,R005,college+name,"['name', 'college']",False,[],True,,Task 4
+R005_CF_NAME_CITY,R005,name+city,"['name', 'city']",False,[],True,,Task 4
+R005_CF_DEGREE_AGE,R005,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R005_CF_COURSE_EXPERIENCE,R005,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R005_CF_COLLEGE_EXPERIENCE,R005,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R005_CF_NAME_AGE,R005,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R006_CF_COLLEGE_CITY,R006,college+city,"['college', 'city']",False,[],True,,Task 4
+R006_CF_DEGREE_COURSE,R006,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R006_CF_COLLEGE_NAME,R006,college+name,"['name', 'college']",False,[],True,,Task 4
+R006_CF_NAME_CITY,R006,name+city,"['name', 'city']",False,[],True,,Task 4
+R006_CF_DEGREE_AGE,R006,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R006_CF_COURSE_EXPERIENCE,R006,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R006_CF_COLLEGE_EXPERIENCE,R006,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R006_CF_NAME_AGE,R006,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R007_CF_COLLEGE_CITY,R007,college+city,"['college', 'city']",False,[],True,,Task 4
+R007_CF_DEGREE_COURSE,R007,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R007_CF_COLLEGE_NAME,R007,college+name,"['name', 'college']",False,[],True,,Task 4
+R007_CF_NAME_CITY,R007,name+city,"['name', 'city']",False,[],True,,Task 4
+R007_CF_DEGREE_AGE,R007,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R007_CF_COURSE_EXPERIENCE,R007,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R007_CF_COLLEGE_EXPERIENCE,R007,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R007_CF_NAME_AGE,R007,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R008_CF_COLLEGE_CITY,R008,college+city,"['college', 'city']",False,[],True,,Task 4
+R008_CF_DEGREE_COURSE,R008,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R008_CF_COLLEGE_NAME,R008,college+name,"['name', 'college']",False,[],True,,Task 4
+R008_CF_NAME_CITY,R008,name+city,"['name', 'city']",False,[],True,,Task 4
+R008_CF_DEGREE_AGE,R008,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R008_CF_COURSE_EXPERIENCE,R008,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R008_CF_COLLEGE_EXPERIENCE,R008,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R008_CF_NAME_AGE,R008,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R009_CF_COLLEGE_CITY,R009,college+city,"['college', 'city']",False,[],True,,Task 4
+R009_CF_DEGREE_COURSE,R009,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R009_CF_COLLEGE_NAME,R009,college+name,"['name', 'college']",False,[],True,,Task 4
+R009_CF_NAME_CITY,R009,name+city,"['name', 'city']",False,[],True,,Task 4
+R009_CF_DEGREE_AGE,R009,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R009_CF_COURSE_EXPERIENCE,R009,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R009_CF_COLLEGE_EXPERIENCE,R009,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R009_CF_NAME_AGE,R009,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R010_CF_COLLEGE_CITY,R010,college+city,"['college', 'city']",False,[],True,,Task 4
+R010_CF_DEGREE_COURSE,R010,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R010_CF_COLLEGE_NAME,R010,college+name,"['name', 'college']",False,[],True,,Task 4
+R010_CF_NAME_CITY,R010,name+city,"['name', 'city']",False,[],True,,Task 4
+R010_CF_DEGREE_AGE,R010,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R010_CF_COURSE_EXPERIENCE,R010,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R010_CF_COLLEGE_EXPERIENCE,R010,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R010_CF_NAME_AGE,R010,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R011_CF_COLLEGE_CITY,R011,college+city,"['college', 'city']",False,[],True,,Task 4
+R011_CF_DEGREE_COURSE,R011,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R011_CF_COLLEGE_NAME,R011,college+name,"['name', 'college']",False,[],True,,Task 4
+R011_CF_NAME_CITY,R011,name+city,"['name', 'city']",False,[],True,,Task 4
+R011_CF_DEGREE_AGE,R011,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R011_CF_COURSE_EXPERIENCE,R011,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R011_CF_COLLEGE_EXPERIENCE,R011,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R011_CF_NAME_AGE,R011,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R012_CF_COLLEGE_CITY,R012,college+city,"['college', 'city']",False,[],True,,Task 4
+R012_CF_DEGREE_COURSE,R012,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R012_CF_COLLEGE_NAME,R012,college+name,"['name', 'college']",False,[],True,,Task 4
+R012_CF_NAME_CITY,R012,name+city,"['name', 'city']",False,[],True,,Task 4
+R012_CF_DEGREE_AGE,R012,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R012_CF_COURSE_EXPERIENCE,R012,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R012_CF_COLLEGE_EXPERIENCE,R012,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R012_CF_NAME_AGE,R012,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R013_CF_COLLEGE_CITY,R013,college+city,"['college', 'city']",False,[],True,,Task 4
+R013_CF_DEGREE_COURSE,R013,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R013_CF_COLLEGE_NAME,R013,college+name,"['name', 'college']",False,[],True,,Task 4
+R013_CF_NAME_CITY,R013,name+city,"['name', 'city']",False,[],True,,Task 4
+R013_CF_DEGREE_AGE,R013,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R013_CF_COURSE_EXPERIENCE,R013,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R013_CF_COLLEGE_EXPERIENCE,R013,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R013_CF_NAME_AGE,R013,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R014_CF_COLLEGE_CITY,R014,college+city,"['college', 'city']",False,[],True,,Task 4
+R014_CF_DEGREE_COURSE,R014,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R014_CF_COLLEGE_NAME,R014,college+name,"['name', 'college']",False,[],True,,Task 4
+R014_CF_NAME_CITY,R014,name+city,"['name', 'city']",False,[],True,,Task 4
+R014_CF_DEGREE_AGE,R014,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R014_CF_COURSE_EXPERIENCE,R014,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R014_CF_COLLEGE_EXPERIENCE,R014,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R014_CF_NAME_AGE,R014,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R015_CF_COLLEGE_CITY,R015,college+city,"['college', 'city']",False,[],True,,Task 4
+R015_CF_DEGREE_COURSE,R015,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R015_CF_COLLEGE_NAME,R015,college+name,"['name', 'college']",False,[],True,,Task 4
+R015_CF_NAME_CITY,R015,name+city,"['name', 'city']",False,[],True,,Task 4
+R015_CF_DEGREE_AGE,R015,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R015_CF_COURSE_EXPERIENCE,R015,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R015_CF_COLLEGE_EXPERIENCE,R015,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R015_CF_NAME_AGE,R015,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R016_CF_COLLEGE_CITY,R016,college+city,"['college', 'city']",False,[],True,,Task 4
+R016_CF_COLLEGE_NAME,R016,college+name,"['name', 'college']",False,[],True,,Task 4
+R016_CF_NAME_CITY,R016,name+city,"['name', 'city']",False,[],True,,Task 4
+R016_CF_DEGREE_AGE,R016,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R016_CF_COLLEGE_EXPERIENCE,R016,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R016_CF_NAME_AGE,R016,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R017_CF_COLLEGE_CITY,R017,college+city,"['college', 'city']",False,[],True,,Task 4
+R017_CF_DEGREE_COURSE,R017,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R017_CF_COLLEGE_NAME,R017,college+name,"['name', 'college']",False,[],True,,Task 4
+R017_CF_NAME_CITY,R017,name+city,"['name', 'city']",False,[],True,,Task 4
+R017_CF_DEGREE_AGE,R017,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R017_CF_COURSE_EXPERIENCE,R017,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R017_CF_COLLEGE_EXPERIENCE,R017,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R017_CF_NAME_AGE,R017,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R018_CF_COLLEGE_CITY,R018,college+city,"['college', 'city']",False,[],True,,Task 4
+R018_CF_DEGREE_COURSE,R018,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R018_CF_COLLEGE_NAME,R018,college+name,"['name', 'college']",False,[],True,,Task 4
+R018_CF_NAME_CITY,R018,name+city,"['name', 'city']",False,[],True,,Task 4
+R018_CF_DEGREE_AGE,R018,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R018_CF_COURSE_EXPERIENCE,R018,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R018_CF_COLLEGE_EXPERIENCE,R018,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R018_CF_NAME_AGE,R018,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R019_CF_COLLEGE_CITY,R019,college+city,"['college', 'city']",False,[],True,,Task 4
+R019_CF_DEGREE_COURSE,R019,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R019_CF_COLLEGE_NAME,R019,college+name,"['name', 'college']",False,[],True,,Task 4
+R019_CF_NAME_CITY,R019,name+city,"['name', 'city']",False,[],True,,Task 4
+R019_CF_DEGREE_AGE,R019,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R019_CF_COURSE_EXPERIENCE,R019,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R019_CF_COLLEGE_EXPERIENCE,R019,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R019_CF_NAME_AGE,R019,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R020_CF_COLLEGE_CITY,R020,college+city,"['college', 'city']",False,[],True,,Task 4
+R020_CF_DEGREE_COURSE,R020,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R020_CF_COLLEGE_NAME,R020,college+name,"['name', 'college']",False,[],True,,Task 4
+R020_CF_NAME_CITY,R020,name+city,"['name', 'city']",False,[],True,,Task 4
+R020_CF_DEGREE_AGE,R020,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R020_CF_COURSE_EXPERIENCE,R020,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R020_CF_COLLEGE_EXPERIENCE,R020,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R020_CF_NAME_AGE,R020,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R021_CF_COLLEGE_CITY,R021,college+city,"['college', 'city']",False,[],True,,Task 4
+R021_CF_COLLEGE_NAME,R021,college+name,"['name', 'college']",False,[],True,,Task 4
+R021_CF_NAME_CITY,R021,name+city,"['name', 'city']",False,[],True,,Task 4
+R021_CF_COLLEGE_EXPERIENCE,R021,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R021_CF_NAME_AGE,R021,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R022_CF_COLLEGE_CITY,R022,college+city,"['college', 'city']",False,[],True,,Task 4
+R022_CF_DEGREE_COURSE,R022,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R022_CF_COLLEGE_NAME,R022,college+name,"['name', 'college']",False,[],True,,Task 4
+R022_CF_NAME_CITY,R022,name+city,"['name', 'city']",False,[],True,,Task 4
+R022_CF_DEGREE_AGE,R022,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R022_CF_COURSE_EXPERIENCE,R022,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R022_CF_COLLEGE_EXPERIENCE,R022,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R022_CF_NAME_AGE,R022,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R023_CF_COLLEGE_CITY,R023,college+city,"['college', 'city']",False,[],True,,Task 4
+R023_CF_DEGREE_COURSE,R023,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R023_CF_COLLEGE_NAME,R023,college+name,"['name', 'college']",False,[],True,,Task 4
+R023_CF_NAME_CITY,R023,name+city,"['name', 'city']",False,[],True,,Task 4
+R023_CF_DEGREE_AGE,R023,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R023_CF_COURSE_EXPERIENCE,R023,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R023_CF_COLLEGE_EXPERIENCE,R023,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R023_CF_NAME_AGE,R023,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R024_CF_COLLEGE_CITY,R024,college+city,"['college', 'city']",False,[],True,,Task 4
+R024_CF_DEGREE_COURSE,R024,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R024_CF_COLLEGE_NAME,R024,college+name,"['name', 'college']",False,[],True,,Task 4
+R024_CF_NAME_CITY,R024,name+city,"['name', 'city']",False,[],True,,Task 4
+R024_CF_DEGREE_AGE,R024,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R024_CF_COURSE_EXPERIENCE,R024,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R024_CF_COLLEGE_EXPERIENCE,R024,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R024_CF_NAME_AGE,R024,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R025_CF_COLLEGE_CITY,R025,college+city,"['college', 'city']",False,[],True,,Task 4
+R025_CF_COLLEGE_NAME,R025,college+name,"['name', 'college']",False,[],True,,Task 4
+R025_CF_NAME_CITY,R025,name+city,"['name', 'city']",False,[],True,,Task 4
+R025_CF_COURSE_EXPERIENCE,R025,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R025_CF_COLLEGE_EXPERIENCE,R025,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R025_CF_NAME_AGE,R025,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R026_CF_COLLEGE_CITY,R026,college+city,"['college', 'city']",False,[],True,,Task 4
+R026_CF_COLLEGE_NAME,R026,college+name,"['name', 'college']",False,[],True,,Task 4
+R026_CF_NAME_CITY,R026,name+city,"['name', 'city']",False,[],True,,Task 4
+R026_CF_COLLEGE_EXPERIENCE,R026,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R026_CF_NAME_AGE,R026,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R027_CF_COLLEGE_CITY,R027,college+city,"['college', 'city']",False,[],True,,Task 4
+R027_CF_DEGREE_COURSE,R027,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R027_CF_COLLEGE_NAME,R027,college+name,"['name', 'college']",False,[],True,,Task 4
+R027_CF_NAME_CITY,R027,name+city,"['name', 'city']",False,[],True,,Task 4
+R027_CF_DEGREE_AGE,R027,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R027_CF_COURSE_EXPERIENCE,R027,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R027_CF_COLLEGE_EXPERIENCE,R027,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R027_CF_NAME_AGE,R027,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R028_CF_COLLEGE_CITY,R028,college+city,"['college', 'city']",False,[],True,,Task 4
+R028_CF_DEGREE_COURSE,R028,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R028_CF_COLLEGE_NAME,R028,college+name,"['name', 'college']",False,[],True,,Task 4
+R028_CF_NAME_CITY,R028,name+city,"['name', 'city']",False,[],True,,Task 4
+R028_CF_DEGREE_AGE,R028,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R028_CF_COURSE_EXPERIENCE,R028,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R028_CF_COLLEGE_EXPERIENCE,R028,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R028_CF_NAME_AGE,R028,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R029_CF_COLLEGE_CITY,R029,college+city,"['college', 'city']",False,[],True,,Task 4
+R029_CF_DEGREE_COURSE,R029,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R029_CF_COLLEGE_NAME,R029,college+name,"['name', 'college']",False,[],True,,Task 4
+R029_CF_NAME_CITY,R029,name+city,"['name', 'city']",False,[],True,,Task 4
+R029_CF_DEGREE_AGE,R029,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R029_CF_COURSE_EXPERIENCE,R029,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R029_CF_COLLEGE_EXPERIENCE,R029,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R029_CF_NAME_AGE,R029,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R030_CF_COLLEGE_CITY,R030,college+city,"['college', 'city']",False,[],True,,Task 4
+R030_CF_DEGREE_COURSE,R030,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R030_CF_COLLEGE_NAME,R030,college+name,"['name', 'college']",False,[],True,,Task 4
+R030_CF_NAME_CITY,R030,name+city,"['name', 'city']",False,[],True,,Task 4
+R030_CF_DEGREE_AGE,R030,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R030_CF_COURSE_EXPERIENCE,R030,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R030_CF_COLLEGE_EXPERIENCE,R030,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R030_CF_NAME_AGE,R030,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R031_CF_COLLEGE_CITY,R031,college+city,"['college', 'city']",False,[],True,,Task 4
+R031_CF_DEGREE_COURSE,R031,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R031_CF_COLLEGE_NAME,R031,college+name,"['name', 'college']",False,[],True,,Task 4
+R031_CF_NAME_CITY,R031,name+city,"['name', 'city']",False,[],True,,Task 4
+R031_CF_DEGREE_AGE,R031,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R031_CF_COURSE_EXPERIENCE,R031,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R031_CF_COLLEGE_EXPERIENCE,R031,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R031_CF_NAME_AGE,R031,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R032_CF_COLLEGE_CITY,R032,college+city,"['college', 'city']",False,[],True,,Task 4
+R032_CF_DEGREE_COURSE,R032,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R032_CF_COLLEGE_NAME,R032,college+name,"['name', 'college']",False,[],True,,Task 4
+R032_CF_NAME_CITY,R032,name+city,"['name', 'city']",False,[],True,,Task 4
+R032_CF_DEGREE_AGE,R032,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R032_CF_COURSE_EXPERIENCE,R032,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R032_CF_COLLEGE_EXPERIENCE,R032,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R032_CF_NAME_AGE,R032,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R033_CF_COLLEGE_CITY,R033,college+city,"['college', 'city']",False,[],True,,Task 4
+R033_CF_DEGREE_COURSE,R033,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R033_CF_COLLEGE_NAME,R033,college+name,"['name', 'college']",False,[],True,,Task 4
+R033_CF_NAME_CITY,R033,name+city,"['name', 'city']",False,[],True,,Task 4
+R033_CF_DEGREE_AGE,R033,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R033_CF_COURSE_EXPERIENCE,R033,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R033_CF_COLLEGE_EXPERIENCE,R033,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R033_CF_NAME_AGE,R033,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R034_CF_COLLEGE_CITY,R034,college+city,"['college', 'city']",False,[],True,,Task 4
+R034_CF_DEGREE_COURSE,R034,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R034_CF_COLLEGE_NAME,R034,college+name,"['name', 'college']",False,[],True,,Task 4
+R034_CF_NAME_CITY,R034,name+city,"['name', 'city']",False,[],True,,Task 4
+R034_CF_DEGREE_AGE,R034,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R034_CF_COURSE_EXPERIENCE,R034,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R034_CF_COLLEGE_EXPERIENCE,R034,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R034_CF_NAME_AGE,R034,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R035_CF_COLLEGE_CITY,R035,college+city,"['college', 'city']",False,[],True,,Task 4
+R035_CF_DEGREE_COURSE,R035,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R035_CF_COLLEGE_NAME,R035,college+name,"['name', 'college']",False,[],True,,Task 4
+R035_CF_NAME_CITY,R035,name+city,"['name', 'city']",False,[],True,,Task 4
+R035_CF_DEGREE_AGE,R035,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R035_CF_COURSE_EXPERIENCE,R035,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R035_CF_COLLEGE_EXPERIENCE,R035,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R035_CF_NAME_AGE,R035,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R036_CF_COLLEGE_CITY,R036,college+city,"['college', 'city']",False,[],True,,Task 4
+R036_CF_DEGREE_COURSE,R036,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R036_CF_COLLEGE_NAME,R036,college+name,"['name', 'college']",False,[],True,,Task 4
+R036_CF_NAME_CITY,R036,name+city,"['name', 'city']",False,[],True,,Task 4
+R036_CF_DEGREE_AGE,R036,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R036_CF_COURSE_EXPERIENCE,R036,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R036_CF_COLLEGE_EXPERIENCE,R036,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R036_CF_NAME_AGE,R036,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R037_CF_COLLEGE_CITY,R037,college+city,"['college', 'city']",False,[],True,,Task 4
+R037_CF_COLLEGE_NAME,R037,college+name,"['name', 'college']",False,[],True,,Task 4
+R037_CF_NAME_CITY,R037,name+city,"['name', 'city']",False,[],True,,Task 4
+R037_CF_DEGREE_AGE,R037,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R037_CF_COLLEGE_EXPERIENCE,R037,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R037_CF_NAME_AGE,R037,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R038_CF_COLLEGE_CITY,R038,college+city,"['college', 'city']",False,[],True,,Task 4
+R038_CF_COLLEGE_NAME,R038,college+name,"['name', 'college']",False,[],True,,Task 4
+R038_CF_NAME_CITY,R038,name+city,"['name', 'city']",False,[],True,,Task 4
+R038_CF_COLLEGE_EXPERIENCE,R038,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R038_CF_NAME_AGE,R038,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R039_CF_COLLEGE_CITY,R039,college+city,"['college', 'city']",False,[],True,,Task 4
+R039_CF_DEGREE_COURSE,R039,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R039_CF_COLLEGE_NAME,R039,college+name,"['name', 'college']",False,[],True,,Task 4
+R039_CF_NAME_CITY,R039,name+city,"['name', 'city']",False,[],True,,Task 4
+R039_CF_DEGREE_AGE,R039,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R039_CF_COURSE_EXPERIENCE,R039,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R039_CF_COLLEGE_EXPERIENCE,R039,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R039_CF_NAME_AGE,R039,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R040_CF_COLLEGE_CITY,R040,college+city,"['college', 'city']",False,[],True,,Task 4
+R040_CF_DEGREE_COURSE,R040,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R040_CF_COLLEGE_NAME,R040,college+name,"['name', 'college']",False,[],True,,Task 4
+R040_CF_NAME_CITY,R040,name+city,"['name', 'city']",False,[],True,,Task 4
+R040_CF_DEGREE_AGE,R040,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R040_CF_COURSE_EXPERIENCE,R040,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R040_CF_COLLEGE_EXPERIENCE,R040,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R040_CF_NAME_AGE,R040,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R041_CF_COLLEGE_CITY,R041,college+city,"['college', 'city']",False,[],True,,Task 4
+R041_CF_DEGREE_COURSE,R041,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R041_CF_COLLEGE_NAME,R041,college+name,"['name', 'college']",False,[],True,,Task 4
+R041_CF_NAME_CITY,R041,name+city,"['name', 'city']",False,[],True,,Task 4
+R041_CF_DEGREE_AGE,R041,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R041_CF_COURSE_EXPERIENCE,R041,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R041_CF_COLLEGE_EXPERIENCE,R041,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R041_CF_NAME_AGE,R041,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R042_CF_COLLEGE_CITY,R042,college+city,"['college', 'city']",False,[],True,,Task 4
+R042_CF_COLLEGE_NAME,R042,college+name,"['name', 'college']",False,[],True,,Task 4
+R042_CF_NAME_CITY,R042,name+city,"['name', 'city']",False,[],True,,Task 4
+R042_CF_DEGREE_AGE,R042,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R042_CF_COLLEGE_EXPERIENCE,R042,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R042_CF_NAME_AGE,R042,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R043_CF_COLLEGE_CITY,R043,college+city,"['college', 'city']",False,[],True,,Task 4
+R043_CF_DEGREE_COURSE,R043,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R043_CF_COLLEGE_NAME,R043,college+name,"['name', 'college']",False,[],True,,Task 4
+R043_CF_NAME_CITY,R043,name+city,"['name', 'city']",False,[],True,,Task 4
+R043_CF_DEGREE_AGE,R043,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R043_CF_COURSE_EXPERIENCE,R043,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R043_CF_COLLEGE_EXPERIENCE,R043,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R043_CF_NAME_AGE,R043,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R044_CF_COLLEGE_CITY,R044,college+city,"['college', 'city']",False,[],True,,Task 4
+R044_CF_COLLEGE_NAME,R044,college+name,"['name', 'college']",False,[],True,,Task 4
+R044_CF_NAME_CITY,R044,name+city,"['name', 'city']",False,[],True,,Task 4
+R044_CF_COLLEGE_EXPERIENCE,R044,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R044_CF_NAME_AGE,R044,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R045_CF_COLLEGE_CITY,R045,college+city,"['college', 'city']",False,[],True,,Task 4
+R045_CF_DEGREE_COURSE,R045,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R045_CF_COLLEGE_NAME,R045,college+name,"['name', 'college']",False,[],True,,Task 4
+R045_CF_NAME_CITY,R045,name+city,"['name', 'city']",False,[],True,,Task 4
+R045_CF_DEGREE_AGE,R045,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R045_CF_COURSE_EXPERIENCE,R045,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R045_CF_COLLEGE_EXPERIENCE,R045,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R045_CF_NAME_AGE,R045,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R046_CF_COLLEGE_CITY,R046,college+city,"['college', 'city']",False,[],True,,Task 4
+R046_CF_COLLEGE_NAME,R046,college+name,"['name', 'college']",False,[],True,,Task 4
+R046_CF_NAME_CITY,R046,name+city,"['name', 'city']",False,[],True,,Task 4
+R046_CF_DEGREE_AGE,R046,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R046_CF_COLLEGE_EXPERIENCE,R046,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R046_CF_NAME_AGE,R046,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R047_CF_COLLEGE_CITY,R047,college+city,"['college', 'city']",False,[],True,,Task 4
+R047_CF_DEGREE_COURSE,R047,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R047_CF_COLLEGE_NAME,R047,college+name,"['name', 'college']",False,[],True,,Task 4
+R047_CF_NAME_CITY,R047,name+city,"['name', 'city']",False,[],True,,Task 4
+R047_CF_DEGREE_AGE,R047,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R047_CF_COURSE_EXPERIENCE,R047,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R047_CF_COLLEGE_EXPERIENCE,R047,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R047_CF_NAME_AGE,R047,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R048_CF_COLLEGE_CITY,R048,college+city,"['college', 'city']",False,[],True,,Task 4
+R048_CF_DEGREE_COURSE,R048,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R048_CF_COLLEGE_NAME,R048,college+name,"['name', 'college']",False,[],True,,Task 4
+R048_CF_NAME_CITY,R048,name+city,"['name', 'city']",False,[],True,,Task 4
+R048_CF_DEGREE_AGE,R048,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R048_CF_COURSE_EXPERIENCE,R048,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R048_CF_COLLEGE_EXPERIENCE,R048,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R048_CF_NAME_AGE,R048,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R049_CF_COLLEGE_CITY,R049,college+city,"['college', 'city']",False,[],True,,Task 4
+R049_CF_COLLEGE_NAME,R049,college+name,"['name', 'college']",False,[],True,,Task 4
+R049_CF_NAME_CITY,R049,name+city,"['name', 'city']",False,[],True,,Task 4
+R049_CF_COLLEGE_EXPERIENCE,R049,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R049_CF_NAME_AGE,R049,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R050_CF_COLLEGE_CITY,R050,college+city,"['college', 'city']",False,[],True,,Task 4
+R050_CF_DEGREE_COURSE,R050,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R050_CF_COLLEGE_NAME,R050,college+name,"['name', 'college']",False,[],True,,Task 4
+R050_CF_NAME_CITY,R050,name+city,"['name', 'city']",False,[],True,,Task 4
+R050_CF_DEGREE_AGE,R050,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R050_CF_COURSE_EXPERIENCE,R050,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R050_CF_COLLEGE_EXPERIENCE,R050,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R050_CF_NAME_AGE,R050,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R051_CF_COLLEGE_CITY,R051,college+city,"['college', 'city']",False,[],True,,Task 4
+R051_CF_DEGREE_COURSE,R051,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R051_CF_COLLEGE_NAME,R051,college+name,"['name', 'college']",False,[],True,,Task 4
+R051_CF_NAME_CITY,R051,name+city,"['name', 'city']",False,[],True,,Task 4
+R051_CF_DEGREE_AGE,R051,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R051_CF_COURSE_EXPERIENCE,R051,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R051_CF_COLLEGE_EXPERIENCE,R051,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R051_CF_NAME_AGE,R051,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R052_CF_COLLEGE_CITY,R052,college+city,"['college', 'city']",False,[],True,,Task 4
+R052_CF_DEGREE_COURSE,R052,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R052_CF_COLLEGE_NAME,R052,college+name,"['name', 'college']",False,[],True,,Task 4
+R052_CF_NAME_CITY,R052,name+city,"['name', 'city']",False,[],True,,Task 4
+R052_CF_DEGREE_AGE,R052,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R052_CF_COURSE_EXPERIENCE,R052,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R052_CF_COLLEGE_EXPERIENCE,R052,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R052_CF_NAME_AGE,R052,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R053_CF_COLLEGE_CITY,R053,college+city,"['college', 'city']",False,[],True,,Task 4
+R053_CF_DEGREE_COURSE,R053,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R053_CF_COLLEGE_NAME,R053,college+name,"['name', 'college']",False,[],True,,Task 4
+R053_CF_NAME_CITY,R053,name+city,"['name', 'city']",False,[],True,,Task 4
+R053_CF_DEGREE_AGE,R053,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R053_CF_COURSE_EXPERIENCE,R053,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R053_CF_COLLEGE_EXPERIENCE,R053,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R053_CF_NAME_AGE,R053,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R054_CF_COLLEGE_CITY,R054,college+city,"['college', 'city']",False,[],True,,Task 4
+R054_CF_COLLEGE_NAME,R054,college+name,"['name', 'college']",False,[],True,,Task 4
+R054_CF_NAME_CITY,R054,name+city,"['name', 'city']",False,[],True,,Task 4
+R054_CF_COLLEGE_EXPERIENCE,R054,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R054_CF_NAME_AGE,R054,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R055_CF_COLLEGE_CITY,R055,college+city,"['college', 'city']",False,[],True,,Task 4
+R055_CF_DEGREE_COURSE,R055,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R055_CF_COLLEGE_NAME,R055,college+name,"['name', 'college']",False,[],True,,Task 4
+R055_CF_NAME_CITY,R055,name+city,"['name', 'city']",False,[],True,,Task 4
+R055_CF_DEGREE_AGE,R055,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R055_CF_COURSE_EXPERIENCE,R055,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R055_CF_COLLEGE_EXPERIENCE,R055,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R055_CF_NAME_AGE,R055,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R056_CF_COLLEGE_CITY,R056,college+city,"['college', 'city']",False,[],True,,Task 4
+R056_CF_DEGREE_COURSE,R056,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R056_CF_COLLEGE_NAME,R056,college+name,"['name', 'college']",False,[],True,,Task 4
+R056_CF_NAME_CITY,R056,name+city,"['name', 'city']",False,[],True,,Task 4
+R056_CF_DEGREE_AGE,R056,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R056_CF_COURSE_EXPERIENCE,R056,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R056_CF_COLLEGE_EXPERIENCE,R056,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R056_CF_NAME_AGE,R056,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R057_CF_COLLEGE_CITY,R057,college+city,"['college', 'city']",False,[],True,,Task 4
+R057_CF_COLLEGE_NAME,R057,college+name,"['name', 'college']",False,[],True,,Task 4
+R057_CF_NAME_CITY,R057,name+city,"['name', 'city']",False,[],True,,Task 4
+R057_CF_COLLEGE_EXPERIENCE,R057,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R057_CF_NAME_AGE,R057,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R058_CF_COLLEGE_CITY,R058,college+city,"['college', 'city']",False,[],True,,Task 4
+R058_CF_DEGREE_COURSE,R058,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R058_CF_COLLEGE_NAME,R058,college+name,"['name', 'college']",False,[],True,,Task 4
+R058_CF_NAME_CITY,R058,name+city,"['name', 'city']",False,[],True,,Task 4
+R058_CF_DEGREE_AGE,R058,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R058_CF_COURSE_EXPERIENCE,R058,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R058_CF_COLLEGE_EXPERIENCE,R058,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R058_CF_NAME_AGE,R058,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R059_CF_COLLEGE_CITY,R059,college+city,"['college', 'city']",False,[],True,,Task 4
+R059_CF_DEGREE_COURSE,R059,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R059_CF_COLLEGE_NAME,R059,college+name,"['name', 'college']",False,[],True,,Task 4
+R059_CF_NAME_CITY,R059,name+city,"['name', 'city']",False,[],True,,Task 4
+R059_CF_DEGREE_AGE,R059,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R059_CF_COURSE_EXPERIENCE,R059,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R059_CF_COLLEGE_EXPERIENCE,R059,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R059_CF_NAME_AGE,R059,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R060_CF_COLLEGE_CITY,R060,college+city,"['college', 'city']",False,[],True,,Task 4
+R060_CF_COLLEGE_NAME,R060,college+name,"['name', 'college']",False,[],True,,Task 4
+R060_CF_NAME_CITY,R060,name+city,"['name', 'city']",False,[],True,,Task 4
+R060_CF_COLLEGE_EXPERIENCE,R060,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R060_CF_NAME_AGE,R060,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R061_CF_COLLEGE_CITY,R061,college+city,"['college', 'city']",False,[],True,,Task 4
+R061_CF_DEGREE_COURSE,R061,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R061_CF_COLLEGE_NAME,R061,college+name,"['name', 'college']",False,[],True,,Task 4
+R061_CF_NAME_CITY,R061,name+city,"['name', 'city']",False,[],True,,Task 4
+R061_CF_DEGREE_AGE,R061,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R061_CF_COURSE_EXPERIENCE,R061,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R061_CF_COLLEGE_EXPERIENCE,R061,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R061_CF_NAME_AGE,R061,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R062_CF_COLLEGE_CITY,R062,college+city,"['college', 'city']",False,[],True,,Task 4
+R062_CF_DEGREE_COURSE,R062,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R062_CF_COLLEGE_NAME,R062,college+name,"['name', 'college']",False,[],True,,Task 4
+R062_CF_NAME_CITY,R062,name+city,"['name', 'city']",False,[],True,,Task 4
+R062_CF_DEGREE_AGE,R062,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R062_CF_COURSE_EXPERIENCE,R062,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R062_CF_COLLEGE_EXPERIENCE,R062,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R062_CF_NAME_AGE,R062,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R063_CF_COLLEGE_CITY,R063,college+city,"['college', 'city']",False,[],True,,Task 4
+R063_CF_DEGREE_COURSE,R063,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R063_CF_COLLEGE_NAME,R063,college+name,"['name', 'college']",False,[],True,,Task 4
+R063_CF_NAME_CITY,R063,name+city,"['name', 'city']",False,[],True,,Task 4
+R063_CF_DEGREE_AGE,R063,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R063_CF_COURSE_EXPERIENCE,R063,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R063_CF_COLLEGE_EXPERIENCE,R063,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R063_CF_NAME_AGE,R063,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R064_CF_COLLEGE_CITY,R064,college+city,"['college', 'city']",False,[],True,,Task 4
+R064_CF_DEGREE_COURSE,R064,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R064_CF_COLLEGE_NAME,R064,college+name,"['name', 'college']",False,[],True,,Task 4
+R064_CF_NAME_CITY,R064,name+city,"['name', 'city']",False,[],True,,Task 4
+R064_CF_DEGREE_AGE,R064,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R064_CF_COURSE_EXPERIENCE,R064,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R064_CF_COLLEGE_EXPERIENCE,R064,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R064_CF_NAME_AGE,R064,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R065_CF_COLLEGE_CITY,R065,college+city,"['college', 'city']",False,[],True,,Task 4
+R065_CF_DEGREE_COURSE,R065,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R065_CF_COLLEGE_NAME,R065,college+name,"['name', 'college']",False,[],True,,Task 4
+R065_CF_NAME_CITY,R065,name+city,"['name', 'city']",False,[],True,,Task 4
+R065_CF_DEGREE_AGE,R065,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R065_CF_COURSE_EXPERIENCE,R065,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R065_CF_COLLEGE_EXPERIENCE,R065,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R065_CF_NAME_AGE,R065,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R066_CF_COLLEGE_CITY,R066,college+city,"['college', 'city']",False,[],True,,Task 4
+R066_CF_DEGREE_COURSE,R066,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R066_CF_COLLEGE_NAME,R066,college+name,"['name', 'college']",False,[],True,,Task 4
+R066_CF_NAME_CITY,R066,name+city,"['name', 'city']",False,[],True,,Task 4
+R066_CF_DEGREE_AGE,R066,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R066_CF_COURSE_EXPERIENCE,R066,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R066_CF_COLLEGE_EXPERIENCE,R066,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R066_CF_NAME_AGE,R066,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R067_CF_COLLEGE_CITY,R067,college+city,"['college', 'city']",False,[],True,,Task 4
+R067_CF_DEGREE_COURSE,R067,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R067_CF_COLLEGE_NAME,R067,college+name,"['name', 'college']",False,[],True,,Task 4
+R067_CF_NAME_CITY,R067,name+city,"['name', 'city']",False,[],True,,Task 4
+R067_CF_DEGREE_AGE,R067,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R067_CF_COURSE_EXPERIENCE,R067,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R067_CF_COLLEGE_EXPERIENCE,R067,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R067_CF_NAME_AGE,R067,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R068_CF_COLLEGE_CITY,R068,college+city,"['college', 'city']",False,[],True,,Task 4
+R068_CF_DEGREE_COURSE,R068,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R068_CF_COLLEGE_NAME,R068,college+name,"['name', 'college']",False,[],True,,Task 4
+R068_CF_NAME_CITY,R068,name+city,"['name', 'city']",False,[],True,,Task 4
+R068_CF_DEGREE_AGE,R068,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R068_CF_COURSE_EXPERIENCE,R068,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R068_CF_COLLEGE_EXPERIENCE,R068,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R068_CF_NAME_AGE,R068,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R069_CF_COLLEGE_CITY,R069,college+city,"['college', 'city']",False,[],True,,Task 4
+R069_CF_DEGREE_COURSE,R069,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R069_CF_COLLEGE_NAME,R069,college+name,"['name', 'college']",False,[],True,,Task 4
+R069_CF_NAME_CITY,R069,name+city,"['name', 'city']",False,[],True,,Task 4
+R069_CF_DEGREE_AGE,R069,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R069_CF_COURSE_EXPERIENCE,R069,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R069_CF_COLLEGE_EXPERIENCE,R069,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R069_CF_NAME_AGE,R069,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R070_CF_COLLEGE_CITY,R070,college+city,"['college', 'city']",False,[],True,,Task 4
+R070_CF_DEGREE_COURSE,R070,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R070_CF_COLLEGE_NAME,R070,college+name,"['name', 'college']",False,[],True,,Task 4
+R070_CF_NAME_CITY,R070,name+city,"['name', 'city']",False,[],True,,Task 4
+R070_CF_DEGREE_AGE,R070,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R070_CF_COURSE_EXPERIENCE,R070,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R070_CF_COLLEGE_EXPERIENCE,R070,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R070_CF_NAME_AGE,R070,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R071_CF_COLLEGE_CITY,R071,college+city,"['college', 'city']",False,[],True,,Task 4
+R071_CF_COLLEGE_NAME,R071,college+name,"['name', 'college']",False,[],True,,Task 4
+R071_CF_NAME_CITY,R071,name+city,"['name', 'city']",False,[],True,,Task 4
+R071_CF_COLLEGE_EXPERIENCE,R071,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R071_CF_NAME_AGE,R071,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R072_CF_COLLEGE_CITY,R072,college+city,"['college', 'city']",False,[],True,,Task 4
+R072_CF_DEGREE_COURSE,R072,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R072_CF_COLLEGE_NAME,R072,college+name,"['name', 'college']",False,[],True,,Task 4
+R072_CF_NAME_CITY,R072,name+city,"['name', 'city']",False,[],True,,Task 4
+R072_CF_DEGREE_AGE,R072,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R072_CF_COURSE_EXPERIENCE,R072,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R072_CF_COLLEGE_EXPERIENCE,R072,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R072_CF_NAME_AGE,R072,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R073_CF_COLLEGE_CITY,R073,college+city,"['college', 'city']",False,[],True,,Task 4
+R073_CF_COLLEGE_NAME,R073,college+name,"['name', 'college']",False,[],True,,Task 4
+R073_CF_NAME_CITY,R073,name+city,"['name', 'city']",False,[],True,,Task 4
+R073_CF_COLLEGE_EXPERIENCE,R073,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R073_CF_NAME_AGE,R073,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R074_CF_COLLEGE_CITY,R074,college+city,"['college', 'city']",False,[],True,,Task 4
+R074_CF_DEGREE_COURSE,R074,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R074_CF_COLLEGE_NAME,R074,college+name,"['name', 'college']",False,[],True,,Task 4
+R074_CF_NAME_CITY,R074,name+city,"['name', 'city']",False,[],True,,Task 4
+R074_CF_DEGREE_AGE,R074,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R074_CF_COURSE_EXPERIENCE,R074,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R074_CF_COLLEGE_EXPERIENCE,R074,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R074_CF_NAME_AGE,R074,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R075_CF_COLLEGE_CITY,R075,college+city,"['college', 'city']",False,[],True,,Task 4
+R075_CF_COLLEGE_NAME,R075,college+name,"['name', 'college']",False,[],True,,Task 4
+R075_CF_NAME_CITY,R075,name+city,"['name', 'city']",False,[],True,,Task 4
+R075_CF_COLLEGE_EXPERIENCE,R075,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R075_CF_NAME_AGE,R075,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R076_CF_COLLEGE_CITY,R076,college+city,"['college', 'city']",False,[],True,,Task 4
+R076_CF_DEGREE_COURSE,R076,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R076_CF_COLLEGE_NAME,R076,college+name,"['name', 'college']",False,[],True,,Task 4
+R076_CF_NAME_CITY,R076,name+city,"['name', 'city']",False,[],True,,Task 4
+R076_CF_DEGREE_AGE,R076,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R076_CF_COURSE_EXPERIENCE,R076,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R076_CF_COLLEGE_EXPERIENCE,R076,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R076_CF_NAME_AGE,R076,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R077_CF_COLLEGE_CITY,R077,college+city,"['college', 'city']",False,[],True,,Task 4
+R077_CF_DEGREE_COURSE,R077,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R077_CF_COLLEGE_NAME,R077,college+name,"['name', 'college']",False,[],True,,Task 4
+R077_CF_NAME_CITY,R077,name+city,"['name', 'city']",False,[],True,,Task 4
+R077_CF_DEGREE_AGE,R077,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R077_CF_COURSE_EXPERIENCE,R077,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R077_CF_COLLEGE_EXPERIENCE,R077,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R077_CF_NAME_AGE,R077,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R078_CF_COLLEGE_CITY,R078,college+city,"['college', 'city']",False,[],True,,Task 4
+R078_CF_DEGREE_COURSE,R078,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R078_CF_COLLEGE_NAME,R078,college+name,"['name', 'college']",False,[],True,,Task 4
+R078_CF_NAME_CITY,R078,name+city,"['name', 'city']",False,[],True,,Task 4
+R078_CF_DEGREE_AGE,R078,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R078_CF_COURSE_EXPERIENCE,R078,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R078_CF_COLLEGE_EXPERIENCE,R078,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R078_CF_NAME_AGE,R078,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R079_CF_COLLEGE_CITY,R079,college+city,"['college', 'city']",False,[],True,,Task 4
+R079_CF_DEGREE_COURSE,R079,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R079_CF_COLLEGE_NAME,R079,college+name,"['name', 'college']",False,[],True,,Task 4
+R079_CF_NAME_CITY,R079,name+city,"['name', 'city']",False,[],True,,Task 4
+R079_CF_DEGREE_AGE,R079,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R079_CF_COURSE_EXPERIENCE,R079,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R079_CF_COLLEGE_EXPERIENCE,R079,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R079_CF_NAME_AGE,R079,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R080_CF_COLLEGE_CITY,R080,college+city,"['college', 'city']",False,[],True,,Task 4
+R080_CF_DEGREE_COURSE,R080,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R080_CF_COLLEGE_NAME,R080,college+name,"['name', 'college']",False,[],True,,Task 4
+R080_CF_NAME_CITY,R080,name+city,"['name', 'city']",False,[],True,,Task 4
+R080_CF_DEGREE_AGE,R080,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R080_CF_COURSE_EXPERIENCE,R080,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R080_CF_COLLEGE_EXPERIENCE,R080,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R080_CF_NAME_AGE,R080,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R081_CF_COLLEGE_CITY,R081,college+city,"['college', 'city']",False,[],True,,Task 4
+R081_CF_DEGREE_COURSE,R081,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R081_CF_COLLEGE_NAME,R081,college+name,"['name', 'college']",False,[],True,,Task 4
+R081_CF_NAME_CITY,R081,name+city,"['name', 'city']",False,[],True,,Task 4
+R081_CF_DEGREE_AGE,R081,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R081_CF_COURSE_EXPERIENCE,R081,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R081_CF_COLLEGE_EXPERIENCE,R081,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R081_CF_NAME_AGE,R081,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R082_CF_COLLEGE_CITY,R082,college+city,"['college', 'city']",False,[],True,,Task 4
+R082_CF_DEGREE_COURSE,R082,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R082_CF_COLLEGE_NAME,R082,college+name,"['name', 'college']",False,[],True,,Task 4
+R082_CF_NAME_CITY,R082,name+city,"['name', 'city']",False,[],True,,Task 4
+R082_CF_DEGREE_AGE,R082,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R082_CF_COURSE_EXPERIENCE,R082,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R082_CF_COLLEGE_EXPERIENCE,R082,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R082_CF_NAME_AGE,R082,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R083_CF_COLLEGE_CITY,R083,college+city,"['college', 'city']",False,[],True,,Task 4
+R083_CF_DEGREE_COURSE,R083,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R083_CF_COLLEGE_NAME,R083,college+name,"['name', 'college']",False,[],True,,Task 4
+R083_CF_NAME_CITY,R083,name+city,"['name', 'city']",False,[],True,,Task 4
+R083_CF_DEGREE_AGE,R083,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R083_CF_COURSE_EXPERIENCE,R083,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R083_CF_COLLEGE_EXPERIENCE,R083,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R083_CF_NAME_AGE,R083,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R084_CF_COLLEGE_CITY,R084,college+city,"['college', 'city']",False,[],True,,Task 4
+R084_CF_DEGREE_COURSE,R084,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R084_CF_COLLEGE_NAME,R084,college+name,"['name', 'college']",False,[],True,,Task 4
+R084_CF_NAME_CITY,R084,name+city,"['name', 'city']",False,[],True,,Task 4
+R084_CF_DEGREE_AGE,R084,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R084_CF_COURSE_EXPERIENCE,R084,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R084_CF_COLLEGE_EXPERIENCE,R084,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R084_CF_NAME_AGE,R084,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R085_CF_COLLEGE_CITY,R085,college+city,"['college', 'city']",False,[],True,,Task 4
+R085_CF_DEGREE_COURSE,R085,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R085_CF_COLLEGE_NAME,R085,college+name,"['name', 'college']",False,[],True,,Task 4
+R085_CF_NAME_CITY,R085,name+city,"['name', 'city']",False,[],True,,Task 4
+R085_CF_DEGREE_AGE,R085,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R085_CF_COURSE_EXPERIENCE,R085,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R085_CF_COLLEGE_EXPERIENCE,R085,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R085_CF_NAME_AGE,R085,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R086_CF_COLLEGE_CITY,R086,college+city,"['college', 'city']",False,[],True,,Task 4
+R086_CF_DEGREE_COURSE,R086,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R086_CF_COLLEGE_NAME,R086,college+name,"['name', 'college']",False,[],True,,Task 4
+R086_CF_NAME_CITY,R086,name+city,"['name', 'city']",False,[],True,,Task 4
+R086_CF_DEGREE_AGE,R086,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R086_CF_COURSE_EXPERIENCE,R086,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R086_CF_COLLEGE_EXPERIENCE,R086,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R086_CF_NAME_AGE,R086,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R087_CF_COLLEGE_CITY,R087,college+city,"['college', 'city']",False,[],True,,Task 4
+R087_CF_COLLEGE_NAME,R087,college+name,"['name', 'college']",False,[],True,,Task 4
+R087_CF_NAME_CITY,R087,name+city,"['name', 'city']",False,[],True,,Task 4
+R087_CF_COLLEGE_EXPERIENCE,R087,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R087_CF_NAME_AGE,R087,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R088_CF_COLLEGE_CITY,R088,college+city,"['college', 'city']",False,[],True,,Task 4
+R088_CF_DEGREE_COURSE,R088,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R088_CF_COLLEGE_NAME,R088,college+name,"['name', 'college']",False,[],True,,Task 4
+R088_CF_NAME_CITY,R088,name+city,"['name', 'city']",False,[],True,,Task 4
+R088_CF_DEGREE_AGE,R088,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R088_CF_COURSE_EXPERIENCE,R088,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R088_CF_COLLEGE_EXPERIENCE,R088,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R088_CF_NAME_AGE,R088,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R089_CF_COLLEGE_CITY,R089,college+city,"['college', 'city']",False,[],True,,Task 4
+R089_CF_DEGREE_COURSE,R089,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R089_CF_COLLEGE_NAME,R089,college+name,"['name', 'college']",False,[],True,,Task 4
+R089_CF_NAME_CITY,R089,name+city,"['name', 'city']",False,[],True,,Task 4
+R089_CF_DEGREE_AGE,R089,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R089_CF_COURSE_EXPERIENCE,R089,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R089_CF_COLLEGE_EXPERIENCE,R089,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R089_CF_NAME_AGE,R089,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R090_CF_COLLEGE_CITY,R090,college+city,"['college', 'city']",False,[],True,,Task 4
+R090_CF_DEGREE_COURSE,R090,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R090_CF_COLLEGE_NAME,R090,college+name,"['name', 'college']",False,[],True,,Task 4
+R090_CF_NAME_CITY,R090,name+city,"['name', 'city']",False,[],True,,Task 4
+R090_CF_DEGREE_AGE,R090,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R090_CF_COURSE_EXPERIENCE,R090,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R090_CF_COLLEGE_EXPERIENCE,R090,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R090_CF_NAME_AGE,R090,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R091_CF_COLLEGE_CITY,R091,college+city,"['college', 'city']",False,[],True,,Task 4
+R091_CF_DEGREE_COURSE,R091,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R091_CF_COLLEGE_NAME,R091,college+name,"['name', 'college']",False,[],True,,Task 4
+R091_CF_NAME_CITY,R091,name+city,"['name', 'city']",False,[],True,,Task 4
+R091_CF_DEGREE_AGE,R091,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R091_CF_COURSE_EXPERIENCE,R091,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R091_CF_COLLEGE_EXPERIENCE,R091,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R091_CF_NAME_AGE,R091,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R092_CF_COLLEGE_CITY,R092,college+city,"['college', 'city']",False,[],True,,Task 4
+R092_CF_DEGREE_COURSE,R092,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R092_CF_COLLEGE_NAME,R092,college+name,"['name', 'college']",False,[],True,,Task 4
+R092_CF_NAME_CITY,R092,name+city,"['name', 'city']",False,[],True,,Task 4
+R092_CF_DEGREE_AGE,R092,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R092_CF_COURSE_EXPERIENCE,R092,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R092_CF_COLLEGE_EXPERIENCE,R092,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R092_CF_NAME_AGE,R092,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R093_CF_COLLEGE_CITY,R093,college+city,"['college', 'city']",False,[],True,,Task 4
+R093_CF_DEGREE_COURSE,R093,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R093_CF_COLLEGE_NAME,R093,college+name,"['name', 'college']",False,[],True,,Task 4
+R093_CF_NAME_CITY,R093,name+city,"['name', 'city']",False,[],True,,Task 4
+R093_CF_DEGREE_AGE,R093,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R093_CF_COURSE_EXPERIENCE,R093,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R093_CF_COLLEGE_EXPERIENCE,R093,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R093_CF_NAME_AGE,R093,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R094_CF_COLLEGE_CITY,R094,college+city,"['college', 'city']",False,[],True,,Task 4
+R094_CF_DEGREE_COURSE,R094,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R094_CF_COLLEGE_NAME,R094,college+name,"['name', 'college']",False,[],True,,Task 4
+R094_CF_NAME_CITY,R094,name+city,"['name', 'city']",False,[],True,,Task 4
+R094_CF_DEGREE_AGE,R094,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R094_CF_COURSE_EXPERIENCE,R094,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R094_CF_COLLEGE_EXPERIENCE,R094,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R094_CF_NAME_AGE,R094,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R095_CF_COLLEGE_CITY,R095,college+city,"['college', 'city']",False,[],True,,Task 4
+R095_CF_DEGREE_COURSE,R095,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R095_CF_COLLEGE_NAME,R095,college+name,"['name', 'college']",False,[],True,,Task 4
+R095_CF_NAME_CITY,R095,name+city,"['name', 'city']",False,[],True,,Task 4
+R095_CF_DEGREE_AGE,R095,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R095_CF_COURSE_EXPERIENCE,R095,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R095_CF_COLLEGE_EXPERIENCE,R095,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R095_CF_NAME_AGE,R095,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R096_CF_COLLEGE_CITY,R096,college+city,"['college', 'city']",False,[],True,,Task 4
+R096_CF_DEGREE_COURSE,R096,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R096_CF_COLLEGE_NAME,R096,college+name,"['name', 'college']",False,[],True,,Task 4
+R096_CF_NAME_CITY,R096,name+city,"['name', 'city']",False,[],True,,Task 4
+R096_CF_DEGREE_AGE,R096,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R096_CF_COURSE_EXPERIENCE,R096,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R096_CF_COLLEGE_EXPERIENCE,R096,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R096_CF_NAME_AGE,R096,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R097_CF_COLLEGE_CITY,R097,college+city,"['college', 'city']",False,[],True,,Task 4
+R097_CF_COLLEGE_NAME,R097,college+name,"['name', 'college']",False,[],True,,Task 4
+R097_CF_NAME_CITY,R097,name+city,"['name', 'city']",False,[],True,,Task 4
+R097_CF_COLLEGE_EXPERIENCE,R097,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R097_CF_NAME_AGE,R097,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R098_CF_COLLEGE_CITY,R098,college+city,"['college', 'city']",False,[],True,,Task 4
+R098_CF_DEGREE_COURSE,R098,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R098_CF_COLLEGE_NAME,R098,college+name,"['name', 'college']",False,[],True,,Task 4
+R098_CF_NAME_CITY,R098,name+city,"['name', 'city']",False,[],True,,Task 4
+R098_CF_DEGREE_AGE,R098,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R098_CF_COURSE_EXPERIENCE,R098,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R098_CF_COLLEGE_EXPERIENCE,R098,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R098_CF_NAME_AGE,R098,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R099_CF_COLLEGE_CITY,R099,college+city,"['college', 'city']",False,[],True,,Task 4
+R099_CF_DEGREE_COURSE,R099,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R099_CF_COLLEGE_NAME,R099,college+name,"['name', 'college']",False,[],True,,Task 4
+R099_CF_NAME_CITY,R099,name+city,"['name', 'city']",False,[],True,,Task 4
+R099_CF_DEGREE_AGE,R099,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R099_CF_COURSE_EXPERIENCE,R099,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R099_CF_COLLEGE_EXPERIENCE,R099,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R099_CF_NAME_AGE,R099,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R100_CF_COLLEGE_CITY,R100,college+city,"['college', 'city']",False,[],True,,Task 4
+R100_CF_COLLEGE_NAME,R100,college+name,"['name', 'college']",False,[],True,,Task 4
+R100_CF_NAME_CITY,R100,name+city,"['name', 'city']",False,[],True,,Task 4
+R100_CF_DEGREE_AGE,R100,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R100_CF_COLLEGE_EXPERIENCE,R100,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R100_CF_NAME_AGE,R100,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R101_CF_COLLEGE_CITY,R101,college+city,"['college', 'city']",False,[],True,,Task 4
+R101_CF_DEGREE_COURSE,R101,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R101_CF_COLLEGE_NAME,R101,college+name,"['name', 'college']",False,[],True,,Task 4
+R101_CF_NAME_CITY,R101,name+city,"['name', 'city']",False,[],True,,Task 4
+R101_CF_DEGREE_AGE,R101,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R101_CF_COURSE_EXPERIENCE,R101,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R101_CF_COLLEGE_EXPERIENCE,R101,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R101_CF_NAME_AGE,R101,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R102_CF_COLLEGE_CITY,R102,college+city,"['college', 'city']",False,[],True,,Task 4
+R102_CF_DEGREE_COURSE,R102,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R102_CF_COLLEGE_NAME,R102,college+name,"['name', 'college']",False,[],True,,Task 4
+R102_CF_NAME_CITY,R102,name+city,"['name', 'city']",False,[],True,,Task 4
+R102_CF_DEGREE_AGE,R102,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R102_CF_COURSE_EXPERIENCE,R102,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R102_CF_COLLEGE_EXPERIENCE,R102,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R102_CF_NAME_AGE,R102,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R103_CF_COLLEGE_CITY,R103,college+city,"['college', 'city']",False,[],True,,Task 4
+R103_CF_DEGREE_COURSE,R103,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R103_CF_COLLEGE_NAME,R103,college+name,"['name', 'college']",False,[],True,,Task 4
+R103_CF_NAME_CITY,R103,name+city,"['name', 'city']",False,[],True,,Task 4
+R103_CF_DEGREE_AGE,R103,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R103_CF_COURSE_EXPERIENCE,R103,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R103_CF_COLLEGE_EXPERIENCE,R103,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R103_CF_NAME_AGE,R103,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R104_CF_COLLEGE_CITY,R104,college+city,"['college', 'city']",False,[],True,,Task 4
+R104_CF_COLLEGE_NAME,R104,college+name,"['name', 'college']",False,[],True,,Task 4
+R104_CF_NAME_CITY,R104,name+city,"['name', 'city']",False,[],True,,Task 4
+R104_CF_COLLEGE_EXPERIENCE,R104,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R104_CF_NAME_AGE,R104,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R105_CF_COLLEGE_CITY,R105,college+city,"['college', 'city']",False,[],True,,Task 4
+R105_CF_DEGREE_COURSE,R105,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R105_CF_COLLEGE_NAME,R105,college+name,"['name', 'college']",False,[],True,,Task 4
+R105_CF_NAME_CITY,R105,name+city,"['name', 'city']",False,[],True,,Task 4
+R105_CF_DEGREE_AGE,R105,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R105_CF_COURSE_EXPERIENCE,R105,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R105_CF_COLLEGE_EXPERIENCE,R105,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R105_CF_NAME_AGE,R105,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R106_CF_COLLEGE_CITY,R106,college+city,"['college', 'city']",False,[],True,,Task 4
+R106_CF_COLLEGE_NAME,R106,college+name,"['name', 'college']",False,[],True,,Task 4
+R106_CF_NAME_CITY,R106,name+city,"['name', 'city']",False,[],True,,Task 4
+R106_CF_COLLEGE_EXPERIENCE,R106,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R106_CF_NAME_AGE,R106,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R107_CF_COLLEGE_CITY,R107,college+city,"['college', 'city']",False,[],True,,Task 4
+R107_CF_DEGREE_COURSE,R107,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R107_CF_COLLEGE_NAME,R107,college+name,"['name', 'college']",False,[],True,,Task 4
+R107_CF_NAME_CITY,R107,name+city,"['name', 'city']",False,[],True,,Task 4
+R107_CF_DEGREE_AGE,R107,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R107_CF_COURSE_EXPERIENCE,R107,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R107_CF_COLLEGE_EXPERIENCE,R107,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R107_CF_NAME_AGE,R107,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R108_CF_COLLEGE_CITY,R108,college+city,"['college', 'city']",False,[],True,,Task 4
+R108_CF_DEGREE_COURSE,R108,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R108_CF_COLLEGE_NAME,R108,college+name,"['name', 'college']",False,[],True,,Task 4
+R108_CF_NAME_CITY,R108,name+city,"['name', 'city']",False,[],True,,Task 4
+R108_CF_DEGREE_AGE,R108,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R108_CF_COURSE_EXPERIENCE,R108,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R108_CF_COLLEGE_EXPERIENCE,R108,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R108_CF_NAME_AGE,R108,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R109_CF_COLLEGE_CITY,R109,college+city,"['college', 'city']",False,[],True,,Task 4
+R109_CF_DEGREE_COURSE,R109,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R109_CF_COLLEGE_NAME,R109,college+name,"['name', 'college']",False,[],True,,Task 4
+R109_CF_NAME_CITY,R109,name+city,"['name', 'city']",False,[],True,,Task 4
+R109_CF_DEGREE_AGE,R109,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R109_CF_COURSE_EXPERIENCE,R109,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R109_CF_COLLEGE_EXPERIENCE,R109,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R109_CF_NAME_AGE,R109,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R110_CF_COLLEGE_CITY,R110,college+city,"['college', 'city']",False,[],True,,Task 4
+R110_CF_DEGREE_COURSE,R110,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R110_CF_COLLEGE_NAME,R110,college+name,"['name', 'college']",False,[],True,,Task 4
+R110_CF_NAME_CITY,R110,name+city,"['name', 'city']",False,[],True,,Task 4
+R110_CF_DEGREE_AGE,R110,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R110_CF_COURSE_EXPERIENCE,R110,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R110_CF_COLLEGE_EXPERIENCE,R110,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R110_CF_NAME_AGE,R110,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R111_CF_COLLEGE_CITY,R111,college+city,"['college', 'city']",False,[],True,,Task 4
+R111_CF_COLLEGE_NAME,R111,college+name,"['name', 'college']",False,[],True,,Task 4
+R111_CF_NAME_CITY,R111,name+city,"['name', 'city']",False,[],True,,Task 4
+R111_CF_DEGREE_AGE,R111,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R111_CF_COLLEGE_EXPERIENCE,R111,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R111_CF_NAME_AGE,R111,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R112_CF_COLLEGE_CITY,R112,college+city,"['college', 'city']",False,[],True,,Task 4
+R112_CF_DEGREE_COURSE,R112,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R112_CF_COLLEGE_NAME,R112,college+name,"['name', 'college']",False,[],True,,Task 4
+R112_CF_NAME_CITY,R112,name+city,"['name', 'city']",False,[],True,,Task 4
+R112_CF_DEGREE_AGE,R112,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R112_CF_COURSE_EXPERIENCE,R112,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R112_CF_COLLEGE_EXPERIENCE,R112,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R112_CF_NAME_AGE,R112,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R113_CF_COLLEGE_CITY,R113,college+city,"['college', 'city']",False,[],True,,Task 4
+R113_CF_DEGREE_COURSE,R113,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R113_CF_COLLEGE_NAME,R113,college+name,"['name', 'college']",False,[],True,,Task 4
+R113_CF_NAME_CITY,R113,name+city,"['name', 'city']",False,[],True,,Task 4
+R113_CF_DEGREE_AGE,R113,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R113_CF_COURSE_EXPERIENCE,R113,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R113_CF_COLLEGE_EXPERIENCE,R113,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R113_CF_NAME_AGE,R113,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R114_CF_COLLEGE_CITY,R114,college+city,"['college', 'city']",False,[],True,,Task 4
+R114_CF_COLLEGE_NAME,R114,college+name,"['name', 'college']",False,[],True,,Task 4
+R114_CF_NAME_CITY,R114,name+city,"['name', 'city']",False,[],True,,Task 4
+R114_CF_DEGREE_AGE,R114,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R114_CF_COLLEGE_EXPERIENCE,R114,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R114_CF_NAME_AGE,R114,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R115_CF_COLLEGE_CITY,R115,college+city,"['college', 'city']",False,[],True,,Task 4
+R115_CF_DEGREE_COURSE,R115,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R115_CF_COLLEGE_NAME,R115,college+name,"['name', 'college']",False,[],True,,Task 4
+R115_CF_NAME_CITY,R115,name+city,"['name', 'city']",False,[],True,,Task 4
+R115_CF_DEGREE_AGE,R115,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R115_CF_COURSE_EXPERIENCE,R115,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R115_CF_COLLEGE_EXPERIENCE,R115,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R115_CF_NAME_AGE,R115,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R116_CF_COLLEGE_CITY,R116,college+city,"['college', 'city']",False,[],True,,Task 4
+R116_CF_DEGREE_COURSE,R116,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R116_CF_COLLEGE_NAME,R116,college+name,"['name', 'college']",False,[],True,,Task 4
+R116_CF_NAME_CITY,R116,name+city,"['name', 'city']",False,[],True,,Task 4
+R116_CF_DEGREE_AGE,R116,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R116_CF_COURSE_EXPERIENCE,R116,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R116_CF_COLLEGE_EXPERIENCE,R116,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R116_CF_NAME_AGE,R116,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R117_CF_COLLEGE_CITY,R117,college+city,"['college', 'city']",False,[],True,,Task 4
+R117_CF_COLLEGE_NAME,R117,college+name,"['name', 'college']",False,[],True,,Task 4
+R117_CF_NAME_CITY,R117,name+city,"['name', 'city']",False,[],True,,Task 4
+R117_CF_COURSE_EXPERIENCE,R117,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R117_CF_COLLEGE_EXPERIENCE,R117,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R117_CF_NAME_AGE,R117,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R118_CF_COLLEGE_CITY,R118,college+city,"['college', 'city']",False,[],True,,Task 4
+R118_CF_DEGREE_COURSE,R118,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R118_CF_COLLEGE_NAME,R118,college+name,"['name', 'college']",False,[],True,,Task 4
+R118_CF_NAME_CITY,R118,name+city,"['name', 'city']",False,[],True,,Task 4
+R118_CF_DEGREE_AGE,R118,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R118_CF_COURSE_EXPERIENCE,R118,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R118_CF_COLLEGE_EXPERIENCE,R118,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R118_CF_NAME_AGE,R118,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R119_CF_COLLEGE_CITY,R119,college+city,"['college', 'city']",False,[],True,,Task 4
+R119_CF_COLLEGE_NAME,R119,college+name,"['name', 'college']",False,[],True,,Task 4
+R119_CF_NAME_CITY,R119,name+city,"['name', 'city']",False,[],True,,Task 4
+R119_CF_DEGREE_AGE,R119,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R119_CF_COLLEGE_EXPERIENCE,R119,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R119_CF_NAME_AGE,R119,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R120_CF_COLLEGE_CITY,R120,college+city,"['college', 'city']",False,[],True,,Task 4
+R120_CF_COLLEGE_NAME,R120,college+name,"['name', 'college']",False,[],True,,Task 4
+R120_CF_NAME_CITY,R120,name+city,"['name', 'city']",False,[],True,,Task 4
+R120_CF_COLLEGE_EXPERIENCE,R120,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R120_CF_NAME_AGE,R120,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R121_CF_COLLEGE_CITY,R121,college+city,"['college', 'city']",False,[],True,,Task 4
+R121_CF_DEGREE_COURSE,R121,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R121_CF_COLLEGE_NAME,R121,college+name,"['name', 'college']",False,[],True,,Task 4
+R121_CF_NAME_CITY,R121,name+city,"['name', 'city']",False,[],True,,Task 4
+R121_CF_DEGREE_AGE,R121,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R121_CF_COURSE_EXPERIENCE,R121,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R121_CF_COLLEGE_EXPERIENCE,R121,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R121_CF_NAME_AGE,R121,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R122_CF_COLLEGE_CITY,R122,college+city,"['college', 'city']",False,[],True,,Task 4
+R122_CF_DEGREE_COURSE,R122,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R122_CF_COLLEGE_NAME,R122,college+name,"['name', 'college']",False,[],True,,Task 4
+R122_CF_NAME_CITY,R122,name+city,"['name', 'city']",False,[],True,,Task 4
+R122_CF_DEGREE_AGE,R122,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R122_CF_COURSE_EXPERIENCE,R122,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R122_CF_COLLEGE_EXPERIENCE,R122,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R122_CF_NAME_AGE,R122,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R123_CF_COLLEGE_CITY,R123,college+city,"['college', 'city']",False,[],True,,Task 4
+R123_CF_COLLEGE_NAME,R123,college+name,"['name', 'college']",False,[],True,,Task 4
+R123_CF_NAME_CITY,R123,name+city,"['name', 'city']",False,[],True,,Task 4
+R123_CF_COLLEGE_EXPERIENCE,R123,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R123_CF_NAME_AGE,R123,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R124_CF_COLLEGE_CITY,R124,college+city,"['college', 'city']",False,[],True,,Task 4
+R124_CF_DEGREE_COURSE,R124,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R124_CF_COLLEGE_NAME,R124,college+name,"['name', 'college']",False,[],True,,Task 4
+R124_CF_NAME_CITY,R124,name+city,"['name', 'city']",False,[],True,,Task 4
+R124_CF_DEGREE_AGE,R124,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R124_CF_COURSE_EXPERIENCE,R124,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R124_CF_COLLEGE_EXPERIENCE,R124,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R124_CF_NAME_AGE,R124,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R125_CF_COLLEGE_CITY,R125,college+city,"['college', 'city']",False,[],True,,Task 4
+R125_CF_DEGREE_COURSE,R125,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R125_CF_COLLEGE_NAME,R125,college+name,"['name', 'college']",False,[],True,,Task 4
+R125_CF_NAME_CITY,R125,name+city,"['name', 'city']",False,[],True,,Task 4
+R125_CF_DEGREE_AGE,R125,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R125_CF_COURSE_EXPERIENCE,R125,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R125_CF_COLLEGE_EXPERIENCE,R125,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R125_CF_NAME_AGE,R125,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R126_CF_COLLEGE_CITY,R126,college+city,"['college', 'city']",False,[],True,,Task 4
+R126_CF_DEGREE_COURSE,R126,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R126_CF_COLLEGE_NAME,R126,college+name,"['name', 'college']",False,[],True,,Task 4
+R126_CF_NAME_CITY,R126,name+city,"['name', 'city']",False,[],True,,Task 4
+R126_CF_DEGREE_AGE,R126,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R126_CF_COURSE_EXPERIENCE,R126,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R126_CF_COLLEGE_EXPERIENCE,R126,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R126_CF_NAME_AGE,R126,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R127_CF_COLLEGE_CITY,R127,college+city,"['college', 'city']",False,[],True,,Task 4
+R127_CF_DEGREE_COURSE,R127,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R127_CF_COLLEGE_NAME,R127,college+name,"['name', 'college']",False,[],True,,Task 4
+R127_CF_NAME_CITY,R127,name+city,"['name', 'city']",False,[],True,,Task 4
+R127_CF_DEGREE_AGE,R127,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R127_CF_COURSE_EXPERIENCE,R127,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R127_CF_COLLEGE_EXPERIENCE,R127,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R127_CF_NAME_AGE,R127,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R128_CF_COLLEGE_CITY,R128,college+city,"['college', 'city']",False,[],True,,Task 4
+R128_CF_DEGREE_COURSE,R128,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R128_CF_COLLEGE_NAME,R128,college+name,"['name', 'college']",False,[],True,,Task 4
+R128_CF_NAME_CITY,R128,name+city,"['name', 'city']",False,[],True,,Task 4
+R128_CF_DEGREE_AGE,R128,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R128_CF_COURSE_EXPERIENCE,R128,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R128_CF_COLLEGE_EXPERIENCE,R128,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R128_CF_NAME_AGE,R128,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R129_CF_COLLEGE_CITY,R129,college+city,"['college', 'city']",False,[],True,,Task 4
+R129_CF_DEGREE_COURSE,R129,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R129_CF_COLLEGE_NAME,R129,college+name,"['name', 'college']",False,[],True,,Task 4
+R129_CF_NAME_CITY,R129,name+city,"['name', 'city']",False,[],True,,Task 4
+R129_CF_DEGREE_AGE,R129,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R129_CF_COURSE_EXPERIENCE,R129,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R129_CF_COLLEGE_EXPERIENCE,R129,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R129_CF_NAME_AGE,R129,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R130_CF_COLLEGE_CITY,R130,college+city,"['college', 'city']",False,[],True,,Task 4
+R130_CF_DEGREE_COURSE,R130,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R130_CF_COLLEGE_NAME,R130,college+name,"['name', 'college']",False,[],True,,Task 4
+R130_CF_NAME_CITY,R130,name+city,"['name', 'city']",False,[],True,,Task 4
+R130_CF_DEGREE_AGE,R130,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R130_CF_COURSE_EXPERIENCE,R130,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R130_CF_COLLEGE_EXPERIENCE,R130,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R130_CF_NAME_AGE,R130,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R131_CF_COLLEGE_CITY,R131,college+city,"['college', 'city']",False,[],True,,Task 4
+R131_CF_DEGREE_COURSE,R131,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R131_CF_COLLEGE_NAME,R131,college+name,"['name', 'college']",False,[],True,,Task 4
+R131_CF_NAME_CITY,R131,name+city,"['name', 'city']",False,[],True,,Task 4
+R131_CF_DEGREE_AGE,R131,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R131_CF_COURSE_EXPERIENCE,R131,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R131_CF_COLLEGE_EXPERIENCE,R131,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R131_CF_NAME_AGE,R131,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R132_CF_COLLEGE_CITY,R132,college+city,"['college', 'city']",False,[],True,,Task 4
+R132_CF_DEGREE_COURSE,R132,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R132_CF_COLLEGE_NAME,R132,college+name,"['name', 'college']",False,[],True,,Task 4
+R132_CF_NAME_CITY,R132,name+city,"['name', 'city']",False,[],True,,Task 4
+R132_CF_DEGREE_AGE,R132,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R132_CF_COURSE_EXPERIENCE,R132,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R132_CF_COLLEGE_EXPERIENCE,R132,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R132_CF_NAME_AGE,R132,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R133_CF_COLLEGE_CITY,R133,college+city,"['college', 'city']",False,[],True,,Task 4
+R133_CF_COLLEGE_NAME,R133,college+name,"['name', 'college']",False,[],True,,Task 4
+R133_CF_NAME_CITY,R133,name+city,"['name', 'city']",False,[],True,,Task 4
+R133_CF_COLLEGE_EXPERIENCE,R133,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R133_CF_NAME_AGE,R133,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R134_CF_COLLEGE_CITY,R134,college+city,"['college', 'city']",False,[],True,,Task 4
+R134_CF_COLLEGE_NAME,R134,college+name,"['name', 'college']",False,[],True,,Task 4
+R134_CF_NAME_CITY,R134,name+city,"['name', 'city']",False,[],True,,Task 4
+R134_CF_DEGREE_AGE,R134,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R134_CF_COLLEGE_EXPERIENCE,R134,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R134_CF_NAME_AGE,R134,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R135_CF_COLLEGE_CITY,R135,college+city,"['college', 'city']",False,[],True,,Task 4
+R135_CF_DEGREE_COURSE,R135,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R135_CF_COLLEGE_NAME,R135,college+name,"['name', 'college']",False,[],True,,Task 4
+R135_CF_NAME_CITY,R135,name+city,"['name', 'city']",False,[],True,,Task 4
+R135_CF_DEGREE_AGE,R135,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R135_CF_COURSE_EXPERIENCE,R135,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R135_CF_COLLEGE_EXPERIENCE,R135,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R135_CF_NAME_AGE,R135,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R136_CF_COLLEGE_CITY,R136,college+city,"['college', 'city']",False,[],True,,Task 4
+R136_CF_DEGREE_COURSE,R136,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R136_CF_COLLEGE_NAME,R136,college+name,"['name', 'college']",False,[],True,,Task 4
+R136_CF_NAME_CITY,R136,name+city,"['name', 'city']",False,[],True,,Task 4
+R136_CF_DEGREE_AGE,R136,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R136_CF_COURSE_EXPERIENCE,R136,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R136_CF_COLLEGE_EXPERIENCE,R136,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R136_CF_NAME_AGE,R136,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R137_CF_COLLEGE_CITY,R137,college+city,"['college', 'city']",False,[],True,,Task 4
+R137_CF_DEGREE_COURSE,R137,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R137_CF_COLLEGE_NAME,R137,college+name,"['name', 'college']",False,[],True,,Task 4
+R137_CF_NAME_CITY,R137,name+city,"['name', 'city']",False,[],True,,Task 4
+R137_CF_DEGREE_AGE,R137,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R137_CF_COURSE_EXPERIENCE,R137,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R137_CF_COLLEGE_EXPERIENCE,R137,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R137_CF_NAME_AGE,R137,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R138_CF_COLLEGE_CITY,R138,college+city,"['college', 'city']",False,[],True,,Task 4
+R138_CF_DEGREE_COURSE,R138,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R138_CF_COLLEGE_NAME,R138,college+name,"['name', 'college']",False,[],True,,Task 4
+R138_CF_NAME_CITY,R138,name+city,"['name', 'city']",False,[],True,,Task 4
+R138_CF_DEGREE_AGE,R138,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R138_CF_COURSE_EXPERIENCE,R138,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R138_CF_COLLEGE_EXPERIENCE,R138,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R138_CF_NAME_AGE,R138,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R139_CF_COLLEGE_CITY,R139,college+city,"['college', 'city']",False,[],True,,Task 4
+R139_CF_DEGREE_COURSE,R139,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R139_CF_COLLEGE_NAME,R139,college+name,"['name', 'college']",False,[],True,,Task 4
+R139_CF_NAME_CITY,R139,name+city,"['name', 'city']",False,[],True,,Task 4
+R139_CF_DEGREE_AGE,R139,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R139_CF_COURSE_EXPERIENCE,R139,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R139_CF_COLLEGE_EXPERIENCE,R139,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R139_CF_NAME_AGE,R139,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R140_CF_COLLEGE_CITY,R140,college+city,"['college', 'city']",False,[],True,,Task 4
+R140_CF_DEGREE_COURSE,R140,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R140_CF_COLLEGE_NAME,R140,college+name,"['name', 'college']",False,[],True,,Task 4
+R140_CF_NAME_CITY,R140,name+city,"['name', 'city']",False,[],True,,Task 4
+R140_CF_DEGREE_AGE,R140,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R140_CF_COURSE_EXPERIENCE,R140,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R140_CF_COLLEGE_EXPERIENCE,R140,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R140_CF_NAME_AGE,R140,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R141_CF_COLLEGE_CITY,R141,college+city,"['college', 'city']",False,[],True,,Task 4
+R141_CF_COLLEGE_NAME,R141,college+name,"['name', 'college']",False,[],True,,Task 4
+R141_CF_NAME_CITY,R141,name+city,"['name', 'city']",False,[],True,,Task 4
+R141_CF_DEGREE_AGE,R141,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R141_CF_COLLEGE_EXPERIENCE,R141,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R141_CF_NAME_AGE,R141,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R142_CF_COLLEGE_CITY,R142,college+city,"['college', 'city']",False,[],True,,Task 4
+R142_CF_DEGREE_COURSE,R142,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R142_CF_COLLEGE_NAME,R142,college+name,"['name', 'college']",False,[],True,,Task 4
+R142_CF_NAME_CITY,R142,name+city,"['name', 'city']",False,[],True,,Task 4
+R142_CF_DEGREE_AGE,R142,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R142_CF_COURSE_EXPERIENCE,R142,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R142_CF_COLLEGE_EXPERIENCE,R142,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R142_CF_NAME_AGE,R142,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R143_CF_COLLEGE_CITY,R143,college+city,"['college', 'city']",False,[],True,,Task 4
+R143_CF_DEGREE_COURSE,R143,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R143_CF_COLLEGE_NAME,R143,college+name,"['name', 'college']",False,[],True,,Task 4
+R143_CF_NAME_CITY,R143,name+city,"['name', 'city']",False,[],True,,Task 4
+R143_CF_DEGREE_AGE,R143,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R143_CF_COURSE_EXPERIENCE,R143,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R143_CF_COLLEGE_EXPERIENCE,R143,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R143_CF_NAME_AGE,R143,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R144_CF_COLLEGE_CITY,R144,college+city,"['college', 'city']",False,[],True,,Task 4
+R144_CF_COLLEGE_NAME,R144,college+name,"['name', 'college']",False,[],True,,Task 4
+R144_CF_NAME_CITY,R144,name+city,"['name', 'city']",False,[],True,,Task 4
+R144_CF_COLLEGE_EXPERIENCE,R144,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R144_CF_NAME_AGE,R144,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R145_CF_COLLEGE_CITY,R145,college+city,"['college', 'city']",False,[],True,,Task 4
+R145_CF_DEGREE_COURSE,R145,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R145_CF_COLLEGE_NAME,R145,college+name,"['name', 'college']",False,[],True,,Task 4
+R145_CF_NAME_CITY,R145,name+city,"['name', 'city']",False,[],True,,Task 4
+R145_CF_DEGREE_AGE,R145,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R145_CF_COURSE_EXPERIENCE,R145,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R145_CF_COLLEGE_EXPERIENCE,R145,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R145_CF_NAME_AGE,R145,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R146_CF_COLLEGE_CITY,R146,college+city,"['college', 'city']",False,[],True,,Task 4
+R146_CF_DEGREE_COURSE,R146,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R146_CF_COLLEGE_NAME,R146,college+name,"['name', 'college']",False,[],True,,Task 4
+R146_CF_NAME_CITY,R146,name+city,"['name', 'city']",False,[],True,,Task 4
+R146_CF_DEGREE_AGE,R146,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R146_CF_COURSE_EXPERIENCE,R146,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R146_CF_COLLEGE_EXPERIENCE,R146,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R146_CF_NAME_AGE,R146,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R147_CF_COLLEGE_CITY,R147,college+city,"['college', 'city']",False,[],True,,Task 4
+R147_CF_DEGREE_COURSE,R147,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R147_CF_COLLEGE_NAME,R147,college+name,"['name', 'college']",False,[],True,,Task 4
+R147_CF_NAME_CITY,R147,name+city,"['name', 'city']",False,[],True,,Task 4
+R147_CF_DEGREE_AGE,R147,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R147_CF_COURSE_EXPERIENCE,R147,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R147_CF_COLLEGE_EXPERIENCE,R147,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R147_CF_NAME_AGE,R147,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R148_CF_COLLEGE_CITY,R148,college+city,"['college', 'city']",False,[],True,,Task 4
+R148_CF_DEGREE_COURSE,R148,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R148_CF_COLLEGE_NAME,R148,college+name,"['name', 'college']",False,[],True,,Task 4
+R148_CF_NAME_CITY,R148,name+city,"['name', 'city']",False,[],True,,Task 4
+R148_CF_DEGREE_AGE,R148,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R148_CF_COURSE_EXPERIENCE,R148,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R148_CF_COLLEGE_EXPERIENCE,R148,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R148_CF_NAME_AGE,R148,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R149_CF_COLLEGE_CITY,R149,college+city,"['college', 'city']",False,[],True,,Task 4
+R149_CF_DEGREE_COURSE,R149,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R149_CF_COLLEGE_NAME,R149,college+name,"['name', 'college']",False,[],True,,Task 4
+R149_CF_NAME_CITY,R149,name+city,"['name', 'city']",False,[],True,,Task 4
+R149_CF_DEGREE_AGE,R149,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R149_CF_COURSE_EXPERIENCE,R149,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R149_CF_COLLEGE_EXPERIENCE,R149,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R149_CF_NAME_AGE,R149,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R150_CF_COLLEGE_CITY,R150,college+city,"['college', 'city']",False,[],True,,Task 4
+R150_CF_DEGREE_COURSE,R150,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R150_CF_COLLEGE_NAME,R150,college+name,"['name', 'college']",False,[],True,,Task 4
+R150_CF_NAME_CITY,R150,name+city,"['name', 'city']",False,[],True,,Task 4
+R150_CF_DEGREE_AGE,R150,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R150_CF_COURSE_EXPERIENCE,R150,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R150_CF_COLLEGE_EXPERIENCE,R150,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R150_CF_NAME_AGE,R150,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R151_CF_COLLEGE_CITY,R151,college+city,"['college', 'city']",False,[],True,,Task 4
+R151_CF_COLLEGE_NAME,R151,college+name,"['name', 'college']",False,[],True,,Task 4
+R151_CF_NAME_CITY,R151,name+city,"['name', 'city']",False,[],True,,Task 4
+R151_CF_COLLEGE_EXPERIENCE,R151,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R151_CF_NAME_AGE,R151,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R152_CF_COLLEGE_CITY,R152,college+city,"['college', 'city']",False,[],True,,Task 4
+R152_CF_COLLEGE_NAME,R152,college+name,"['name', 'college']",False,[],True,,Task 4
+R152_CF_NAME_CITY,R152,name+city,"['name', 'city']",False,[],True,,Task 4
+R152_CF_COLLEGE_EXPERIENCE,R152,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R152_CF_NAME_AGE,R152,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R153_CF_COLLEGE_CITY,R153,college+city,"['college', 'city']",False,[],True,,Task 4
+R153_CF_DEGREE_COURSE,R153,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R153_CF_COLLEGE_NAME,R153,college+name,"['name', 'college']",False,[],True,,Task 4
+R153_CF_NAME_CITY,R153,name+city,"['name', 'city']",False,[],True,,Task 4
+R153_CF_DEGREE_AGE,R153,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R153_CF_COURSE_EXPERIENCE,R153,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R153_CF_COLLEGE_EXPERIENCE,R153,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R153_CF_NAME_AGE,R153,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R154_CF_COLLEGE_CITY,R154,college+city,"['college', 'city']",False,[],True,,Task 4
+R154_CF_DEGREE_COURSE,R154,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R154_CF_COLLEGE_NAME,R154,college+name,"['name', 'college']",False,[],True,,Task 4
+R154_CF_NAME_CITY,R154,name+city,"['name', 'city']",False,[],True,,Task 4
+R154_CF_DEGREE_AGE,R154,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R154_CF_COURSE_EXPERIENCE,R154,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R154_CF_COLLEGE_EXPERIENCE,R154,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R154_CF_NAME_AGE,R154,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R155_CF_COLLEGE_CITY,R155,college+city,"['college', 'city']",False,[],True,,Task 4
+R155_CF_DEGREE_COURSE,R155,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R155_CF_COLLEGE_NAME,R155,college+name,"['name', 'college']",False,[],True,,Task 4
+R155_CF_NAME_CITY,R155,name+city,"['name', 'city']",False,[],True,,Task 4
+R155_CF_DEGREE_AGE,R155,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R155_CF_COURSE_EXPERIENCE,R155,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R155_CF_COLLEGE_EXPERIENCE,R155,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R155_CF_NAME_AGE,R155,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R156_CF_COLLEGE_CITY,R156,college+city,"['college', 'city']",False,[],True,,Task 4
+R156_CF_DEGREE_COURSE,R156,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R156_CF_COLLEGE_NAME,R156,college+name,"['name', 'college']",False,[],True,,Task 4
+R156_CF_NAME_CITY,R156,name+city,"['name', 'city']",False,[],True,,Task 4
+R156_CF_DEGREE_AGE,R156,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R156_CF_COURSE_EXPERIENCE,R156,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R156_CF_COLLEGE_EXPERIENCE,R156,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R156_CF_NAME_AGE,R156,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R157_CF_COLLEGE_CITY,R157,college+city,"['college', 'city']",False,[],True,,Task 4
+R157_CF_DEGREE_COURSE,R157,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R157_CF_COLLEGE_NAME,R157,college+name,"['name', 'college']",False,[],True,,Task 4
+R157_CF_NAME_CITY,R157,name+city,"['name', 'city']",False,[],True,,Task 4
+R157_CF_DEGREE_AGE,R157,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R157_CF_COURSE_EXPERIENCE,R157,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R157_CF_COLLEGE_EXPERIENCE,R157,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R157_CF_NAME_AGE,R157,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R158_CF_COLLEGE_CITY,R158,college+city,"['college', 'city']",False,[],True,,Task 4
+R158_CF_DEGREE_COURSE,R158,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R158_CF_COLLEGE_NAME,R158,college+name,"['name', 'college']",False,[],True,,Task 4
+R158_CF_NAME_CITY,R158,name+city,"['name', 'city']",False,[],True,,Task 4
+R158_CF_DEGREE_AGE,R158,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R158_CF_COURSE_EXPERIENCE,R158,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R158_CF_COLLEGE_EXPERIENCE,R158,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R158_CF_NAME_AGE,R158,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R159_CF_COLLEGE_CITY,R159,college+city,"['college', 'city']",False,[],True,,Task 4
+R159_CF_DEGREE_COURSE,R159,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R159_CF_COLLEGE_NAME,R159,college+name,"['name', 'college']",False,[],True,,Task 4
+R159_CF_NAME_CITY,R159,name+city,"['name', 'city']",False,[],True,,Task 4
+R159_CF_DEGREE_AGE,R159,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R159_CF_COURSE_EXPERIENCE,R159,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R159_CF_COLLEGE_EXPERIENCE,R159,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R159_CF_NAME_AGE,R159,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R160_CF_COLLEGE_CITY,R160,college+city,"['college', 'city']",False,[],True,,Task 4
+R160_CF_DEGREE_COURSE,R160,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R160_CF_COLLEGE_NAME,R160,college+name,"['name', 'college']",False,[],True,,Task 4
+R160_CF_NAME_CITY,R160,name+city,"['name', 'city']",False,[],True,,Task 4
+R160_CF_DEGREE_AGE,R160,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R160_CF_COURSE_EXPERIENCE,R160,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R160_CF_COLLEGE_EXPERIENCE,R160,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R160_CF_NAME_AGE,R160,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R161_CF_COLLEGE_CITY,R161,college+city,"['college', 'city']",False,[],True,,Task 4
+R161_CF_DEGREE_COURSE,R161,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R161_CF_COLLEGE_NAME,R161,college+name,"['name', 'college']",False,[],True,,Task 4
+R161_CF_NAME_CITY,R161,name+city,"['name', 'city']",False,[],True,,Task 4
+R161_CF_DEGREE_AGE,R161,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R161_CF_COURSE_EXPERIENCE,R161,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R161_CF_COLLEGE_EXPERIENCE,R161,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R161_CF_NAME_AGE,R161,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R162_CF_COLLEGE_CITY,R162,college+city,"['college', 'city']",False,[],True,,Task 4
+R162_CF_COLLEGE_NAME,R162,college+name,"['name', 'college']",False,[],True,,Task 4
+R162_CF_NAME_CITY,R162,name+city,"['name', 'city']",False,[],True,,Task 4
+R162_CF_DEGREE_AGE,R162,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R162_CF_COLLEGE_EXPERIENCE,R162,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R162_CF_NAME_AGE,R162,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R163_CF_COLLEGE_CITY,R163,college+city,"['college', 'city']",False,[],True,,Task 4
+R163_CF_COLLEGE_NAME,R163,college+name,"['name', 'college']",False,[],True,,Task 4
+R163_CF_NAME_CITY,R163,name+city,"['name', 'city']",False,[],True,,Task 4
+R163_CF_COLLEGE_EXPERIENCE,R163,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R163_CF_NAME_AGE,R163,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R164_CF_COLLEGE_CITY,R164,college+city,"['college', 'city']",False,[],True,,Task 4
+R164_CF_DEGREE_COURSE,R164,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R164_CF_COLLEGE_NAME,R164,college+name,"['name', 'college']",False,[],True,,Task 4
+R164_CF_NAME_CITY,R164,name+city,"['name', 'city']",False,[],True,,Task 4
+R164_CF_DEGREE_AGE,R164,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R164_CF_COURSE_EXPERIENCE,R164,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R164_CF_COLLEGE_EXPERIENCE,R164,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R164_CF_NAME_AGE,R164,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R165_CF_COLLEGE_CITY,R165,college+city,"['college', 'city']",False,[],True,,Task 4
+R165_CF_COLLEGE_NAME,R165,college+name,"['name', 'college']",False,[],True,,Task 4
+R165_CF_NAME_CITY,R165,name+city,"['name', 'city']",False,[],True,,Task 4
+R165_CF_COURSE_EXPERIENCE,R165,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R165_CF_COLLEGE_EXPERIENCE,R165,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R165_CF_NAME_AGE,R165,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R166_CF_COLLEGE_CITY,R166,college+city,"['college', 'city']",False,[],True,,Task 4
+R166_CF_DEGREE_COURSE,R166,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R166_CF_COLLEGE_NAME,R166,college+name,"['name', 'college']",False,[],True,,Task 4
+R166_CF_NAME_CITY,R166,name+city,"['name', 'city']",False,[],True,,Task 4
+R166_CF_DEGREE_AGE,R166,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R166_CF_COURSE_EXPERIENCE,R166,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R166_CF_COLLEGE_EXPERIENCE,R166,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R166_CF_NAME_AGE,R166,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R167_CF_COLLEGE_CITY,R167,college+city,"['college', 'city']",False,[],True,,Task 4
+R167_CF_DEGREE_COURSE,R167,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R167_CF_COLLEGE_NAME,R167,college+name,"['name', 'college']",False,[],True,,Task 4
+R167_CF_NAME_CITY,R167,name+city,"['name', 'city']",False,[],True,,Task 4
+R167_CF_DEGREE_AGE,R167,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R167_CF_COURSE_EXPERIENCE,R167,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R167_CF_COLLEGE_EXPERIENCE,R167,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R167_CF_NAME_AGE,R167,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R168_CF_COLLEGE_CITY,R168,college+city,"['college', 'city']",False,[],True,,Task 4
+R168_CF_DEGREE_COURSE,R168,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R168_CF_COLLEGE_NAME,R168,college+name,"['name', 'college']",False,[],True,,Task 4
+R168_CF_NAME_CITY,R168,name+city,"['name', 'city']",False,[],True,,Task 4
+R168_CF_DEGREE_AGE,R168,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R168_CF_COURSE_EXPERIENCE,R168,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R168_CF_COLLEGE_EXPERIENCE,R168,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R168_CF_NAME_AGE,R168,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R169_CF_COLLEGE_CITY,R169,college+city,"['college', 'city']",False,[],True,,Task 4
+R169_CF_COLLEGE_NAME,R169,college+name,"['name', 'college']",False,[],True,,Task 4
+R169_CF_NAME_CITY,R169,name+city,"['name', 'city']",False,[],True,,Task 4
+R169_CF_DEGREE_AGE,R169,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R169_CF_COLLEGE_EXPERIENCE,R169,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R169_CF_NAME_AGE,R169,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R170_CF_COLLEGE_CITY,R170,college+city,"['college', 'city']",False,[],True,,Task 4
+R170_CF_DEGREE_COURSE,R170,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R170_CF_COLLEGE_NAME,R170,college+name,"['name', 'college']",False,[],True,,Task 4
+R170_CF_NAME_CITY,R170,name+city,"['name', 'city']",False,[],True,,Task 4
+R170_CF_DEGREE_AGE,R170,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R170_CF_COURSE_EXPERIENCE,R170,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R170_CF_COLLEGE_EXPERIENCE,R170,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R170_CF_NAME_AGE,R170,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R171_CF_COLLEGE_CITY,R171,college+city,"['college', 'city']",False,[],True,,Task 4
+R171_CF_DEGREE_COURSE,R171,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R171_CF_COLLEGE_NAME,R171,college+name,"['name', 'college']",False,[],True,,Task 4
+R171_CF_NAME_CITY,R171,name+city,"['name', 'city']",False,[],True,,Task 4
+R171_CF_DEGREE_AGE,R171,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R171_CF_COURSE_EXPERIENCE,R171,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R171_CF_COLLEGE_EXPERIENCE,R171,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R171_CF_NAME_AGE,R171,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R172_CF_COLLEGE_CITY,R172,college+city,"['college', 'city']",False,[],True,,Task 4
+R172_CF_DEGREE_COURSE,R172,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R172_CF_COLLEGE_NAME,R172,college+name,"['name', 'college']",False,[],True,,Task 4
+R172_CF_NAME_CITY,R172,name+city,"['name', 'city']",False,[],True,,Task 4
+R172_CF_DEGREE_AGE,R172,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R172_CF_COURSE_EXPERIENCE,R172,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R172_CF_COLLEGE_EXPERIENCE,R172,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R172_CF_NAME_AGE,R172,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R173_CF_COLLEGE_CITY,R173,college+city,"['college', 'city']",False,[],True,,Task 4
+R173_CF_DEGREE_COURSE,R173,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R173_CF_COLLEGE_NAME,R173,college+name,"['name', 'college']",False,[],True,,Task 4
+R173_CF_NAME_CITY,R173,name+city,"['name', 'city']",False,[],True,,Task 4
+R173_CF_DEGREE_AGE,R173,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R173_CF_COURSE_EXPERIENCE,R173,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R173_CF_COLLEGE_EXPERIENCE,R173,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R173_CF_NAME_AGE,R173,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R174_CF_COLLEGE_CITY,R174,college+city,"['college', 'city']",False,[],True,,Task 4
+R174_CF_DEGREE_COURSE,R174,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R174_CF_COLLEGE_NAME,R174,college+name,"['name', 'college']",False,[],True,,Task 4
+R174_CF_NAME_CITY,R174,name+city,"['name', 'city']",False,[],True,,Task 4
+R174_CF_DEGREE_AGE,R174,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R174_CF_COURSE_EXPERIENCE,R174,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R174_CF_COLLEGE_EXPERIENCE,R174,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R174_CF_NAME_AGE,R174,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R175_CF_COLLEGE_CITY,R175,college+city,"['college', 'city']",False,[],True,,Task 4
+R175_CF_DEGREE_COURSE,R175,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R175_CF_COLLEGE_NAME,R175,college+name,"['name', 'college']",False,[],True,,Task 4
+R175_CF_NAME_CITY,R175,name+city,"['name', 'city']",False,[],True,,Task 4
+R175_CF_DEGREE_AGE,R175,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R175_CF_COURSE_EXPERIENCE,R175,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R175_CF_COLLEGE_EXPERIENCE,R175,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R175_CF_NAME_AGE,R175,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R176_CF_COLLEGE_CITY,R176,college+city,"['college', 'city']",False,[],True,,Task 4
+R176_CF_COLLEGE_NAME,R176,college+name,"['name', 'college']",False,[],True,,Task 4
+R176_CF_NAME_CITY,R176,name+city,"['name', 'city']",False,[],True,,Task 4
+R176_CF_COLLEGE_EXPERIENCE,R176,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R176_CF_NAME_AGE,R176,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R177_CF_COLLEGE_CITY,R177,college+city,"['college', 'city']",False,[],True,,Task 4
+R177_CF_DEGREE_COURSE,R177,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R177_CF_COLLEGE_NAME,R177,college+name,"['name', 'college']",False,[],True,,Task 4
+R177_CF_NAME_CITY,R177,name+city,"['name', 'city']",False,[],True,,Task 4
+R177_CF_DEGREE_AGE,R177,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R177_CF_COURSE_EXPERIENCE,R177,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R177_CF_COLLEGE_EXPERIENCE,R177,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R177_CF_NAME_AGE,R177,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R178_CF_COLLEGE_CITY,R178,college+city,"['college', 'city']",False,[],True,,Task 4
+R178_CF_DEGREE_COURSE,R178,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R178_CF_COLLEGE_NAME,R178,college+name,"['name', 'college']",False,[],True,,Task 4
+R178_CF_NAME_CITY,R178,name+city,"['name', 'city']",False,[],True,,Task 4
+R178_CF_DEGREE_AGE,R178,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R178_CF_COURSE_EXPERIENCE,R178,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R178_CF_COLLEGE_EXPERIENCE,R178,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R178_CF_NAME_AGE,R178,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R179_CF_COLLEGE_CITY,R179,college+city,"['college', 'city']",False,[],True,,Task 4
+R179_CF_DEGREE_COURSE,R179,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R179_CF_COLLEGE_NAME,R179,college+name,"['name', 'college']",False,[],True,,Task 4
+R179_CF_NAME_CITY,R179,name+city,"['name', 'city']",False,[],True,,Task 4
+R179_CF_DEGREE_AGE,R179,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R179_CF_COURSE_EXPERIENCE,R179,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R179_CF_COLLEGE_EXPERIENCE,R179,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R179_CF_NAME_AGE,R179,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R180_CF_COLLEGE_CITY,R180,college+city,"['college', 'city']",False,[],True,,Task 4
+R180_CF_DEGREE_COURSE,R180,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R180_CF_COLLEGE_NAME,R180,college+name,"['name', 'college']",False,[],True,,Task 4
+R180_CF_NAME_CITY,R180,name+city,"['name', 'city']",False,[],True,,Task 4
+R180_CF_DEGREE_AGE,R180,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R180_CF_COURSE_EXPERIENCE,R180,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R180_CF_COLLEGE_EXPERIENCE,R180,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R180_CF_NAME_AGE,R180,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R181_CF_COLLEGE_CITY,R181,college+city,"['college', 'city']",False,[],True,,Task 4
+R181_CF_DEGREE_COURSE,R181,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R181_CF_COLLEGE_NAME,R181,college+name,"['name', 'college']",False,[],True,,Task 4
+R181_CF_NAME_CITY,R181,name+city,"['name', 'city']",False,[],True,,Task 4
+R181_CF_DEGREE_AGE,R181,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R181_CF_COURSE_EXPERIENCE,R181,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R181_CF_COLLEGE_EXPERIENCE,R181,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R181_CF_NAME_AGE,R181,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R182_CF_COLLEGE_CITY,R182,college+city,"['college', 'city']",False,[],True,,Task 4
+R182_CF_DEGREE_COURSE,R182,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R182_CF_COLLEGE_NAME,R182,college+name,"['name', 'college']",False,[],True,,Task 4
+R182_CF_NAME_CITY,R182,name+city,"['name', 'city']",False,[],True,,Task 4
+R182_CF_DEGREE_AGE,R182,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R182_CF_COURSE_EXPERIENCE,R182,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R182_CF_COLLEGE_EXPERIENCE,R182,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R182_CF_NAME_AGE,R182,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R183_CF_COLLEGE_CITY,R183,college+city,"['college', 'city']",False,[],True,,Task 4
+R183_CF_COLLEGE_NAME,R183,college+name,"['name', 'college']",False,[],True,,Task 4
+R183_CF_NAME_CITY,R183,name+city,"['name', 'city']",False,[],True,,Task 4
+R183_CF_COLLEGE_EXPERIENCE,R183,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R183_CF_NAME_AGE,R183,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R184_CF_COLLEGE_CITY,R184,college+city,"['college', 'city']",False,[],True,,Task 4
+R184_CF_COLLEGE_NAME,R184,college+name,"['name', 'college']",False,[],True,,Task 4
+R184_CF_NAME_CITY,R184,name+city,"['name', 'city']",False,[],True,,Task 4
+R184_CF_DEGREE_AGE,R184,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R184_CF_COLLEGE_EXPERIENCE,R184,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R184_CF_NAME_AGE,R184,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R185_CF_COLLEGE_CITY,R185,college+city,"['college', 'city']",False,[],True,,Task 4
+R185_CF_COLLEGE_NAME,R185,college+name,"['name', 'college']",False,[],True,,Task 4
+R185_CF_NAME_CITY,R185,name+city,"['name', 'city']",False,[],True,,Task 4
+R185_CF_COLLEGE_EXPERIENCE,R185,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R185_CF_NAME_AGE,R185,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R186_CF_COLLEGE_CITY,R186,college+city,"['college', 'city']",False,[],True,,Task 4
+R186_CF_DEGREE_COURSE,R186,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R186_CF_COLLEGE_NAME,R186,college+name,"['name', 'college']",False,[],True,,Task 4
+R186_CF_NAME_CITY,R186,name+city,"['name', 'city']",False,[],True,,Task 4
+R186_CF_DEGREE_AGE,R186,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R186_CF_COURSE_EXPERIENCE,R186,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R186_CF_COLLEGE_EXPERIENCE,R186,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R186_CF_NAME_AGE,R186,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R187_CF_COLLEGE_CITY,R187,college+city,"['college', 'city']",False,[],True,,Task 4
+R187_CF_DEGREE_COURSE,R187,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R187_CF_COLLEGE_NAME,R187,college+name,"['name', 'college']",False,[],True,,Task 4
+R187_CF_NAME_CITY,R187,name+city,"['name', 'city']",False,[],True,,Task 4
+R187_CF_DEGREE_AGE,R187,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R187_CF_COURSE_EXPERIENCE,R187,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R187_CF_COLLEGE_EXPERIENCE,R187,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R187_CF_NAME_AGE,R187,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R188_CF_COLLEGE_CITY,R188,college+city,"['college', 'city']",False,[],True,,Task 4
+R188_CF_DEGREE_COURSE,R188,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R188_CF_COLLEGE_NAME,R188,college+name,"['name', 'college']",False,[],True,,Task 4
+R188_CF_NAME_CITY,R188,name+city,"['name', 'city']",False,[],True,,Task 4
+R188_CF_DEGREE_AGE,R188,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R188_CF_COURSE_EXPERIENCE,R188,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R188_CF_COLLEGE_EXPERIENCE,R188,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R188_CF_NAME_AGE,R188,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R189_CF_COLLEGE_CITY,R189,college+city,"['college', 'city']",False,[],True,,Task 4
+R189_CF_DEGREE_COURSE,R189,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R189_CF_COLLEGE_NAME,R189,college+name,"['name', 'college']",False,[],True,,Task 4
+R189_CF_NAME_CITY,R189,name+city,"['name', 'city']",False,[],True,,Task 4
+R189_CF_DEGREE_AGE,R189,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R189_CF_COURSE_EXPERIENCE,R189,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R189_CF_COLLEGE_EXPERIENCE,R189,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R189_CF_NAME_AGE,R189,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R190_CF_COLLEGE_CITY,R190,college+city,"['college', 'city']",False,[],True,,Task 4
+R190_CF_DEGREE_COURSE,R190,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R190_CF_COLLEGE_NAME,R190,college+name,"['name', 'college']",False,[],True,,Task 4
+R190_CF_NAME_CITY,R190,name+city,"['name', 'city']",False,[],True,,Task 4
+R190_CF_DEGREE_AGE,R190,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R190_CF_COURSE_EXPERIENCE,R190,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R190_CF_COLLEGE_EXPERIENCE,R190,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R190_CF_NAME_AGE,R190,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R191_CF_COLLEGE_CITY,R191,college+city,"['college', 'city']",False,[],True,,Task 4
+R191_CF_COLLEGE_NAME,R191,college+name,"['name', 'college']",False,[],True,,Task 4
+R191_CF_NAME_CITY,R191,name+city,"['name', 'city']",False,[],True,,Task 4
+R191_CF_COLLEGE_EXPERIENCE,R191,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R191_CF_NAME_AGE,R191,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R192_CF_COLLEGE_CITY,R192,college+city,"['college', 'city']",False,[],True,,Task 4
+R192_CF_COLLEGE_NAME,R192,college+name,"['name', 'college']",False,[],True,,Task 4
+R192_CF_NAME_CITY,R192,name+city,"['name', 'city']",False,[],True,,Task 4
+R192_CF_DEGREE_AGE,R192,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R192_CF_COLLEGE_EXPERIENCE,R192,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R192_CF_NAME_AGE,R192,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R193_CF_COLLEGE_CITY,R193,college+city,"['college', 'city']",False,[],True,,Task 4
+R193_CF_DEGREE_COURSE,R193,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R193_CF_COLLEGE_NAME,R193,college+name,"['name', 'college']",False,[],True,,Task 4
+R193_CF_NAME_CITY,R193,name+city,"['name', 'city']",False,[],True,,Task 4
+R193_CF_DEGREE_AGE,R193,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R193_CF_COURSE_EXPERIENCE,R193,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R193_CF_COLLEGE_EXPERIENCE,R193,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R193_CF_NAME_AGE,R193,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R194_CF_COLLEGE_CITY,R194,college+city,"['college', 'city']",False,[],True,,Task 4
+R194_CF_DEGREE_COURSE,R194,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R194_CF_COLLEGE_NAME,R194,college+name,"['name', 'college']",False,[],True,,Task 4
+R194_CF_NAME_CITY,R194,name+city,"['name', 'city']",False,[],True,,Task 4
+R194_CF_DEGREE_AGE,R194,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R194_CF_COURSE_EXPERIENCE,R194,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R194_CF_COLLEGE_EXPERIENCE,R194,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R194_CF_NAME_AGE,R194,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R195_CF_COLLEGE_CITY,R195,college+city,"['college', 'city']",False,[],True,,Task 4
+R195_CF_DEGREE_COURSE,R195,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R195_CF_COLLEGE_NAME,R195,college+name,"['name', 'college']",False,[],True,,Task 4
+R195_CF_NAME_CITY,R195,name+city,"['name', 'city']",False,[],True,,Task 4
+R195_CF_DEGREE_AGE,R195,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R195_CF_COURSE_EXPERIENCE,R195,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R195_CF_COLLEGE_EXPERIENCE,R195,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R195_CF_NAME_AGE,R195,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R196_CF_COLLEGE_CITY,R196,college+city,"['college', 'city']",False,[],True,,Task 4
+R196_CF_DEGREE_COURSE,R196,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R196_CF_COLLEGE_NAME,R196,college+name,"['name', 'college']",False,[],True,,Task 4
+R196_CF_NAME_CITY,R196,name+city,"['name', 'city']",False,[],True,,Task 4
+R196_CF_DEGREE_AGE,R196,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R196_CF_COURSE_EXPERIENCE,R196,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R196_CF_COLLEGE_EXPERIENCE,R196,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R196_CF_NAME_AGE,R196,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R197_CF_COLLEGE_CITY,R197,college+city,"['college', 'city']",False,[],True,,Task 4
+R197_CF_DEGREE_COURSE,R197,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R197_CF_COLLEGE_NAME,R197,college+name,"['name', 'college']",False,[],True,,Task 4
+R197_CF_NAME_CITY,R197,name+city,"['name', 'city']",False,[],True,,Task 4
+R197_CF_DEGREE_AGE,R197,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R197_CF_COURSE_EXPERIENCE,R197,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R197_CF_COLLEGE_EXPERIENCE,R197,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R197_CF_NAME_AGE,R197,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R198_CF_COLLEGE_CITY,R198,college+city,"['college', 'city']",False,[],True,,Task 4
+R198_CF_COLLEGE_NAME,R198,college+name,"['name', 'college']",False,[],True,,Task 4
+R198_CF_NAME_CITY,R198,name+city,"['name', 'city']",False,[],True,,Task 4
+R198_CF_COLLEGE_EXPERIENCE,R198,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R198_CF_NAME_AGE,R198,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R199_CF_COLLEGE_CITY,R199,college+city,"['college', 'city']",False,[],True,,Task 4
+R199_CF_COLLEGE_NAME,R199,college+name,"['name', 'college']",False,[],True,,Task 4
+R199_CF_NAME_CITY,R199,name+city,"['name', 'city']",False,[],True,,Task 4
+R199_CF_DEGREE_AGE,R199,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R199_CF_COLLEGE_EXPERIENCE,R199,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R199_CF_NAME_AGE,R199,name+age,"['name', 'age_final']",False,[],True,,Task 4
+R200_CF_COLLEGE_CITY,R200,college+city,"['college', 'city']",False,[],True,,Task 4
+R200_CF_DEGREE_COURSE,R200,degree+course,"['primary_degree', 'course_final']",False,[],True,,Task 4
+R200_CF_COLLEGE_NAME,R200,college+name,"['name', 'college']",False,[],True,,Task 4
+R200_CF_NAME_CITY,R200,name+city,"['name', 'city']",False,[],True,,Task 4
+R200_CF_DEGREE_AGE,R200,degree+age,"['primary_degree', 'age_final']",False,[],True,,Task 4
+R200_CF_COURSE_EXPERIENCE,R200,course+experience,"['course_final', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R200_CF_COLLEGE_EXPERIENCE,R200,college+experience,"['college', 'total_experience_months_final', 'total_experience_years_final']",False,[],True,,Task 4
+R200_CF_NAME_AGE,R200,name+age,"['name', 'age_final']",False,[],True,,Task 4

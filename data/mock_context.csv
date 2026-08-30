@@ -1,0 +1,7 @@
+resume_id,proxy_type,original_value,variant_value,jd_requirement,base_score,variant_score
+R001,course,B.Tech CSE,Integrated M.Tech CSE,B.Tech CSE or Integrated M.Tech CSE,0.82,0.81
+R002,course,B.Tech CSE,Mechanical Engineering,B.Tech CSE required,0.78,0.65
+R003,experience,2 years,4 years,2+ years experience,0.80,0.84
+R004,experience,1 year,3 years,5 years experience,0.72,0.74
+R005,college,Tier 1,Tier 3,College tier not specified,0.85,0.78
+R006,city,Tier 1,Tier 3,Location not specified,0.80,0.75

@@ -1,0 +1,13 @@
+resume_id,proxy_type,delta
+R001,college,-0.03
+R001,city,-0.02
+R001,name,-0.01
+R001,intersection,-0.09
+R002,college,-0.02
+R002,city,-0.01
+R002,name,-0.02
+R002,intersection,-0.08
+R003,college,-0.01
+R003,city,-0.03
+R003,name,0.00
+R003,intersection,-0.05

@@ -1,0 +1,113 @@
+============================================================
+AUTOMATED RESUME BIAS AUDIT REPORT
+============================================================
+
+1. DATASET SUMMARY
+----------------------------------------
+Unique resumes analysed: 2
+Counterfactual cases analysed: 10
+
+2. CONTEXTUAL FACTOR ANALYSIS
+----------------------------------------
+
+Factor: city
+Mean delta: -0.0150
+Median delta: -0.0150
+Standard deviation: 0.0071
+Cases: 2
+Negative cases: 2
+Positive cases: 0
+
+Factor: college
+Mean delta: -0.0300
+Median delta: -0.0300
+Standard deviation: 0.0141
+Cases: 2
+Negative cases: 2
+Positive cases: 0
+
+Factor: course
+Mean delta: -0.0200
+Median delta: -0.0200
+Standard deviation: 0.0141
+Cases: 2
+Negative cases: 2
+Positive cases: 0
+
+Factor: employment_gap
+Mean delta: -0.0550
+Median delta: -0.0550
+Standard deviation: 0.0071
+Cases: 2
+Negative cases: 2
+Positive cases: 0
+
+Factor: name
+Mean delta: -0.0200
+Median delta: -0.0200
+Standard deviation: 0.0141
+Cases: 2
+Negative cases: 2
+Positive cases: 0
+
+
+3. LARGEST NEGATIVE EFFECT
+----------------------------------------
+Factor: employment_gap
+Mean delta: -0.0550
+
+
+4. CONTEXT ANALYSIS
+----------------------------------------
+Not Supported: 2
+Accepted: 1
+Requirement Not Met: 1
+Potentially Beneficial: 1
+Needs Review: 1
+
+Potentially unsupported contextual cases: 2
+
+
+5. INTERSECTIONAL ANALYSIS
+----------------------------------------
+Average expected effect: -0.0500
+Average actual intersection effect: -0.0733
+Average interaction effect: -0.0233
+
+
+6. GROUP FAIRNESS
+----------------------------------------
+
+Group: Tier_1
+Candidates: 5
+Selected: 5
+Average score: 0.8180
+Selection rate: 1.0000
+Disparate impact ratio: 1.0000
+
+Group: Tier_2
+Candidates: 5
+Selected: 3
+Average score: 0.7200
+Selection rate: 0.6000
+Disparate impact ratio: 0.6000
+
+Group: Tier_3
+Candidates: 5
+Selected: 2
+Average score: 0.6380
+Selection rate: 0.4000
+Disparate impact ratio: 0.4000
+
+
+7. GENERATED VISUALIZATIONS
+----------------------------------------
+outputs/plots/mean_delta.png
+outputs/plots/base_vs_variant.png
+outputs/plots/intersectionality.png
+outputs/plots/selection_rates.png
+
+
+8. INTERPRETATION NOTE
+----------------------------------------
+A score difference alone does not establish unfair discrimination. Contextual factors should be interpreted against job requirements and relevant candidate qualifications. Unsupported score differences should be flagged for further investigation.

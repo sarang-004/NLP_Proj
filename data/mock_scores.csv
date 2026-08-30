@@ -1,0 +1,13 @@
+resume_id,variant_id,proxy_type,proxy_value,score
+R001,R001_base,base,original,0.82
+R001,R001_college,college,tier2,0.78
+R001,R001_city,city,tier2,0.80
+R001,R001_name,name,category_A,0.81
+R001,R001_gap,employment_gap,gap,0.76
+R001,R001_course,course,integrated_mtech,0.79
+R002,R002_base,base,original,0.75
+R002,R002_college,college,tier2,0.73
+R002,R002_city,city,tier2,0.74
+R002,R002_name,name,category_A,0.72
+R002,R002_gap,employment_gap,gap,0.70
+R002,R002_course,course,integrated_mtech,0.74

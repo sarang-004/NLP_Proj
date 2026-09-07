@@ -2,27 +2,55 @@ import pandas as pd
 import re
 
 
+# ==========================================================
+# FILE PATHS
+# ==========================================================
+
 SCREENING_FILE = "screening_output_final/screening_results.csv"
-COUNTERFACTUAL_FILE = "final/counterfactual_resumes_valid.csv"
+
+COUNTERFACTUAL_FILE = (
+    "final/counterfactual_resumes_valid.csv"
+)
+
 JOB_FILE = "job_requirements_complete.csv"
+
+COMPANY_COURSE_FILE = (
+    "final/company_course_preferences.csv"
+)
+
 OUTPUT_FILE = "outputs/context_results.csv"
 
+
+# ==========================================================
+# TEXT NORMALIZATION
+# ==========================================================
+
+def normalize(value):
+
+    if pd.isna(value):
+        return ""
+
+    return str(value).strip().lower()
+
+
+# ==========================================================
+# EXPERIENCE UTILITIES
+# ==========================================================
 
 def extract_years(text):
 
     text = str(text).lower()
 
-    # Handle numeric month values
     try:
+
         value = float(text)
 
-        # Experience values in the dataset are months
         if value >= 0:
             return value / 12
+
     except ValueError:
         pass
 
-    # Handle "X years"
     match = re.search(
         r"(\d+(?:\.\d+)?)\s*\+?\s*years?",
         text
@@ -31,7 +59,6 @@ def extract_years(text):
     if match:
         return float(match.group(1))
 
-    # Handle "X months"
     match = re.search(
         r"(\d+(?:\.\d+)?)\s*months?",
         text
@@ -43,49 +70,145 @@ def extract_years(text):
     return None
 
 
-def classify_experience(original, variant, requirement):
+# ==========================================================
+# COURSE CLASSIFICATION
+# ==========================================================
 
-    original_years = extract_years(original)
-    variant_years = extract_years(variant)
-    required_years = extract_years(requirement)
+def classify_course(
+    course,
+    preferred_course,
+    accepted_courses
+):
 
-    if None in (
-        original_years,
-        variant_years,
-        required_years
+    course = normalize(course)
+
+    preferred_course = normalize(
+        preferred_course
+    )
+
+    accepted_courses = [
+        normalize(x)
+        for x in str(
+            accepted_courses
+        ).split("|")
+    ]
+
+    if course == "":
+        return "Unknown"
+
+    if course == preferred_course:
+        return "Preferred"
+
+    if course in accepted_courses:
+        return "Accepted"
+
+    return "Unrelated"
+
+
+# ==========================================================
+# COURSE TRANSFORMATION INTERPRETATION
+# ==========================================================
+
+def interpret_course_change(
+    original_status,
+    variant_status
+):
+
+    if (
+        original_status == "Unknown"
+        or variant_status == "Unknown"
     ):
         return "Needs Review"
 
     if (
-        original_years < required_years
-        and variant_years >= required_years
+        original_status == "Preferred"
+        and variant_status == "Preferred"
     ):
-        return "Required"
+        return "No Preference Change"
 
     if (
-        original_years >= required_years
-        and variant_years > original_years
+        original_status == "Preferred"
+        and variant_status == "Accepted"
+    ):
+        return "Potentially Less Preferred"
+
+    if (
+        original_status == "Preferred"
+        and variant_status == "Unrelated"
+    ):
+        return "Requirement Not Met"
+
+    if (
+        original_status == "Accepted"
+        and variant_status == "Preferred"
     ):
         return "Potentially Beneficial"
 
-    if variant_years <= original_years:
-        return "Not Supported"
+    if (
+        original_status == "Accepted"
+        and variant_status == "Accepted"
+    ):
+        return "Equivalent Acceptance"
+
+    if (
+        original_status == "Accepted"
+        and variant_status == "Unrelated"
+    ):
+        return "Requirement Not Met"
+
+    if (
+        original_status == "Unrelated"
+        and variant_status == "Preferred"
+    ):
+        return "Strongly Beneficial"
+
+    if (
+        original_status == "Unrelated"
+        and variant_status == "Accepted"
+    ):
+        return "Potentially Beneficial"
+
+    if (
+        original_status == "Unrelated"
+        and variant_status == "Unrelated"
+    ):
+        return "No Relevant Improvement"
 
     return "Needs Review"
 
 
-def classify_qualification(
+# ==========================================================
+# DEGREE CLASSIFICATION
+#
+# Kept separate from course classification.
+# This allows B.Tech, M.Tech and Integrated M.Tech
+# to be evaluated independently from the course.
+# ==========================================================
+
+def classify_degree_change(
     original,
     variant,
-    requirement
+    accepted_degrees
 ):
 
-    requirement = str(requirement).lower()
-    original = str(original).lower()
-    variant = str(variant).lower()
+    original = normalize(original)
 
-    original_match = original in requirement
-    variant_match = variant in requirement
+    variant = normalize(variant)
+
+    accepted_degrees = [
+        normalize(x)
+        for x in str(
+            accepted_degrees
+        ).split("|")
+    ]
+
+    original_match = (
+        original in accepted_degrees
+    )
+
+    variant_match = (
+        variant in accepted_degrees
+    )
 
     if original_match and variant_match:
         return "Accepted"
@@ -94,49 +217,69 @@ def classify_qualification(
         return "Requirement Not Met"
 
     if variant_match and not original_match:
-        return "Required"
+        return "Potentially Beneficial"
 
-    if not original_match and not variant_match:
-        return "Not Supported"
-
-    return "Needs Review"
+    return "Not Supported"
 
 
-def classify_general(
+# ==========================================================
+# EXPERIENCE CLASSIFICATION
+# ==========================================================
+
+def classify_experience_change(
     original,
     variant,
-    requirement
+    minimum_experience
 ):
 
-    requirement = str(requirement).lower()
-    original = str(original).lower()
-    variant = str(variant).lower()
+    try:
 
-    if (
-        original not in requirement
-        and variant not in requirement
+        original_years = (
+            float(original) / 12
+        )
+
+        variant_years = (
+            float(variant) / 12
+        )
+
+        required_years = float(
+            minimum_experience
+        )
+
+        if (
+            original_years < required_years
+            and variant_years >= required_years
+        ):
+            return "Required"
+
+        if (
+            original_years >= required_years
+            and variant_years > original_years
+        ):
+            return "Potentially Beneficial"
+
+        if variant_years <= original_years:
+            return "Not Supported"
+
+        return "Needs Review"
+
+    except (
+        ValueError,
+        TypeError
     ):
-        return "Not Supported"
 
-    if variant in requirement:
-        return "Required"
-
-    return "Needs Review"
+        return "Needs Review"
 
 
-def find_column(df, possible_names):
-
-    for name in possible_names:
-
-        if name in df.columns:
-            return name
-
-    return None
-
+# ==========================================================
+# MAIN CONTEXT ANALYSIS
+# ==========================================================
 
 def analyze_context():
 
-    print("Loading files...")
+    print(
+        "\nLoading files..."
+    )
 
     screening = pd.read_csv(
         SCREENING_FILE
@@ -150,76 +293,147 @@ def analyze_context():
         JOB_FILE
     )
 
-    print(
-        f"Screening rows: {len(screening)}"
+    company_courses = pd.read_csv(
+        COMPANY_COURSE_FILE
     )
 
     print(
-        f"Counterfactual rows: {len(counterfactual)}"
+        f"Screening rows: "
+        f"{len(screening)}"
     )
 
     print(
-        f"Job rows: {len(jobs)}"
+        f"Counterfactual rows: "
+        f"{len(counterfactual)}"
     )
 
-    # --------------------------------------------------
-    # Identify useful columns
-    # --------------------------------------------------
-
-    cf_resume_col = find_column(
-        counterfactual,
-        ["resume_id", "id"]
+    print(
+        f"Job rows: "
+        f"{len(jobs)}"
     )
 
-    cf_variant_col = "cf_id"
-
-    job_id_col = find_column(
-        jobs,
-        ["job_id", "id"]
+    print(
+        f"Company-course mappings: "
+        f"{len(company_courses)}"
     )
 
-    # --------------------------------------------------
-    # Merge screening with counterfactual information
-    # --------------------------------------------------
 
-    if cf_variant_col is None:
+    # ======================================================
+    # VALIDATE COMPANY-COURSE MAPPING
+    # ======================================================
+
+    mapping_job_ids = set(
+        company_courses["job_id"]
+    )
+
+    job_ids = set(
+        jobs["job_id"]
+    )
+
+    missing_mappings = (
+        job_ids - mapping_job_ids
+    )
+
+    if missing_mappings:
 
         raise ValueError(
-            "Could not find variant ID column "
-            "in counterfactual dataset."
+            "Missing company-course mappings "
+            f"for jobs: {missing_mappings}"
         )
+
+
+    # ======================================================
+    # MERGE SCREENING + COUNTERFACTUAL DATA
+    # ======================================================
 
     merged = screening.merge(
         counterfactual,
         left_on="variant_id",
-        right_on=cf_variant_col,
+        right_on="cf_id",
         how="left",
         suffixes=("", "_cf")
     )
 
-    # --------------------------------------------------
-    # Merge job requirements
-    # --------------------------------------------------
 
-    if job_id_col is not None:
+    # ======================================================
+    # MERGE JOB DATA
+    # ======================================================
 
-        merged = merged.merge(
-            jobs,
-            left_on="job_id",
-            right_on=job_id_col,
-            how="left",
-            suffixes=("", "_job")
+    merged = merged.merge(
+        jobs,
+        on="job_id",
+        how="left",
+        suffixes=("", "_job")
+    )
+
+
+    # ======================================================
+    # MERGE COMPANY-COURSE CONTEXT
+    # ======================================================
+
+    company_context = company_courses[
+        [
+            "company",
+            "job_id",
+            "preferred_course",
+            "accepted_courses"
+        ]
+    ].copy()
+
+    # Rename to prevent ambiguity with JD columns
+    company_context = company_context.rename(
+        columns={
+            "preferred_course":
+                "company_preferred_course",
+
+            "accepted_courses":
+                "company_accepted_courses"
+        }
+    )
+
+    merged = merged.merge(
+        company_context,
+        on="job_id",
+        how="left"
+    )
+
+
+    # ======================================================
+    # CHECK MERGE QUALITY
+    # ======================================================
+
+    missing_company = merged[
+        "company"
+    ].isna().sum()
+
+    if missing_company > 0:
+
+        print(
+            "\nWARNING:"
         )
+
+        print(
+            f"{missing_company} rows "
+            "do not have company context."
+        )
+
 
     results = []
 
+
+    # ======================================================
+    # PROCESS EACH COUNTERFACTUAL
+    # ======================================================
+
     for _, row in merged.iterrows():
 
-        proxy_type = str(
-            row["proxy_type"]
-        ).lower()
+        proxy_type = normalize(
+            row.get(
+                "proxy_type",
+                ""
+            )
+        )
 
-        # Find original and counterfactual values
         original_value = row.get(
             "original_value",
             ""
@@ -227,195 +441,211 @@ def analyze_context():
 
         variant_value = row.get(
             "counterfactual_value",
-            row.get("proxy_value", "")
+            row.get(
+                "proxy_value",
+                ""
+            )
         )
 
+
         # --------------------------------------------------
-        # Determine JD requirement
-        # --------------------------------------------------
-
-        requirement = ""
-
-        requirement_columns = [
-            "job_description",
-            "requirements",
-            "required_course",
-            "required_degree",
-            "minimum_experience",
-            "preferred_course",
-            "preferred_degree"
-        ]
-
-        for column in requirement_columns:
-
-            if column in merged.columns:
-
-                value = row[column]
-
-                if pd.notna(value):
-
-                    requirement += (
-                        " " + str(value)
-                    )
-
-                # --------------------------------------------------
-        # Get structured JD requirements
+        # Get company context
         # --------------------------------------------------
 
-        accepted_degrees = str(
-            row.get("accepted_degrees", "")
-        ).split("|")
-
-        accepted_courses = str(
-            row.get("accepted_courses", "")
-        ).split("|")
-
-        preferred_degree = str(
-            row.get("preferred_degree", "")
+        company = row.get(
+            "company",
+            ""
         )
 
-        preferred_course = str(
-            row.get("preferred_course", "")
+        company_preferred_course = row.get(
+            "company_preferred_course",
+            ""
+        )
+
+        company_accepted_courses = row.get(
+            "company_accepted_courses",
+            ""
+        )
+
+
+        # --------------------------------------------------
+        # Build readable JD requirement
+        # --------------------------------------------------
+
+        accepted_degrees = row.get(
+            "accepted_degrees",
+            ""
+        )
+
+        preferred_degree = row.get(
+            "preferred_degree",
+            ""
         )
 
         minimum_experience = row.get(
-            "minimum_total_experience_years"
+            "minimum_total_experience_years",
+            None
         )
 
         jd_requirement = (
-            f"Preferred degree: {preferred_degree}; "
-            f"Accepted degrees: {', '.join(accepted_degrees)}; "
-            f"Preferred course: {preferred_course}; "
-            f"Accepted courses: {', '.join(accepted_courses)}; "
-            f"Minimum experience: {minimum_experience} years"
+            f"Company: {company}; "
+            f"Preferred course: "
+            f"{company_preferred_course}; "
+            f"Accepted courses: "
+            f"{company_accepted_courses}; "
+            f"Preferred degree: "
+            f"{preferred_degree}; "
+            f"Accepted degrees: "
+            f"{accepted_degrees}; "
+            f"Minimum experience: "
+            f"{minimum_experience} years"
         )
 
+
         # --------------------------------------------------
-        # Classification
+        # Default course fields
         # --------------------------------------------------
+
+        original_course_status = ""
+
+        variant_course_status = ""
+
+
+        # ==================================================
+        # EXPERIENCE
+        # ==================================================
 
         if proxy_type == "experience":
 
-            try:
-                original_years = float(
-                    original_value
-                ) / 12
-
-                variant_years = float(
-                    variant_value
-                ) / 12
-
-                required_years = float(
+            classification = (
+                classify_experience_change(
+                    original_value,
+                    variant_value,
                     minimum_experience
                 )
+            )
 
-                if (
-                    original_years < required_years
-                    and variant_years >= required_years
-                ):
-                    classification = "Required"
 
-                elif (
-                    original_years >= required_years
-                    and variant_years > original_years
-                ):
-                    classification = "Potentially Beneficial"
-
-                elif variant_years <= original_years:
-                    classification = "Not Supported"
-
-                else:
-                    classification = "Needs Review"
-
-            except (ValueError, TypeError):
-
-                classification = "Needs Review"
+        # ==================================================
+        # DEGREE
+        #
+        # Degree level is evaluated separately.
+        # ==================================================
 
         elif proxy_type == "degree":
 
-            original_match = any(
-                str(original_value).strip().lower()
-                == str(x).strip().lower()
-                for x in accepted_degrees
+            classification = (
+                classify_degree_change(
+                    original_value,
+                    variant_value,
+                    accepted_degrees
+                )
             )
 
-            variant_match = any(
-                str(variant_value).strip().lower()
-                == str(x).strip().lower()
-                for x in accepted_degrees
-            )
 
-            if original_match and variant_match:
-                classification = "Accepted"
-
-            elif original_match and not variant_match:
-                classification = "Requirement Not Met"
-
-            elif variant_match and not original_match:
-                classification = "Required"
-
-            else:
-                classification = "Not Supported"
+        # ==================================================
+        # COURSE
+        #
+        # Uses company-course preference mapping.
+        # ==================================================
 
         elif proxy_type == "course":
 
-            original_match = any(
-                str(original_value).strip().lower()
-                == str(x).strip().lower()
-                for x in accepted_courses
+            original_course_status = (
+                classify_course(
+                    original_value,
+                    company_preferred_course,
+                    company_accepted_courses
+                )
             )
 
-            variant_match = any(
-                str(variant_value).strip().lower()
-                == str(x).strip().lower()
-                for x in accepted_courses
+            variant_course_status = (
+                classify_course(
+                    variant_value,
+                    company_preferred_course,
+                    company_accepted_courses
+                )
             )
 
-            if original_match and variant_match:
-                classification = "Accepted"
+            classification = (
+                interpret_course_change(
+                    original_course_status,
+                    variant_course_status
+                )
+            )
 
-            elif original_match and not variant_match:
-                classification = "Requirement Not Met"
 
-            elif variant_match and not original_match:
-                classification = "Required"
-
-            else:
-                classification = "Not Supported"
+        # ==================================================
+        # OTHER PROXIES
+        # ==================================================
 
         else:
 
-            # Name, college, city, age, etc.
-            # are not explicitly required by the current JD schema.
+            classification = (
+                "Not Supported"
+            )
 
-            classification = "Not Supported"
 
-        # --------------------------------------------------
-        # Score information
-        # --------------------------------------------------
+        # ==================================================
+        # SCORE INFORMATION
+        # ==================================================
 
-        base_score = float(
-            row["base_score"]
-        )
+        try:
 
-        variant_score = float(
-            row["variant_score"]
-        )
+            base_score = float(
+                row["base_score"]
+            )
 
-        delta = (
-            variant_score - base_score
-        )
+            variant_score = float(
+                row["variant_score"]
+            )
+
+            delta = (
+                variant_score
+                - base_score
+            )
+
+        except (
+            ValueError,
+            TypeError
+        ):
+
+            base_score = None
+
+            variant_score = None
+
+            delta = None
+
+
+        # ==================================================
+        # STORE RESULT
+        # ==================================================
 
         results.append({
 
             "resume_id":
-                row["original_resume_id"],
+                row.get(
+                    "original_resume_id",
+                    row.get(
+                        "resume_id",
+                        ""
+                    )
+                ),
 
             "job_id":
-                row["job_id"],
+                row.get(
+                    "job_id",
+                    ""
+                ),
+
+            "company":
+                company,
 
             "variant_id":
-                row["variant_id"],
+                row.get(
+                    "variant_id",
+                    ""
+                ),
 
             "proxy_type":
                 proxy_type,
@@ -425,6 +655,12 @@ def analyze_context():
 
             "variant_value":
                 variant_value,
+
+            "original_course_status":
+                original_course_status,
+
+            "variant_course_status":
+                variant_course_status,
 
             "jd_requirement":
                 jd_requirement,
@@ -442,17 +678,45 @@ def analyze_context():
                 classification
         })
 
+
+    # ======================================================
+    # CREATE OUTPUT
+    # ======================================================
+
     results_df = pd.DataFrame(
         results
     )
+
 
     results_df.to_csv(
         OUTPUT_FILE,
         index=False
     )
 
+
+    # ======================================================
+    # DISPLAY RESULTS
+    # ======================================================
+
     print(
-        "\nContext Analysis Results:"
+        "\n" + "=" * 80
+    )
+
+    print(
+        "CONTEXT ANALYSIS RESULTS"
+    )
+
+    print(
+        "=" * 80
+    )
+
+    print(
+        f"\nTotal rows: "
+        f"{len(results_df)}"
+    )
+
+    print(
+        "\nFirst 20 results:\n"
     )
 
     print(
@@ -460,9 +724,6 @@ def analyze_context():
         .to_string(index=False)
     )
 
-    print(
-        f"\nSaved to: {OUTPUT_FILE}"
-    )
 
     print(
         "\nClassification counts:"
@@ -471,11 +732,90 @@ def analyze_context():
     print(
         results_df[
             "context_classification"
-        ].value_counts()
+        ]
+        .value_counts()
     )
 
+
+    # ======================================================
+    # COURSE-SPECIFIC SUMMARY
+    # ======================================================
+
+    course_results = results_df[
+        results_df["proxy_type"] == "course"
+    ]
+
+
+    if len(course_results) > 0:
+
+        print(
+            "\n" + "=" * 80
+        )
+
+        print(
+            "COMPANY-COURSE CONTEXT SUMMARY"
+        )
+
+        print(
+            "=" * 80
+        )
+
+        print(
+            f"\nCourse transformations: "
+            f"{len(course_results)}"
+        )
+
+        print(
+            "\nOriginal course status:"
+        )
+
+        print(
+            course_results[
+                "original_course_status"
+            ]
+            .value_counts()
+        )
+
+        print(
+            "\nVariant course status:"
+        )
+
+        print(
+            course_results[
+                "variant_course_status"
+            ]
+            .value_counts()
+        )
+
+        print(
+            "\nCourse interpretation:"
+        )
+
+        print(
+            course_results[
+                "context_classification"
+            ]
+            .value_counts()
+        )
+
+
+    print(
+        "\n" + "=" * 80
+    )
+
+    print(
+        f"Saved to: {OUTPUT_FILE}"
+    )
+
+    print(
+        "=" * 80
+    )
+
+
+# ==========================================================
+# RUN
+# ==========================================================
 
 if __name__ == "__main__":
 
     analyze_context()
-

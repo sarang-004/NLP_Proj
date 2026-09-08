@@ -206,9 +206,9 @@ def score(row, job, model):
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument("--base",default="final_resumes.csv")
+    ap.add_argument("--base",default="final/final_resumes.csv")
     ap.add_argument("--jobs",default="job_requirements_complete.csv")
-    ap.add_argument("--counterfactual",default="counterfactual_resumes_valid.csv")
+    ap.add_argument("--counterfactual",default="final/counterfactual_resumes_valid.csv")
     ap.add_argument("--outdir",default="screening_output_final")
     args=ap.parse_args()
     os.makedirs(args.outdir,exist_ok=True)

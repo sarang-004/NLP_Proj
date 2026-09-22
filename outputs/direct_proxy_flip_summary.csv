@@ -1,0 +1,6 @@
+proxy_type,total_cases,high_magnitude_cases,any_decision_flip,flips_at_0.55,positive_flips_at_0.55,negative_flips_at_0.55,flips_at_0.6,positive_flips_at_0.6,negative_flips_at_0.6,flips_at_0.65,positive_flips_at_0.65,negative_flips_at_0.65
+age,200,20,0,0,0,0,0,0,0,0,0,0
+city,200,20,3,2,0,2,0,0,0,1,0,1
+college,200,20,7,6,1,5,0,0,0,1,0,1
+name,200,20,6,5,1,4,0,0,0,1,0,1
+ALL_DIRECT_PROXIES,800,80,16,13,2,11,0,0,0,3,0,3

@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Resume Screening Fairness Audit</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    background: #f5f7fb;
+
+    color: #172033;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+.container {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 30px 20px 60px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: .13em;
+
+    text-transform: uppercase;
+
+    color: #667085;
+}
+
+h1 {
+
+    margin: 7px 0 8px;
+
+    font-size: 32px;
+}
+
+.subtitle {
+
+    max-width: 800px;
+
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+.badge {
+
+    padding: 9px 14px;
+
+    background: #eaf0ff;
+
+    color: #3655a8;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   PURPOSE
+========================= */
+
+.purpose {
+
+    background: #172033;
+
+    color: white;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    margin-bottom: 18px;
+}
+
+.purpose h2 {
+
+    margin: 0 0 9px;
+
+    font-size: 21px;
+}
+
+.purpose p {
+
+    margin: 0;
+
+    max-width: 900px;
+
+    line-height: 1.6;
+
+    color: #d9dfeb;
+}
+
+
+/* =========================
+   METRICS
+========================= */
+
+.metrics {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+}
+
+.card {
+
+    background: white;
+
+    border: 1px solid #e3e8f0;
+
+    border-radius: 14px;
+
+    padding: 19px;
+}
+
+.card-label {
+
+    color: #667085;
+
+    font-size: 13px;
+}
+
+.metric {
+
+    margin: 7px 0 4px;
+
+    font-size: 30px;
+
+    font-weight: 800;
+}
+
+.card-description {
+
+    color: #667085;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+
+    background: white;
+
+    border: 1px solid #e3e8f0;
+
+    border-radius: 15px;
+
+    padding: 22px;
+
+    margin-top: 18px;
+}
+
+.section-title {
+
+    margin: 0 0 5px;
+
+    font-size: 20px;
+}
+
+.section-description {
+
+    margin: 0 0 20px;
+
+    color: #667085;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   EXPLANATION
+========================= */
+
+.how-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+.step {
+
+    padding: 16px;
+
+    background: #f7f8fa;
+
+    border-radius: 11px;
+
+    border: 1px solid #edf0f5;
+}
+
+.step-number {
+
+    width: 27px;
+
+    height: 27px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #5168b5;
+
+    color: white;
+
+    font-weight: 700;
+
+    font-size: 12px;
+
+    margin-bottom: 10px;
+}
+
+.step h3 {
+
+    margin: 0 0 6px;
+
+    font-size: 14px;
+}
+
+.step p {
+
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   TWO COLUMNS
+========================= */
+
+.two-column {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+}
+
+
+/* =========================
+   BARS
+========================= */
+
+.bar-row {
+
+    display: grid;
+
+    grid-template-columns:
+        75px 1fr 75px;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 15px 0;
+
+    font-size: 13px;
+}
+
+.bar {
+
+    height: 11px;
+
+    background: #edf0f5;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.bar-fill {
+
+    height: 100%;
+
+    background: #5168b5;
+
+    border-radius: 20px;
+
+    transition: width .4s ease;
+}
+
+
+/* =========================
+   THRESHOLD
+========================= */
+
+.threshold {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 14px;
+
+    background: #f7f8fa;
+
+    border-radius: 10px;
+
+    margin-bottom: 9px;
+}
+
+.threshold-name {
+
+    font-weight: 700;
+}
+
+.threshold-description {
+
+    color: #667085;
+
+    font-size: 12px;
+}
+
+.threshold-count {
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+/* =========================
+   FINDINGS
+========================= */
+
+.finding {
+
+    display: flex;
+
+    gap: 14px;
+
+    padding: 17px;
+
+    border-radius: 11px;
+
+    margin-bottom: 10px;
+
+    background: #f7f8fa;
+}
+
+.finding-icon {
+
+    font-size: 22px;
+
+    min-width: 28px;
+}
+
+.finding h3 {
+
+    margin: 0 0 5px;
+
+    font-size: 15px;
+}
+
+.finding p {
+
+    margin: 0;
+
+    color: #667085;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   HERO CASE
+========================= */
+
+.case-comparison {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 50px 1fr;
+
+    gap: 15px;
+
+    align-items: center;
+}
+
+.case-box {
+
+    padding: 20px;
+
+    border: 1px solid #e2e7ef;
+
+    border-radius: 13px;
+
+    background: #fafbfc;
+}
+
+.case-label {
+
+    color: #667085;
+
+    font-size: 12px;
+
+    margin-bottom: 6px;
+}
+
+.case-value {
+
+    font-size: 19px;
+
+    font-weight: 700;
+}
+
+.case-score {
+
+    margin-top: 10px;
+
+    font-size: 31px;
+
+    font-weight: 800;
+}
+
+.case-arrow {
+
+    text-align: center;
+
+    font-size: 28px;
+
+    color: #98a2b3;
+}
+
+.decision-row {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 15px;
+}
+
+.decision {
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-weight: 700;
+}
+
+.pass {
+
+    background: #eaf7ef;
+
+    color: #26734d;
+}
+
+.fail {
+
+    background: #fff0f0;
+
+    color: #a33b3b;
+}
+
+.same {
+
+    background: #f1f3f7;
+
+    color: #667085;
+}
+
+.changed-info {
+
+    margin-top: 15px;
+
+    padding: 14px;
+
+    background: #f7f8fa;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   TAGS
+========================= */
+
+.tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 13px;
+}
+
+.tag {
+
+    padding: 6px 9px;
+
+    background: #eef1f6;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   CASE SEARCH
+========================= */
+
+.controls {
+
+    display: flex;
+
+    gap: 9px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 15px;
+}
+
+input {
+
+    padding: 10px 12px;
+
+    border: 1px solid #d7dce5;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+}
+
+button {
+
+    border: none;
+
+    padding: 10px 17px;
+
+    border-radius: 9px;
+
+    background: #5168b5;
+
+    color: white;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   TECHNICAL DATA
+========================= */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+}
+
+th,
+td {
+
+    padding: 10px 8px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #edf0f5;
+}
+
+th {
+
+    background: #fafbfc;
+
+    color: #667085;
+}
+
+.table-wrapper {
+
+    overflow-x: auto;
+}
+
+
+/* =========================
+   NOTE
+========================= */
+
+.note {
+
+    margin-top: 14px;
+
+    padding: 14px;
+
+    background: #f7f8fa;
+
+    border-radius: 10px;
+
+    color: #475467;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.status {
+
+    margin-top: 10px;
+
+    color: #667085;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 850px) {
+
+    .metrics {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .two-column {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .how-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+}
+
+
+@media(max-width: 600px) {
+
+    .metrics {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .how-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .header {
+
+        display: block;
+    }
+
+    .badge {
+
+        display: inline-block;
+
+        margin-top: 12px;
+    }
+
+    .case-comparison {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .case-arrow {
+
+        transform:
+            rotate(90deg);
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<!-- ==========================================
+     HEADER
+=========================================== -->
+
+<div class="header">
+
+<div>
+
+<div class="eyebrow">
+NLP Resume Screening Project
+</div>
+
+<h1>
+Bias & Fairness Audit
+</h1>
+
+<p class="subtitle">
+Understanding whether changing personal information can
+change how an automated resume screening system evaluates
+a candidate.
+</p>
+
+</div>
+
+<div class="badge">
+LIVE CSV DATA
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     PURPOSE
+=========================================== -->
+
+<div class="purpose">
+
+<h2>
+What are we checking?
+</h2>
+
+<p>
+
+We take the same candidate and change one attribute at a time,
+such as their name, age, city or college, while keeping their
+qualifications unchanged. We then check whether the screening
+model changes its score or decision.
+
+</p>
+
+</div>
+
+
+
+<!-- ==========================================
+     SUMMARY
+=========================================== -->
+
+<div class="metrics">
+
+
+<div class="card">
+
+<div class="card-label">
+Candidates / cases tested
+</div>
+
+<div
+    class="metric"
+    id="totalCases">
+—
+</div>
+
+<div class="card-description">
+Total counterfactual screening cases analysed.
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-label">
+Personal-attribute tests
+</div>
+
+<div
+    class="metric"
+    id="directTests">
+—
+</div>
+
+<div class="card-description">
+Name, age, city and college were changed while other information was kept the same.
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-label">
+Decision changes
+</div>
+
+<div
+    class="metric"
+    id="decisionFlips">
+—
+</div>
+
+<div class="card-description">
+Cases where a personal-attribute change crossed a screening threshold.
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-label">
+Decision-change rate
+</div>
+
+<div
+    class="metric"
+    id="decisionRate">
+—
+</div>
+
+<div class="card-description">
+Share of direct-proxy tests that changed the screening outcome.
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     HOW IT WORKS
+=========================================== -->
+
+<div class="section">
+
+<h2 class="section-title">
+How does the audit work?
+</h2>
+
+<p class="section-description">
+In simple terms, we ask the model: "Would you score this same
+candidate differently if this one personal detail were different?"
+</p>
+
+
+<div class="how-grid">
+
+
+<div class="step">
+
+<div class="step-number">
+1
+</div>
+
+<h3>
+Start with a resume
+</h3>
+
+<p>
+The candidate's original resume is scored by the screening model.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+2
+</div>
+
+<h3>
+Change one detail
+</h3>
+
+<p>
+Only one attribute such as name, city, age or college is changed.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+3
+</div>
+
+<h3>
+Score it again
+</h3>
+
+<p>
+The modified resume is passed through the same screening model.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">
+4
+</div>
+
+<h3>
+Compare the result
+</h3>
+
+<p>
+We check whether the score or final screening decision changed.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     SENSITIVITY
+=========================================== -->
+
+<div class="two-column">
+
+
+<div class="section">
+
+<h2 class="section-title">
+Which personal details affected the score?
+</h2>
+
+<p class="section-description">
+
+A larger value means the model's semantic component changed
+more when that attribute was replaced. This is a sensitivity
+measure, not by itself proof of discrimination.
+
+</p>
+
+<div id="semanticChart">
+</div>
+
+</div>
+
+
+
+<div class="section">
+
+<h2 class="section-title">
+Did the change affect the final decision?
+</h2>
+
+<p class="section-description">
+
+A decision change happens when a score moves from one side
+of the screening threshold to the other.
+
+</p>
+
+<div id="thresholdChart">
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     FINDINGS
+=========================================== -->
+
+<div class="section">
+
+<h2 class="section-title">
+What do these results indicate?
+</h2>
+
+<p class="section-description">
+The audit separates personal attributes from attributes that
+can legitimately be relevant to a particular job.
+</p>
+
+
+<div class="finding">
+
+<div class="finding-icon">
+🔴
+</div>
+
+<div>
+
+<h3>
+Personal attributes show model sensitivity
+</h3>
+
+<p>
+
+Name, age, city and college were tested as direct proxies.
+Across the 800 direct-proxy tests, 16 cases crossed a tested
+screening threshold.
+
+This means the audit found cases where changing a personal
+attribute alone was enough to change the screening outcome.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="finding">
+
+<div class="finding-icon">
+🟢
+</div>
+
+<div>
+
+<h3>
+Not every score change is automatically a fairness problem
+</h3>
+
+<p>
+
+Experience, degree and course can be relevant to whether a
+candidate satisfies a job requirement. The contextual audit
+therefore checks whether a change is supported by the job
+description rather than treating every score difference as bias.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="finding">
+
+<div class="finding-icon">
+🟡
+</div>
+
+<div>
+
+<h3>
+The important signal is a decision-changing effect
+</h3>
+
+<p>
+
+Small score differences may not affect the final screening
+decision. The strongest practical cases are those where changing
+an attribute actually moves a candidate from passing to failing,
+or vice versa.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     HERO CASE
+=========================================== -->
+
+<div class="section">
+
+<h2 class="section-title">
+Example: the same candidate with a different name
+</h2>
+
+<p class="section-description">
+
+This is an example of a direct-proxy counterfactual from the audit.
+Everything except the tested attribute remains unchanged.
+
+</p>
+
+
+<div class="case-comparison">
+
+
+<div class="case-box">
+
+<div class="case-label">
+ORIGINAL
+</div>
+
+<div class="case-value">
+Neha Kapoor
+</div>
+
+<div class="case-score">
+0.5579
+</div>
+
+<div class="small">
+Screening score
+</div>
+
+</div>
+
+
+<div class="case-arrow">
+→
+</div>
+
+
+<div class="case-box">
+
+<div class="case-label">
+COUNTERFACTUAL
+</div>
+
+<div class="case-value">
+Priya Nair
+</div>
+
+<div class="case-score">
+0.5487
+</div>
+
+<div class="small">
+Screening score
+</div>
+
+</div>
+
+</div>
+
+
+<div class="decision-row">
+
+<div class="decision pass">
+
+0.5579
+
+<br>
+
+Above 0.55 threshold
+
+</div>
+
+
+<div class="decision fail">
+
+0.5487
+
+<br>
+
+Below 0.55 threshold
+
+</div>
+
+</div>
+
+
+<div class="changed-info">
+
+<b>What changed?</b>
+
+Only the name.
+
+<br><br>
+
+<b>What stayed the same?</b>
+
+The candidate's skills, experience, education and other resume
+information remained unchanged.
+
+<br><br>
+
+<b>What happened?</b>
+
+The score moved from 0.5579 to 0.5487 and crossed the
+0.55 screening threshold.
+
+<br><br>
+
+<b>Which model component changed?</b>
+
+The audit's explainability analysis attributed this score change
+to the <b>semantic component</b>.
+
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     CASE EXPLORER
+=========================================== -->
+
+<div class="section">
+
+<h2 class="section-title">
+Explore another case
+</h2>
+
+<p class="section-description">
+
+Enter a Resume ID from the audit data to inspect its original
+and counterfactual scores.
+
+</p>
+
+
+<div class="controls">
+
+<input
+    id="resumeInput"
+    placeholder="Resume ID e.g. R010"
+/>
+
+
+<input
+    id="jobInput"
+    placeholder="Job ID e.g. JOB017"
+/>
+
+
+<button
+    onclick="searchCase()"
+>
+Search
+</button>
+
+</div>
+
+
+<div id="caseResult">
+</div>
+
+
+<div
+    class="status"
+    id="status">
+</div>
+
+</div>
+
+
+
+<!-- ==========================================
+     TECHNICAL EVIDENCE
+=========================================== -->
+
+<div class="section">
+
+<h2 class="section-title">
+Technical evidence
+</h2>
+
+<p class="section-description">
+
+The plain-English findings above are backed by the detailed
+audit outputs generated by the project.
+
+</p>
+
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Resume
+</th>
+
+<th>
+Proxy
+</th>
+
+<th>
+Original score
+</th>
+
+<th>
+New score
+</th>
+
+<th>
+Change
+</th>
+
+<th>
+Threshold
+</th>
+
+<th>
+Component
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="flipTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+let dashboardData = null;
+
+
+
+/* ==========================================
+   NUMBER FORMAT
+=========================================== */
+
+function formatNumber(value) {
+
+    return Number(
+        value || 0
+    ).toFixed(4);
+
+}
+
+
+
+/* ==========================================
+   LOAD DATA FROM FLASK
+=========================================== */
+
+async function loadDashboard() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/dashboard"
+            );
+
+        dashboardData =
+            await response.json();
+
+
+        renderDashboard(
+            dashboardData
+        );
+
+    }
+
+    catch(error) {
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            "Unable to load audit data.";
+
+        console.error(error);
+
+    }
+
+}
+
+
+
+/* ==========================================
+   RENDER
+=========================================== */
+
+function renderDashboard(data) {
+
+
+    const total =
+        Number(
+            data.metrics.total_cases
+        );
+
+
+    const direct =
+        Number(
+            data.metrics.direct_proxy_tests
+        );
+
+
+    const flips =
+        Number(
+            data.metrics.decision_flips
+        );
+
+
+    document.getElementById(
+        "totalCases"
+    ).textContent =
+        total.toLocaleString();
+
+
+    document.getElementById(
+        "directTests"
+    ).textContent =
+        direct.toLocaleString();
+
+
+    document.getElementById(
+        "decisionFlips"
+    ).textContent =
+        flips.toLocaleString();
+
+
+    const rate =
+        direct
+        ? (flips / direct) * 100
+        : 0;
+
+
+    document.getElementById(
+        "decisionRate"
+    ).textContent =
+        rate.toFixed(1) + "%";
+
+
+    renderSemanticChart(
+        data.semantic
+    );
+
+
+    renderThresholdChart(
+        data.thresholds
+    );
+
+
+    renderFlipTable(
+        data.flips
+    );
+
+
+    document.getElementById(
+        "status"
+    ).textContent =
+        "Live CSV data loaded at "
+        +
+        new Date()
+            .toLocaleTimeString();
+
+}
+
+
+
+/* ==========================================
+   SEMANTIC CHART
+=========================================== */
+
+function renderSemanticChart(values) {
+
+    const container =
+        document.getElementById(
+            "semanticChart"
+        );
+
+
+    const numbers =
+        Object.values(values);
+
+
+    const max =
+        Math.max(
+            ...numbers,
+            0.000001
+        );
+
+
+    container.innerHTML = "";
+
+
+    Object.entries(values)
+        .forEach(
+            ([name, value]) => {
+
+
+                const width =
+                    (value / max)
+                    * 100;
+
+
+                container.innerHTML += `
+
+                <div class="bar-row">
+
+                    <span>
+                        ${name}
+                    </span>
+
+                    <div class="bar">
+
+                        <div
+                            class="bar-fill"
+                            style="
+                                width:${width}%;
+                            "
+                        ></div>
+
+                    </div>
+
+                    <b>
+                        ${value.toFixed(5)}
+                    </b>
+
+                </div>
+
+                `;
+
+            }
+        );
+
+}
+
+
+
+/* ==========================================
+   THRESHOLD CHART
+=========================================== */
+
+function renderThresholdChart(values) {
+
+    const container =
+        document.getElementById(
+            "thresholdChart"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const thresholds = [
+        ["0.55", values["0.55"] || 0],
+        ["0.60", values["0.60"] || 0],
+        ["0.65", values["0.65"] || 0]
+    ];
+
+
+    thresholds.forEach(
+        ([threshold, count]) => {
+
+
+            let explanation = "";
+
+
+            if (threshold === "0.55") {
+
+                explanation =
+                    "13 cases crossed this boundary";
+
+            }
+
+            else if (
+                threshold === "0.60"
+            ) {
+
+                explanation =
+                    "No direct-proxy cases crossed this boundary";
+
+            }
+
+            else {
+
+                explanation =
+                    "3 cases crossed this boundary";
+
+            }
+
+
+            container.innerHTML += `
+
+            <div class="threshold">
+
+                <div>
+
+                    <div class="threshold-name">
+                        ${threshold} threshold
+                    </div>
+
+                    <div class="threshold-description">
+                        ${explanation}
+                    </div>
+
+                </div>
+
+                <div class="threshold-count">
+                    ${count}
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+
+/* ==========================================
+   FLIP TABLE
+=========================================== */
+
+function renderFlipTable(rows) {
+
+    const table =
+        document.getElementById(
+            "flipTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    rows.slice(0, 50)
+        .forEach(row => {
+
+
+            const delta =
+                row.score_delta
+                ||
+                row.delta
+                ||
+                0;
+
+
+            const threshold =
+                row.threshold
+                ||
+                row.flip_threshold
+                ||
+                "";
+
+
+            const component =
+                row.primary_changed_component
+                ||
+                row.component
+                ||
+                "";
+
+
+            table.innerHTML += `
+
+            <tr>
+
+                <td>
+                    ${row.resume_id || ""}
+                </td>
+
+                <td>
+                    ${row.proxy_type || ""}
+                </td>
+
+                <td>
+                    ${formatNumber(
+                        row.base_score
+                    )}
+                </td>
+
+                <td>
+                    ${formatNumber(
+                        row.variant_score
+                    )}
+                </td>
+
+                <td>
+                    ${formatNumber(delta)}
+                </td>
+
+                <td>
+                    ${threshold}
+                </td>
+
+                <td>
+                    ${component}
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+}
+
+
+
+/* ==========================================
+   CASE EXPLORER
+=========================================== */
+
+function searchCase() {
+
+
+    if (!dashboardData) {
+
+        return;
+
+    }
+
+
+    const resumeID =
+        document.getElementById(
+            "resumeInput"
+        ).value.trim();
+
+
+    const jobID =
+        document.getElementById(
+            "jobInput"
+        ).value.trim();
+
+
+    if (!resumeID) {
+
+        document.getElementById(
+            "caseResult"
+        ).innerHTML = `
+
+        <div class="note">
+
+            Enter a Resume ID,
+            for example <b>R010</b>.
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const matches =
+        dashboardData.cases.filter(
+            row =>
+
+                row.resume_id ===
+                resumeID
+
+                &&
+
+                (
+                    !jobID
+                    ||
+                    row.job_id ===
+                    jobID
+                )
+        );
+
+
+    if (!matches.length) {
+
+        document.getElementById(
+            "caseResult"
+        ).innerHTML = `
+
+        <div class="note">
+
+            No matching case was found.
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const row =
+        matches[0];
+
+
+    const delta =
+        Number(row.delta || 0);
+
+
+    document.getElementById(
+        "caseResult"
+    ).innerHTML = `
+
+    <div class="case-comparison">
+
+        <div class="case-box">
+
+            <div class="case-label">
+                ORIGINAL
+            </div>
+
+            <div class="case-value">
+                ${row.proxy_type || "Candidate"}
+            </div>
+
+            <div class="case-score">
+                ${formatNumber(
+                    row.base_score
+                )}
+            </div>
+
+            <div class="small">
+                Original screening score
+            </div>
+
+        </div>
+
+
+        <div class="case-arrow">
+            →
+        </div>
+
+
+        <div class="case-box">
+
+            <div class="case-label">
+                COUNTERFACTUAL
+            </div>
+
+            <div class="case-value">
+                ${row.proxy_value || "Changed attribute"}
+            </div>
+
+            <div class="case-score">
+                ${formatNumber(
+                    row.variant_score
+                )}
+            </div>
+
+            <div class="small">
+                Counterfactual screening score
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="tags">
+
+        <span class="tag">
+            ${row.proxy_type || "Unknown attribute"}
+        </span>
+
+        <span class="tag">
+            ${row.context || "Context not available"}
+        </span>
+
+        <span class="tag">
+            ${row.component || "Component not available"}
+        </span>
+
+    </div>
+
+
+    <div class="note">
+
+        <b>Score change:</b>
+        ${delta >= 0 ? "+" : ""}
+        ${formatNumber(delta)}
+
+        <br><br>
+
+        <b>Audit explanation:</b>
+        ${row.explanation ||
+          "No explanation available for this case."}
+
+    </div>
+
+    `;
+
+}
+
+
+
+/* ==========================================
+   INITIAL LOAD
+=========================================== */
+
+loadDashboard();
+
+
+/*
+Refresh the CSV data every 30 seconds.
+*/
+
+setInterval(
+    loadDashboard,
+    30000
+);
+
+</script>
+
+</body>
+
+</html>

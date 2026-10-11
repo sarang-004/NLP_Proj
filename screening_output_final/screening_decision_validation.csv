@@ -1,0 +1,2 @@
+base_candidates,candidates_scored,missing_resume_ids,missing_job_ids,duplicate_resume_job_pairs,max_abs_contribution_difference,counterfactual_variants_scored,counterfactual_single_attribute_checks,counterfactual_validation_failures,jobs_ranked,status
+200,200,0,0,0,1e-06,1424,774,0,25,passed

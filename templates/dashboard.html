@@ -1,2010 +1,676 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Resume Screening Fairness Audit</title>
 
 <style>
-
-* {
-    box-sizing: border-box;
+* { box-sizing: border-box; }
+body { margin:0; background:#f5f7fb; color:#172033; font-family:"Segoe UI",Arial,sans-serif; }
+.container { max-width:1200px; margin:auto; padding:30px 20px 60px; }
+.header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.eyebrow { font-size:12px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:#667085; }
+h1 { margin:7px 0 8px; font-size:32px; }
+.subtitle { max-width:800px; margin:0; color:#667085; font-size:15px; line-height:1.5; }
+.badge { padding:9px 14px; background:#eaf0ff; color:#3655a8; border-radius:20px; font-size:12px; font-weight:700; white-space:nowrap; }
+.purpose { background:#172033; color:white; border-radius:16px; padding:25px; margin-bottom:18px; }
+.purpose h2 { margin:0 0 9px; font-size:21px; }
+.purpose p { margin:0; max-width:900px; line-height:1.6; color:#d9dfeb; }
+.metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:18px; }
+.card { background:white; border:1px solid #e3e8f0; border-radius:14px; padding:19px; }
+.card-label { color:#667085; font-size:13px; }
+.metric { margin:7px 0 4px; font-size:30px; font-weight:800; }
+.card-description { color:#667085; font-size:12px; line-height:1.4; }
+.section { background:white; border:1px solid #e3e8f0; border-radius:15px; padding:22px; margin-top:18px; }
+.section-title { margin:0 0 5px; font-size:20px; }
+.section-description { margin:0 0 20px; color:#667085; font-size:13px; line-height:1.5; }
+.how-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+.step { padding:16px; background:#f7f8fa; border-radius:11px; border:1px solid #edf0f5; }
+.step-number { width:27px; height:27px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#5168b5; color:white; font-weight:700; font-size:12px; margin-bottom:10px; }
+.step h3 { margin:0 0 6px; font-size:14px; }
+.step p { margin:0; color:#667085; font-size:12px; line-height:1.5; }
+.two-column { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.bar-row { display:grid; grid-template-columns:75px 1fr 85px; align-items:center; gap:10px; margin:15px 0; font-size:13px; }
+.bar { height:11px; background:#edf0f5; border-radius:20px; overflow:hidden; }
+.bar-fill { height:100%; background:#5168b5; border-radius:20px; }
+.threshold { display:flex; align-items:center; justify-content:space-between; padding:14px; background:#f7f8fa; border-radius:10px; margin-bottom:9px; }
+.threshold-name { font-weight:700; }
+.threshold-description { color:#667085; font-size:12px; }
+.threshold-count { font-size:20px; font-weight:800; }
+.finding { display:flex; gap:14px; padding:17px; border-radius:11px; margin-bottom:10px; background:#f7f8fa; }
+.finding-icon { font-size:22px; min-width:28px; }
+.finding h3 { margin:0 0 5px; font-size:15px; }
+.finding p { margin:0; color:#667085; font-size:13px; line-height:1.5; }
+.case-comparison { display:grid; grid-template-columns:1fr 50px 1fr; gap:15px; align-items:stretch; }
+.case-box { min-width:0; padding:20px; border:1px solid #e2e7ef; border-radius:13px; background:#fafbfc; overflow-wrap:anywhere; }
+.case-label { color:#667085; font-size:12px; margin-bottom:6px; }
+.case-value { font-size:19px; font-weight:700; }
+.case-score { margin-top:10px; font-size:31px; font-weight:800; }
+.case-arrow { align-self:center; text-align:center; font-size:28px; color:#98a2b3; }
+.small { color:#667085; font-size:12px; line-height:1.5; }
+.controls { display:flex; gap:9px; flex-wrap:wrap; margin-bottom:15px; }
+input { min-width:150px; padding:10px 12px; border:1px solid #d7dce5; border-radius:9px; font-size:14px; }
+button { border:none; padding:10px 17px; border-radius:9px; background:#5168b5; color:white; font-weight:600; cursor:pointer; }
+button:hover { background:#40549a; }
+button:disabled { opacity:.6; cursor:wait; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th,td { padding:10px 8px; text-align:left; vertical-align:top; border-bottom:1px solid #edf0f5; }
+th { background:#fafbfc; color:#667085; white-space:nowrap; }
+.table-wrapper { overflow-x:auto; }
+.note { margin-top:14px; padding:14px; background:#f7f8fa; border-radius:10px; color:#475467; font-size:13px; line-height:1.6; }
+.status { margin-top:10px; color:#667085; font-size:12px; }
+.evidence-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:15px; }
+.evidence-grid h3 { margin-top:0; }
+.evidence-grid ul { padding-left:20px; }
+@media(max-width:850px) {
+    .metrics { grid-template-columns:1fr 1fr; }
+    .two-column { grid-template-columns:1fr; }
+    .how-grid { grid-template-columns:1fr 1fr; }
 }
-
-body {
-
-    margin: 0;
-
-    background: #f5f7fb;
-
-    color: #172033;
-
-    font-family:
-        "Segoe UI",
-        Arial,
-        sans-serif;
+@media(max-width:600px) {
+    .metrics,.how-grid,.evidence-grid { grid-template-columns:1fr; }
+    .header { display:block; }
+    .badge { display:inline-block; margin-top:12px; }
+    .case-comparison { grid-template-columns:1fr; }
+    .case-arrow { transform:rotate(90deg); }
 }
-
-.container {
-
-    max-width: 1200px;
-
-    margin: auto;
-
-    padding: 30px 20px 60px;
-}
-
-
-/* =========================
-   HEADER
-========================= */
-
-.header {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: flex-start;
-
-    margin-bottom: 28px;
-}
-
-.eyebrow {
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    letter-spacing: .13em;
-
-    text-transform: uppercase;
-
-    color: #667085;
-}
-
-h1 {
-
-    margin: 7px 0 8px;
-
-    font-size: 32px;
-}
-
-.subtitle {
-
-    max-width: 800px;
-
-    margin: 0;
-
-    color: #667085;
-
-    font-size: 15px;
-
-    line-height: 1.5;
-}
-
-.badge {
-
-    padding: 9px 14px;
-
-    background: #eaf0ff;
-
-    color: #3655a8;
-
-    border-radius: 20px;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-    white-space: nowrap;
-}
-
-
-/* =========================
-   PURPOSE
-========================= */
-
-.purpose {
-
-    background: #172033;
-
-    color: white;
-
-    border-radius: 16px;
-
-    padding: 25px;
-
-    margin-bottom: 18px;
-}
-
-.purpose h2 {
-
-    margin: 0 0 9px;
-
-    font-size: 21px;
-}
-
-.purpose p {
-
-    margin: 0;
-
-    max-width: 900px;
-
-    line-height: 1.6;
-
-    color: #d9dfeb;
-}
-
-
-/* =========================
-   METRICS
-========================= */
-
-.metrics {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 14px;
-
-    margin-bottom: 18px;
-}
-
-.card {
-
-    background: white;
-
-    border: 1px solid #e3e8f0;
-
-    border-radius: 14px;
-
-    padding: 19px;
-}
-
-.card-label {
-
-    color: #667085;
-
-    font-size: 13px;
-}
-
-.metric {
-
-    margin: 7px 0 4px;
-
-    font-size: 30px;
-
-    font-weight: 800;
-}
-
-.card-description {
-
-    color: #667085;
-
-    font-size: 12px;
-
-    line-height: 1.4;
-}
-
-
-/* =========================
-   SECTIONS
-========================= */
-
-.section {
-
-    background: white;
-
-    border: 1px solid #e3e8f0;
-
-    border-radius: 15px;
-
-    padding: 22px;
-
-    margin-top: 18px;
-}
-
-.section-title {
-
-    margin: 0 0 5px;
-
-    font-size: 20px;
-}
-
-.section-description {
-
-    margin: 0 0 20px;
-
-    color: #667085;
-
-    font-size: 13px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================
-   EXPLANATION
-========================= */
-
-.how-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 12px;
-}
-
-.step {
-
-    padding: 16px;
-
-    background: #f7f8fa;
-
-    border-radius: 11px;
-
-    border: 1px solid #edf0f5;
-}
-
-.step-number {
-
-    width: 27px;
-
-    height: 27px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: #5168b5;
-
-    color: white;
-
-    font-weight: 700;
-
-    font-size: 12px;
-
-    margin-bottom: 10px;
-}
-
-.step h3 {
-
-    margin: 0 0 6px;
-
-    font-size: 14px;
-}
-
-.step p {
-
-    margin: 0;
-
-    color: #667085;
-
-    font-size: 12px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================
-   TWO COLUMNS
-========================= */
-
-.two-column {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 18px;
-}
-
-
-/* =========================
-   BARS
-========================= */
-
-.bar-row {
-
-    display: grid;
-
-    grid-template-columns:
-        75px 1fr 75px;
-
-    align-items: center;
-
-    gap: 10px;
-
-    margin: 15px 0;
-
-    font-size: 13px;
-}
-
-.bar {
-
-    height: 11px;
-
-    background: #edf0f5;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-}
-
-.bar-fill {
-
-    height: 100%;
-
-    background: #5168b5;
-
-    border-radius: 20px;
-
-    transition: width .4s ease;
-}
-
-
-/* =========================
-   THRESHOLD
-========================= */
-
-.threshold {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 14px;
-
-    background: #f7f8fa;
-
-    border-radius: 10px;
-
-    margin-bottom: 9px;
-}
-
-.threshold-name {
-
-    font-weight: 700;
-}
-
-.threshold-description {
-
-    color: #667085;
-
-    font-size: 12px;
-}
-
-.threshold-count {
-
-    font-size: 20px;
-
-    font-weight: 800;
-}
-
-
-/* =========================
-   FINDINGS
-========================= */
-
-.finding {
-
-    display: flex;
-
-    gap: 14px;
-
-    padding: 17px;
-
-    border-radius: 11px;
-
-    margin-bottom: 10px;
-
-    background: #f7f8fa;
-}
-
-.finding-icon {
-
-    font-size: 22px;
-
-    min-width: 28px;
-}
-
-.finding h3 {
-
-    margin: 0 0 5px;
-
-    font-size: 15px;
-}
-
-.finding p {
-
-    margin: 0;
-
-    color: #667085;
-
-    font-size: 13px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================
-   HERO CASE
-========================= */
-
-.case-comparison {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 50px 1fr;
-
-    gap: 15px;
-
-    align-items: center;
-}
-
-.case-box {
-
-    padding: 20px;
-
-    border: 1px solid #e2e7ef;
-
-    border-radius: 13px;
-
-    background: #fafbfc;
-}
-
-.case-label {
-
-    color: #667085;
-
-    font-size: 12px;
-
-    margin-bottom: 6px;
-}
-
-.case-value {
-
-    font-size: 19px;
-
-    font-weight: 700;
-}
-
-.case-score {
-
-    margin-top: 10px;
-
-    font-size: 31px;
-
-    font-weight: 800;
-}
-
-.case-arrow {
-
-    text-align: center;
-
-    font-size: 28px;
-
-    color: #98a2b3;
-}
-
-.decision-row {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 12px;
-
-    margin-top: 15px;
-}
-
-.decision {
-
-    padding: 15px;
-
-    border-radius: 10px;
-
-    text-align: center;
-
-    font-weight: 700;
-}
-
-.pass {
-
-    background: #eaf7ef;
-
-    color: #26734d;
-}
-
-.fail {
-
-    background: #fff0f0;
-
-    color: #a33b3b;
-}
-
-.same {
-
-    background: #f1f3f7;
-
-    color: #667085;
-}
-
-.changed-info {
-
-    margin-top: 15px;
-
-    padding: 14px;
-
-    background: #f7f8fa;
-
-    border-radius: 10px;
-
-    font-size: 13px;
-
-    line-height: 1.6;
-}
-
-
-/* =========================
-   TAGS
-========================= */
-
-.tags {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 7px;
-
-    margin-top: 13px;
-}
-
-.tag {
-
-    padding: 6px 9px;
-
-    background: #eef1f6;
-
-    border-radius: 7px;
-
-    font-size: 12px;
-}
-
-
-/* =========================
-   CASE SEARCH
-========================= */
-
-.controls {
-
-    display: flex;
-
-    gap: 9px;
-
-    flex-wrap: wrap;
-
-    margin-bottom: 15px;
-}
-
-input {
-
-    padding: 10px 12px;
-
-    border: 1px solid #d7dce5;
-
-    border-radius: 9px;
-
-    font-size: 14px;
-}
-
-button {
-
-    border: none;
-
-    padding: 10px 17px;
-
-    border-radius: 9px;
-
-    background: #5168b5;
-
-    color: white;
-
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-
-/* =========================
-   TECHNICAL DATA
-========================= */
-
-table {
-
-    width: 100%;
-
-    border-collapse: collapse;
-
-    font-size: 13px;
-}
-
-th,
-td {
-
-    padding: 10px 8px;
-
-    text-align: left;
-
-    border-bottom: 1px solid #edf0f5;
-}
-
-th {
-
-    background: #fafbfc;
-
-    color: #667085;
-}
-
-.table-wrapper {
-
-    overflow-x: auto;
-}
-
-
-/* =========================
-   NOTE
-========================= */
-
-.note {
-
-    margin-top: 14px;
-
-    padding: 14px;
-
-    background: #f7f8fa;
-
-    border-radius: 10px;
-
-    color: #475467;
-
-    font-size: 13px;
-
-    line-height: 1.6;
-}
-
-.status {
-
-    margin-top: 10px;
-
-    color: #667085;
-
-    font-size: 12px;
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width: 850px) {
-
-    .metrics {
-
-        grid-template-columns:
-            1fr 1fr;
-    }
-
-    .two-column {
-
-        grid-template-columns:
-            1fr;
-    }
-
-    .how-grid {
-
-        grid-template-columns:
-            1fr 1fr;
-    }
-}
-
-
-@media(max-width: 600px) {
-
-    .metrics {
-
-        grid-template-columns:
-            1fr;
-    }
-
-    .how-grid {
-
-        grid-template-columns:
-            1fr;
-    }
-
-    .header {
-
-        display: block;
-    }
-
-    .badge {
-
-        display: inline-block;
-
-        margin-top: 12px;
-    }
-
-    .case-comparison {
-
-        grid-template-columns:
-            1fr;
-    }
-
-    .case-arrow {
-
-        transform:
-            rotate(90deg);
-    }
-}
-
 </style>
-
 </head>
 
-
 <body>
-
 <div class="container">
 
-
-<!-- ==========================================
-     HEADER
-=========================================== -->
-
 <div class="header">
-
-<div>
-
-<div class="eyebrow">
-NLP Resume Screening Project
+    <div>
+        <div class="eyebrow">NLP Resume Screening Project</div>
+        <h1>Bias &amp; Fairness Audit</h1>
+        <p class="subtitle">
+            Understanding whether changing personal information can change
+            how an automated resume screening system evaluates a candidate.
+        </p>
+    </div>
+    <div class="badge">LIVE CSV DATA</div>
 </div>
-
-<h1>
-Bias & Fairness Audit
-</h1>
-
-<p class="subtitle">
-Understanding whether changing personal information can
-change how an automated resume screening system evaluates
-a candidate.
-</p>
-
-</div>
-
-<div class="badge">
-LIVE CSV DATA
-</div>
-
-</div>
-
-
-
-<!-- ==========================================
-     PURPOSE
-=========================================== -->
 
 <div class="purpose">
-
-<h2>
-What are we checking?
-</h2>
-
-<p>
-
-We take the same candidate and change one attribute at a time,
-such as their name, age, city or college, while keeping their
-qualifications unchanged. We then check whether the screening
-model changes its score or decision.
-
-</p>
-
+    <h2>What are we checking?</h2>
+    <p>
+        We take the same candidate and change one attribute at a time,
+        such as their name, age, city or college, while keeping their
+        qualifications unchanged. We then check whether the screening
+        model changes its score or decision.
+    </p>
 </div>
-
-
-
-<!-- ==========================================
-     SUMMARY
-=========================================== -->
 
 <div class="metrics">
-
-
-<div class="card">
-
-<div class="card-label">
-Candidates / cases tested
+    <div class="card">
+        <div class="card-label">Candidates / cases tested</div>
+        <div class="metric" id="totalCases">—</div>
+        <div class="card-description">Total counterfactual screening cases analysed.</div>
+    </div>
+    <div class="card">
+        <div class="card-label">Personal-attribute tests</div>
+        <div class="metric" id="directTests">—</div>
+        <div class="card-description">Name, age, city and college were tested.</div>
+    </div>
+    <div class="card">
+        <div class="card-label">Decision changes</div>
+        <div class="metric" id="decisionFlips">—</div>
+        <div class="card-description">Cases where a personal-attribute change crossed a screening threshold.</div>
+    </div>
+    <div class="card">
+        <div class="card-label">Decision-change rate</div>
+        <div class="metric" id="decisionRate">—</div>
+        <div class="card-description">Share of direct-proxy tests that changed the screening outcome.</div>
+    </div>
 </div>
-
-<div
-    class="metric"
-    id="totalCases">
-—
-</div>
-
-<div class="card-description">
-Total counterfactual screening cases analysed.
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-label">
-Personal-attribute tests
-</div>
-
-<div
-    class="metric"
-    id="directTests">
-—
-</div>
-
-<div class="card-description">
-Name, age, city and college were changed while other information was kept the same.
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-label">
-Decision changes
-</div>
-
-<div
-    class="metric"
-    id="decisionFlips">
-—
-</div>
-
-<div class="card-description">
-Cases where a personal-attribute change crossed a screening threshold.
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-label">
-Decision-change rate
-</div>
-
-<div
-    class="metric"
-    id="decisionRate">
-—
-</div>
-
-<div class="card-description">
-Share of direct-proxy tests that changed the screening outcome.
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- ==========================================
-     HOW IT WORKS
-=========================================== -->
 
 <div class="section">
-
-<h2 class="section-title">
-How does the audit work?
-</h2>
-
-<p class="section-description">
-In simple terms, we ask the model: "Would you score this same
-candidate differently if this one personal detail were different?"
-</p>
-
-
-<div class="how-grid">
-
-
-<div class="step">
-
-<div class="step-number">
-1
+    <h2 class="section-title">How does the audit work?</h2>
+    <p class="section-description">
+        We ask: would the model score the same candidate differently if
+        one personal detail were changed?
+    </p>
+    <div class="how-grid">
+        <div class="step"><div class="step-number">1</div><h3>Start with a resume</h3><p>The original resume is scored by the screening model.</p></div>
+        <div class="step"><div class="step-number">2</div><h3>Change one detail</h3><p>One attribute, such as name, city, age or college, is changed.</p></div>
+        <div class="step"><div class="step-number">3</div><h3>Score it again</h3><p>The modified resume is scored using the screening pipeline.</p></div>
+        <div class="step"><div class="step-number">4</div><h3>Compare the result</h3><p>We check whether the score or decision changed.</p></div>
+    </div>
 </div>
-
-<h3>
-Start with a resume
-</h3>
-
-<p>
-The candidate's original resume is scored by the screening model.
-</p>
-
-</div>
-
-
-<div class="step">
-
-<div class="step-number">
-2
-</div>
-
-<h3>
-Change one detail
-</h3>
-
-<p>
-Only one attribute such as name, city, age or college is changed.
-</p>
-
-</div>
-
-
-<div class="step">
-
-<div class="step-number">
-3
-</div>
-
-<h3>
-Score it again
-</h3>
-
-<p>
-The modified resume is passed through the same screening model.
-</p>
-
-</div>
-
-
-<div class="step">
-
-<div class="step-number">
-4
-</div>
-
-<h3>
-Compare the result
-</h3>
-
-<p>
-We check whether the score or final screening decision changed.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- ==========================================
-     SENSITIVITY
-=========================================== -->
 
 <div class="two-column">
-
+    <div class="section">
+        <h2 class="section-title">Which personal details affected the score?</h2>
+        <p class="section-description">
+            A larger value means greater measured semantic-component sensitivity.
+            This alone is not proof of discrimination.
+        </p>
+        <div id="semanticChart"></div>
+    </div>
+    <div class="section">
+        <h2 class="section-title">Did the change affect the final decision?</h2>
+        <p class="section-description">
+            A decision change occurs when the score crosses a screening threshold.
+        </p>
+        <div id="thresholdChart"></div>
+    </div>
+</div>
 
 <div class="section">
-
-<h2 class="section-title">
-Which personal details affected the score?
-</h2>
-
-<p class="section-description">
-
-A larger value means the model's semantic component changed
-more when that attribute was replaced. This is a sensitivity
-measure, not by itself proof of discrimination.
-
-</p>
-
-<div id="semanticChart">
+    <h2 class="section-title">What do these results indicate?</h2>
+    <p class="section-description">The audit separates personal attributes from job-related requirements.</p>
+    <div class="finding">
+        <div class="finding-icon">🔴</div>
+        <div><h3>Personal attributes show model sensitivity</h3>
+        <p>Some direct-proxy tests crossed a screening threshold after a personal attribute changed. These cases deserve closer review.</p></div>
+    </div>
+    <div class="finding">
+        <div class="finding-icon">🟢</div>
+        <div><h3>Not every score change is automatically a fairness problem</h3>
+        <p>Experience, degree and course can be relevant to a job. The audit checks whether differences are supported by the job requirements.</p></div>
+    </div>
+    <div class="finding">
+        <div class="finding-icon">🟡</div>
+        <div><h3>Decision-changing effects matter</h3>
+        <p>Small score differences may not affect the screening decision. Threshold crossings are important cases to investigate.</p></div>
+    </div>
 </div>
-
-</div>
-
-
 
 <div class="section">
-
-<h2 class="section-title">
-Did the change affect the final decision?
-</h2>
-
-<p class="section-description">
-
-A decision change happens when a score moves from one side
-of the screening threshold to the other.
-
-</p>
-
-<div id="thresholdChart">
+    <h2 class="section-title">Example: an actual decision-changing audit case</h2>
+    <p class="section-description">
+        The example below is populated from loaded audit records, not hard-coded scores.
+    </p>
+    <div id="exampleCase"><div class="note">Loading audit example…</div></div>
 </div>
-
-</div>
-
-</div>
-
-
-
-<!-- ==========================================
-     FINDINGS
-=========================================== -->
 
 <div class="section">
-
-<h2 class="section-title">
-What do these results indicate?
-</h2>
-
-<p class="section-description">
-The audit separates personal attributes from attributes that
-can legitimately be relevant to a particular job.
-</p>
-
-
-<div class="finding">
-
-<div class="finding-icon">
-🔴
+    <h2 class="section-title">Compare two candidates</h2>
+    <p class="section-description">
+        Compare two original candidates applying for the same job. Review their
+        recorded scores, weighted contributions, job-specific ranks and evidence.
+        This feature does not rescore resumes.
+    </p>
+    <div class="controls">
+        <input id="compareJobInput" placeholder="Job ID e.g. JOB001" aria-label="Job ID">
+        <input id="compareResumeAInput" placeholder="Candidate A e.g. R193" aria-label="Candidate A resume ID">
+        <input id="compareResumeBInput" placeholder="Candidate B e.g. R126" aria-label="Candidate B resume ID">
+        <button id="compareButton" onclick="compareCandidates()">Compare candidates</button>
+    </div>
+    <div id="compareResult" aria-live="polite">
+        <div class="note">Enter a job ID and two resume IDs to compare.</div>
+    </div>
 </div>
-
-<div>
-
-<h3>
-Personal attributes show model sensitivity
-</h3>
-
-<p>
-
-Name, age, city and college were tested as direct proxies.
-Across the 800 direct-proxy tests, 16 cases crossed a tested
-screening threshold.
-
-This means the audit found cases where changing a personal
-attribute alone was enough to change the screening outcome.
-
-</p>
-
-</div>
-
-</div>
-
-
-<div class="finding">
-
-<div class="finding-icon">
-🟢
-</div>
-
-<div>
-
-<h3>
-Not every score change is automatically a fairness problem
-</h3>
-
-<p>
-
-Experience, degree and course can be relevant to whether a
-candidate satisfies a job requirement. The contextual audit
-therefore checks whether a change is supported by the job
-description rather than treating every score difference as bias.
-
-</p>
-
-</div>
-
-</div>
-
-
-<div class="finding">
-
-<div class="finding-icon">
-🟡
-</div>
-
-<div>
-
-<h3>
-The important signal is a decision-changing effect
-</h3>
-
-<p>
-
-Small score differences may not affect the final screening
-decision. The strongest practical cases are those where changing
-an attribute actually moves a candidate from passing to failing,
-or vice versa.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- ==========================================
-     HERO CASE
-=========================================== -->
 
 <div class="section">
-
-<h2 class="section-title">
-Example: the same candidate with a different name
-</h2>
-
-<p class="section-description">
-
-This is an example of a direct-proxy counterfactual from the audit.
-Everything except the tested attribute remains unchanged.
-
-</p>
-
-
-<div class="case-comparison">
-
-
-<div class="case-box">
-
-<div class="case-label">
-ORIGINAL
+    <h2 class="section-title">Explore another counterfactual case</h2>
+    <p class="section-description">Enter a Resume ID to inspect original and counterfactual scores.</p>
+    <div class="controls">
+        <input id="resumeInput" placeholder="Resume ID e.g. R010" aria-label="Resume ID">
+        <input id="jobInput" placeholder="Job ID e.g. JOB017" aria-label="Job ID filter">
+        <button onclick="searchCase()">Search</button>
+    </div>
+    <div id="caseResult"></div>
+    <div class="status" id="status"></div>
 </div>
-
-<div class="case-value">
-Neha Kapoor
-</div>
-
-<div class="case-score">
-0.5579
-</div>
-
-<div class="small">
-Screening score
-</div>
-
-</div>
-
-
-<div class="case-arrow">
-→
-</div>
-
-
-<div class="case-box">
-
-<div class="case-label">
-COUNTERFACTUAL
-</div>
-
-<div class="case-value">
-Priya Nair
-</div>
-
-<div class="case-score">
-0.5487
-</div>
-
-<div class="small">
-Screening score
-</div>
-
-</div>
-
-</div>
-
-
-<div class="decision-row">
-
-<div class="decision pass">
-
-0.5579
-
-<br>
-
-Above 0.55 threshold
-
-</div>
-
-
-<div class="decision fail">
-
-0.5487
-
-<br>
-
-Below 0.55 threshold
-
-</div>
-
-</div>
-
-
-<div class="changed-info">
-
-<b>What changed?</b>
-
-Only the name.
-
-<br><br>
-
-<b>What stayed the same?</b>
-
-The candidate's skills, experience, education and other resume
-information remained unchanged.
-
-<br><br>
-
-<b>What happened?</b>
-
-The score moved from 0.5579 to 0.5487 and crossed the
-0.55 screening threshold.
-
-<br><br>
-
-<b>Which model component changed?</b>
-
-The audit's explainability analysis attributed this score change
-to the <b>semantic component</b>.
-
-</div>
-
-</div>
-
-
-
-<!-- ==========================================
-     CASE EXPLORER
-=========================================== -->
 
 <div class="section">
-
-<h2 class="section-title">
-Explore another case
-</h2>
-
-<p class="section-description">
-
-Enter a Resume ID from the audit data to inspect its original
-and counterfactual scores.
-
-</p>
-
-
-<div class="controls">
-
-<input
-    id="resumeInput"
-    placeholder="Resume ID e.g. R010"
-/>
-
-
-<input
-    id="jobInput"
-    placeholder="Job ID e.g. JOB017"
-/>
-
-
-<button
-    onclick="searchCase()"
->
-Search
-</button>
-
-</div>
-
-
-<div id="caseResult">
-</div>
-
-
-<div
-    class="status"
-    id="status">
+    <h2 class="section-title">Technical evidence</h2>
+    <p class="section-description">Detailed audit outputs supporting the findings.</p>
+    <div class="table-wrapper">
+        <table>
+            <thead><tr>
+                <th>Resume</th><th>Proxy</th><th>Original score</th>
+                <th>New score</th><th>Change</th><th>Threshold</th><th>Component</th>
+            </tr></thead>
+            <tbody id="flipTable"></tbody>
+        </table>
+    </div>
 </div>
 
 </div>
-
-
-
-<!-- ==========================================
-     TECHNICAL EVIDENCE
-=========================================== -->
-
-<div class="section">
-
-<h2 class="section-title">
-Technical evidence
-</h2>
-
-<p class="section-description">
-
-The plain-English findings above are backed by the detailed
-audit outputs generated by the project.
-
-</p>
-
-
-<div class="table-wrapper">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>
-Resume
-</th>
-
-<th>
-Proxy
-</th>
-
-<th>
-Original score
-</th>
-
-<th>
-New score
-</th>
-
-<th>
-Change
-</th>
-
-<th>
-Threshold
-</th>
-
-<th>
-Component
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="flipTable">
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-</div>
-
-
 
 <script>
-
+"use strict";
 
 let dashboardData = null;
 
-
-
-/* ==========================================
-   NUMBER FORMAT
-=========================================== */
-
 function formatNumber(value) {
-
-    return Number(
-        value || 0
-    ).toFixed(4);
-
+    const number = Number(value);
+    return Number.isFinite(number) ? number.toFixed(4) : "—";
 }
 
+function safeNumber(value) {
+    const number = Number(value);
+    return Number.isFinite(number) ? number : 0;
+}
 
+function csvIsTrue(value) {
+    if (typeof value === "boolean") return value;
+    return ["1", "true", "yes"].includes(
+        String(value ?? "").trim().toLowerCase()
+    );
+}
 
-/* ==========================================
-   LOAD DATA FROM FLASK
-=========================================== */
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[character]);
+}
 
 async function loadDashboard() {
-
     try {
+        const response = await fetch("/api/dashboard");
+        if (!response.ok) throw new Error(`Dashboard API returned ${response.status}`);
 
-        const response =
-            await fetch(
-                "/api/dashboard"
-            );
-
-        dashboardData =
-            await response.json();
-
-
-        renderDashboard(
-            dashboardData
-        );
-
+        dashboardData = await response.json();
+        renderDashboard(dashboardData);
+    } catch (error) {
+        document.getElementById("status").textContent =
+            "Unable to load audit data. Check that Flask is running.";
+        document.getElementById("exampleCase").innerHTML =
+            '<div class="note">Audit example could not be loaded.</div>';
+        console.error("Dashboard loading error:", error);
     }
-
-    catch(error) {
-
-        document.getElementById(
-            "status"
-        ).textContent =
-            "Unable to load audit data.";
-
-        console.error(error);
-
-    }
-
 }
-
-
-
-/* ==========================================
-   RENDER
-=========================================== */
 
 function renderDashboard(data) {
+    const metrics = data.metrics || {};
+    const total = Number(metrics.total_cases || 0);
+    const direct = Number(metrics.direct_proxy_tests || 0);
+    const flips = Number(metrics.decision_flips || 0);
 
+    document.getElementById("totalCases").textContent = total.toLocaleString();
+    document.getElementById("directTests").textContent = direct.toLocaleString();
+    document.getElementById("decisionFlips").textContent = flips.toLocaleString();
+    document.getElementById("decisionRate").textContent =
+        (direct ? flips / direct * 100 : 0).toFixed(1) + "%";
 
-    const total =
-        Number(
-            data.metrics.total_cases
-        );
+    renderSemanticChart(data.semantic || {});
+    renderThresholdChart(data.thresholds || {});
+    renderFlipTable(data.flips || []);
+    renderExampleCase(data.flips || []);
 
-
-    const direct =
-        Number(
-            data.metrics.direct_proxy_tests
-        );
-
-
-    const flips =
-        Number(
-            data.metrics.decision_flips
-        );
-
-
-    document.getElementById(
-        "totalCases"
-    ).textContent =
-        total.toLocaleString();
-
-
-    document.getElementById(
-        "directTests"
-    ).textContent =
-        direct.toLocaleString();
-
-
-    document.getElementById(
-        "decisionFlips"
-    ).textContent =
-        flips.toLocaleString();
-
-
-    const rate =
-        direct
-        ? (flips / direct) * 100
-        : 0;
-
-
-    document.getElementById(
-        "decisionRate"
-    ).textContent =
-        rate.toFixed(1) + "%";
-
-
-    renderSemanticChart(
-        data.semantic
-    );
-
-
-    renderThresholdChart(
-        data.thresholds
-    );
-
-
-    renderFlipTable(
-        data.flips
-    );
-
-
-    document.getElementById(
-        "status"
-    ).textContent =
-        "Live CSV data loaded at "
-        +
-        new Date()
-            .toLocaleTimeString();
-
+    document.getElementById("status").textContent =
+        "Live CSV data loaded at " + new Date().toLocaleTimeString();
 }
-
-
-
-/* ==========================================
-   SEMANTIC CHART
-=========================================== */
 
 function renderSemanticChart(values) {
-
-    const container =
-        document.getElementById(
-            "semanticChart"
-        );
-
-
-    const numbers =
-        Object.values(values);
-
-
-    const max =
-        Math.max(
-            ...numbers,
-            0.000001
-        );
-
-
+    const container = document.getElementById("semanticChart");
+    const entries = Object.entries(values).filter(
+        ([, value]) => Number.isFinite(Number(value))
+    );
     container.innerHTML = "";
 
+    if (!entries.length) {
+        container.textContent = "No semantic sensitivity data available.";
+        return;
+    }
 
-    Object.entries(values)
-        .forEach(
-            ([name, value]) => {
-
-
-                const width =
-                    (value / max)
-                    * 100;
-
-
-                container.innerHTML += `
-
-                <div class="bar-row">
-
-                    <span>
-                        ${name}
-                    </span>
-
-                    <div class="bar">
-
-                        <div
-                            class="bar-fill"
-                            style="
-                                width:${width}%;
-                            "
-                        ></div>
-
-                    </div>
-
-                    <b>
-                        ${value.toFixed(5)}
-                    </b>
-
-                </div>
-
-                `;
-
-            }
-        );
-
-}
-
-
-
-/* ==========================================
-   THRESHOLD CHART
-=========================================== */
-
-function renderThresholdChart(values) {
-
-    const container =
-        document.getElementById(
-            "thresholdChart"
-        );
-
-
-    container.innerHTML = "";
-
-
-    const thresholds = [
-        ["0.55", values["0.55"] || 0],
-        ["0.60", values["0.60"] || 0],
-        ["0.65", values["0.65"] || 0]
-    ];
-
-
-    thresholds.forEach(
-        ([threshold, count]) => {
-
-
-            let explanation = "";
-
-
-            if (threshold === "0.55") {
-
-                explanation =
-                    "13 cases crossed this boundary";
-
-            }
-
-            else if (
-                threshold === "0.60"
-            ) {
-
-                explanation =
-                    "No direct-proxy cases crossed this boundary";
-
-            }
-
-            else {
-
-                explanation =
-                    "3 cases crossed this boundary";
-
-            }
-
-
-            container.innerHTML += `
-
-            <div class="threshold">
-
-                <div>
-
-                    <div class="threshold-name">
-                        ${threshold} threshold
-                    </div>
-
-                    <div class="threshold-description">
-                        ${explanation}
-                    </div>
-
-                </div>
-
-                <div class="threshold-count">
-                    ${count}
-                </div>
-
-            </div>
-
-            `;
-
-        }
+    const max = Math.max(
+        ...entries.map(([, value]) => Math.abs(Number(value))),
+        0.000001
     );
 
+    entries.forEach(([name, value]) => {
+        const number = Number(value);
+        const width = Math.min(100, Math.abs(number) / max * 100);
+
+        container.insertAdjacentHTML("beforeend", `
+            <div class="bar-row">
+                <span>${escapeHTML(name)}</span>
+                <div class="bar"><div class="bar-fill" style="width:${width}%"></div></div>
+                <b>${number.toFixed(5)}</b>
+            </div>`);
+    });
 }
 
+function renderThresholdChart(values) {
+    const container = document.getElementById("thresholdChart");
+    container.innerHTML = "";
 
+    [["0.55", Number(values["0.55"] || 0)],
+     ["0.60", Number(values["0.60"] || 0)],
+     ["0.65", Number(values["0.65"] || 0)]].forEach(([threshold, count]) => {
+        const safeCount = Number.isFinite(count) ? count : 0;
+        const explanation = safeCount === 0
+            ? "No direct-proxy cases crossed this boundary"
+            : `${safeCount} case${safeCount === 1 ? "" : "s"} crossed this boundary`;
 
-/* ==========================================
-   FLIP TABLE
-=========================================== */
+        container.insertAdjacentHTML("beforeend", `
+            <div class="threshold">
+                <div>
+                    <div class="threshold-name">${threshold} threshold</div>
+                    <div class="threshold-description">${explanation}</div>
+                </div>
+                <div class="threshold-count">${safeCount}</div>
+            </div>`);
+    });
+}
 
 function renderFlipTable(rows) {
-
-    const table =
-        document.getElementById(
-            "flipTable"
-        );
-
-
+    const table = document.getElementById("flipTable");
     table.innerHTML = "";
 
+    if (!Array.isArray(rows) || !rows.length) {
+        table.innerHTML = '<tr><td colspan="7">No audit records available.</td></tr>';
+        return;
+    }
 
-    rows.slice(0, 50)
-        .forEach(row => {
+    const selected = rows.filter(row => csvIsTrue(row.any_decision_flip)).slice(0, 50);
+    if (!selected.length) {
+        table.innerHTML = '<tr><td colspan="7">No decision flips found.</td></tr>';
+        return;
+    }
 
+    selected.forEach(row => {
+        const base = safeNumber(row.base_score);
+        const variant = safeNumber(row.variant_score);
+        const delta = row.score_delta !== undefined && row.score_delta !== ""
+            ? safeNumber(row.score_delta)
+            : row.delta !== undefined && row.delta !== ""
+                ? safeNumber(row.delta) : variant - base;
 
-            const delta =
-                row.score_delta
-                ||
-                row.delta
-                ||
-                0;
+        const crossed = [];
+        if (csvIsTrue(row["decision_flip_0.55"])) crossed.push("0.55 crossed");
+        if (csvIsTrue(row["decision_flip_0.6"])) crossed.push("0.60 crossed");
+        if (csvIsTrue(row["decision_flip_0.65"])) crossed.push("0.65 crossed");
 
+        const cells = [
+            row.resume_id || "",
+            row.proxy_type || "",
+            formatNumber(base),
+            formatNumber(variant),
+            (delta >= 0 ? "+" : "") + formatNumber(delta),
+            crossed.length ? crossed.join(", ") : "Threshold not recorded",
+            row.primary_changed_component || row.component || ""
+        ];
 
-            const threshold =
-                row.threshold
-                ||
-                row.flip_threshold
-                ||
-                "";
+        const tr = document.createElement("tr");
+        cells.forEach(value => {
+            const td = document.createElement("td");
+            td.textContent = String(value);
+            tr.appendChild(td);
+        });
+        table.appendChild(tr);
+    });
+}
 
+function renderExampleCase(rows) {
+    const container = document.getElementById("exampleCase");
+    const allowed = ["name", "age", "city", "college"];
 
-            const component =
-                row.primary_changed_component
-                ||
-                row.component
-                ||
-                "";
+    const row = rows.find(item =>
+        csvIsTrue(item.any_decision_flip) &&
+        allowed.includes(String(item.proxy_type || "").toLowerCase())
+    );
 
+    if (!row) {
+        container.innerHTML =
+            '<div class="note">No decision-changing direct-proxy case is available in the loaded records. No sample scores have been substituted.</div>';
+        return;
+    }
 
-            table.innerHTML += `
+    const base = safeNumber(row.base_score);
+    const variant = safeNumber(row.variant_score);
+    const original = row.original_value || "Original attribute value";
+    const changed = row.proxy_value || row.counterfactual_value || "Changed attribute value";
+    const component = row.primary_changed_component || row.component || "Not recorded";
 
-            <tr>
+    const crossed = [];
+    if (csvIsTrue(row["decision_flip_0.55"])) crossed.push("0.55");
+    if (csvIsTrue(row["decision_flip_0.6"])) crossed.push("0.60");
+    if (csvIsTrue(row["decision_flip_0.65"])) crossed.push("0.65");
 
-                <td>
-                    ${row.resume_id || ""}
-                </td>
+    container.innerHTML = `
+        <div class="case-comparison">
+            <div class="case-box">
+                <div class="case-label">ORIGINAL</div>
+                <div class="case-value">${escapeHTML(original)}</div>
+                <div class="case-score">${formatNumber(base)}</div>
+                <div class="small">Original screening score</div>
+            </div>
+            <div class="case-arrow">→</div>
+            <div class="case-box">
+                <div class="case-label">COUNTERFACTUAL</div>
+                <div class="case-value">${escapeHTML(changed)}</div>
+                <div class="case-score">${formatNumber(variant)}</div>
+                <div class="small">Counterfactual screening score</div>
+            </div>
+        </div>
+        <div class="tags">
+            <span class="tag">${escapeHTML(row.proxy_type || "Unknown attribute")}</span>
+            <span class="tag">Resume ${escapeHTML(row.resume_id || "")}</span>
+            <span class="tag">Job ${escapeHTML(row.job_id || "")}</span>
+            <span class="tag">Component: ${escapeHTML(component)}</span>
+        </div>
+        <div class="note">
+            <b>Score change:</b> ${(variant - base >= 0 ? "+" : "") + formatNumber(variant - base)}<br>
+            <b>Thresholds crossed:</b> ${crossed.length ? escapeHTML(crossed.join(", ")) : "Threshold detail unavailable"}<br>
+            This is evidence of model sensitivity in this test, not proof of the cause of the change.
+        </div>`;
+}
 
-                <td>
-                    ${row.proxy_type || ""}
-                </td>
+async function compareCandidates() {
+    const jobId = document.getElementById("compareJobInput").value.trim();
+    const resumeA = document.getElementById("compareResumeAInput").value.trim();
+    const resumeB = document.getElementById("compareResumeBInput").value.trim();
+    const result = document.getElementById("compareResult");
+    const button = document.getElementById("compareButton");
 
-                <td>
-                    ${formatNumber(
-                        row.base_score
-                    )}
-                </td>
+    if (!jobId || !resumeA || !resumeB) {
+        result.innerHTML = '<div class="note">Enter the job ID and both resume IDs.</div>';
+        return;
+    }
+    if (resumeA === resumeB) {
+        result.innerHTML = '<div class="note">Choose two different resume IDs.</div>';
+        return;
+    }
 
-                <td>
-                    ${formatNumber(
-                        row.variant_score
-                    )}
-                </td>
+    button.disabled = true;
+    result.innerHTML = '<div class="note">Comparing candidates…</div>';
 
-                <td>
-                    ${formatNumber(delta)}
-                </td>
-
-                <td>
-                    ${threshold}
-                </td>
-
-                <td>
-                    ${component}
-                </td>
-
-            </tr>
-
-            `;
-
+    try {
+        const params = new URLSearchParams({
+            job_id: jobId,
+            resume_a: resumeA,
+            resume_b: resumeB
         });
 
+        const response = await fetch(`/api/compare?${params}`);
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "Comparison failed.");
+
+        const a = data.candidate_a;
+        const b = data.candidate_b;
+        const scoreA = Number(a.final_score);
+        const scoreB = Number(b.final_score);
+        const delta = scoreA - scoreB;
+
+        const components = [
+            ["Skills", "skill_contribution"],
+            ["Experience", "experience_contribution"],
+            ["Education and course", "education_course_contribution"],
+            ["Projects", "project_contribution"],
+            ["Semantic similarity", "semantic_contribution"]
+        ];
+
+        const componentRows = components.map(([label, key]) => {
+            const av = safeNumber(a[key]);
+            const bv = safeNumber(b[key]);
+            const difference = av - bv;
+            return `<tr>
+                <td>${escapeHTML(label)}</td>
+                <td>${formatNumber(av)}</td>
+                <td>${formatNumber(bv)}</td>
+                <td>${difference >= 0 ? "+" : ""}${formatNumber(difference)}</td>
+            </tr>`;
+        }).join("");
+
+        function parseList(value) {
+            if (Array.isArray(value)) return value;
+            try {
+                const parsed = JSON.parse(value || "[]");
+                return Array.isArray(parsed) ? parsed : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function listHTML(value) {
+            const items = parseList(value);
+            return items.length
+                ? items.map(item => `<li>${escapeHTML(item)}</li>`).join("")
+                : "<li>None recorded</li>";
+        }
+
+        function candidateCard(row, label) {
+            return `<div class="case-box">
+                <div class="case-label">${label}</div>
+                <div class="case-value">${escapeHTML(row.name || row.resume_id)}</div>
+                <div class="case-score">${formatNumber(row.final_score)}</div>
+                <div class="small">
+                    Resume: ${escapeHTML(row.resume_id)}<br>
+                    Job-specific rank: ${escapeHTML(row.rank ?? "Not recorded")}<br>
+                    Skills score: ${formatNumber(row.skill_score)}<br>
+                    Experience score: ${formatNumber(row.experience_score)}<br>
+                    Education/course score: ${formatNumber(row.education_course_score)}<br>
+                    Projects score: ${formatNumber(row.project_score)}<br>
+                    Semantic score: ${formatNumber(row.semantic_score)}
+                </div>
+            </div>`;
+        }
+
+        function evidenceCard(row) {
+            return `<div class="case-box">
+                <h3>${escapeHTML(row.name || row.resume_id)}</h3>
+                <b>Matched skills</b><ul>${listHTML(row.matched_skills)}</ul>
+                <b>Missing skills</b><ul>${listHTML(row.missing_skills)}</ul>
+                <p><b>Experience:</b> ${escapeHTML(row.experience_evidence || "Not available")}</p>
+                <p><b>Degree:</b> ${escapeHTML(row.degree_status || "Not available")}</p>
+                <p><b>Course:</b> ${escapeHTML(row.course_status || "Not available")}</p>
+                <p><b>Projects:</b> ${escapeHTML(row.project_evidence || "Not available")}</p>
+                <p><b>Semantic note:</b> ${escapeHTML(row.semantic_evidence || "Not available")}</p>
+            </div>`;
+        }
+
+        let interpretation = "Both candidates have the same recorded screening score.";
+        if (Number.isFinite(delta) && delta > 0) {
+            interpretation = "Candidate A has the higher recorded screening score.";
+        } else if (Number.isFinite(delta) && delta < 0) {
+            interpretation = "Candidate B has the higher recorded screening score.";
+        } else if (!Number.isFinite(delta)) {
+            interpretation = "A valid score is missing for at least one candidate.";
+        }
+
+        result.innerHTML = `
+            <h3>Comparison for ${escapeHTML(data.job_id)}</h3>
+            <div class="case-comparison">
+                ${candidateCard(a, "CANDIDATE A")}
+                <div class="case-arrow">vs</div>
+                ${candidateCard(b, "CANDIDATE B")}
+            </div>
+            <div class="note">
+                <b>Score difference (A − B):</b>
+                ${Number.isFinite(delta) ? (delta >= 0 ? "+" : "") + formatNumber(delta) : "Not available"}<br>
+                <b>Interpretation:</b> ${escapeHTML(interpretation)}
+            </div>
+            <h3>Weighted component contributions</h3>
+            <p class="small">Contributions are weighted values. Education and course are combined here to avoid counting their combined contribution twice.</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead><tr><th>Component</th><th>Candidate A</th><th>Candidate B</th><th>A − B</th></tr></thead>
+                    <tbody>${componentRows}</tbody>
+                </table>
+            </div>
+            <h3>Supporting evidence</h3>
+            <div class="evidence-grid">${evidenceCard(a)}${evidenceCard(b)}</div>
+            <div class="note">
+                This compares recorded model outputs; it does not establish overall suitability or prove causation.
+                Semantic similarity is a model signal, not a causal explanation. Human review remains necessary.
+            </div>`;
+    } catch (error) {
+        result.innerHTML = `<div class="note">${escapeHTML(error.message || "Could not load the comparison. Check Flask and the API route.")}</div>`;
+        console.error("Candidate comparison error:", error);
+    } finally {
+        button.disabled = false;
+    }
 }
-
-
-
-/* ==========================================
-   CASE EXPLORER
-=========================================== */
 
 function searchCase() {
+    if (!dashboardData) return;
 
-
-    if (!dashboardData) {
-
-        return;
-
-    }
-
-
-    const resumeID =
-        document.getElementById(
-            "resumeInput"
-        ).value.trim();
-
-
-    const jobID =
-        document.getElementById(
-            "jobInput"
-        ).value.trim();
-
+    const resumeID = document.getElementById("resumeInput").value.trim();
+    const jobID = document.getElementById("jobInput").value.trim();
+    const result = document.getElementById("caseResult");
 
     if (!resumeID) {
-
-        document.getElementById(
-            "caseResult"
-        ).innerHTML = `
-
-        <div class="note">
-
-            Enter a Resume ID,
-            for example <b>R010</b>.
-
-        </div>
-
-        `;
-
+        result.innerHTML = '<div class="note">Enter a Resume ID, for example <b>R010</b>.</div>';
         return;
-
     }
 
-
-    const matches =
-        dashboardData.cases.filter(
-            row =>
-
-                row.resume_id ===
-                resumeID
-
-                &&
-
-                (
-                    !jobID
-                    ||
-                    row.job_id ===
-                    jobID
-                )
-        );
-
+    const matches = (dashboardData.cases || []).filter(row =>
+        String(row.resume_id || "") === resumeID &&
+        (!jobID || String(row.job_id || "") === jobID)
+    );
 
     if (!matches.length) {
-
-        document.getElementById(
-            "caseResult"
-        ).innerHTML = `
-
-        <div class="note">
-
-            No matching case was found.
-
-        </div>
-
-        `;
-
+        result.innerHTML = '<div class="note">No matching case was found.</div>';
         return;
-
     }
 
+    const row = jobID ? matches[0] : matches.find(item =>
+        ["name", "age", "city", "college"].includes(
+            String(item.proxy_type || "").toLowerCase()
+        )
+    ) || matches[0];
 
-    const row =
-        matches[0];
+    const baseScore = Number(row.base_score);
+    const variantScore = Number(row.variant_score);
+    const delta = Number.isFinite(Number(row.delta))
+        ? Number(row.delta) : variantScore - baseScore;
 
-
-    const delta =
-        Number(row.delta || 0);
-
-
-    document.getElementById(
-        "caseResult"
-    ).innerHTML = `
-
-    <div class="case-comparison">
-
-        <div class="case-box">
-
-            <div class="case-label">
-                ORIGINAL
+    const resultHTML = document.createElement("div");
+    resultHTML.innerHTML = `
+        <div class="case-comparison">
+            <div class="case-box">
+                <div class="case-label">ORIGINAL</div>
+                <div class="case-value">Original resume</div>
+                <div class="case-score">${formatNumber(baseScore)}</div>
+                <div class="small">Original screening score</div>
             </div>
-
-            <div class="case-value">
-                ${row.proxy_type || "Candidate"}
+            <div class="case-arrow">→</div>
+            <div class="case-box">
+                <div class="case-label">COUNTERFACTUAL</div>
+                <div class="case-value">${escapeHTML(row.proxy_value || "Changed attribute")}</div>
+                <div class="case-score">${formatNumber(variantScore)}</div>
+                <div class="small">Counterfactual screening score</div>
             </div>
-
-            <div class="case-score">
-                ${formatNumber(
-                    row.base_score
-                )}
-            </div>
-
-            <div class="small">
-                Original screening score
-            </div>
-
         </div>
-
-
-        <div class="case-arrow">
-            →
+        <div class="tags">
+            <span class="tag">${escapeHTML(row.proxy_type || "Unknown attribute")}</span>
+            <span class="tag">${escapeHTML(row.context || "Context not available")}</span>
+            <span class="tag">${escapeHTML(row.component || "Component not available")}</span>
         </div>
-
-
-        <div class="case-box">
-
-            <div class="case-label">
-                COUNTERFACTUAL
-            </div>
-
-            <div class="case-value">
-                ${row.proxy_value || "Changed attribute"}
-            </div>
-
-            <div class="case-score">
-                ${formatNumber(
-                    row.variant_score
-                )}
-            </div>
-
-            <div class="small">
-                Counterfactual screening score
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="tags">
-
-        <span class="tag">
-            ${row.proxy_type || "Unknown attribute"}
-        </span>
-
-        <span class="tag">
-            ${row.context || "Context not available"}
-        </span>
-
-        <span class="tag">
-            ${row.component || "Component not available"}
-        </span>
-
-    </div>
-
-
-    <div class="note">
-
-        <b>Score change:</b>
-        ${delta >= 0 ? "+" : ""}
-        ${formatNumber(delta)}
-
-        <br><br>
-
-        <b>Audit explanation:</b>
-        ${row.explanation ||
-          "No explanation available for this case."}
-
-    </div>
-
-    `;
-
+        <div class="note">
+            <b>Resume:</b> ${escapeHTML(row.resume_id || "")}
+            &nbsp; <b>Job:</b> ${escapeHTML(row.job_id || "")}<br><br>
+            <b>Score change:</b> ${delta >= 0 ? "+" : ""}${formatNumber(delta)}<br><br>
+            <b>Audit explanation:</b> ${escapeHTML(row.explanation || "No explanation available for this case.")}
+        </div>`;
+    result.replaceChildren(resultHTML);
 }
 
-
-
-/* ==========================================
-   INITIAL LOAD
-=========================================== */
-
 loadDashboard();
-
-
-/*
-Refresh the CSV data every 30 seconds.
-*/
-
-setInterval(
-    loadDashboard,
-    30000
-);
-
+setInterval(loadDashboard, 30000);
 </script>
-
 </body>
-
 </html>
+

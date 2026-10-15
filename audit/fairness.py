@@ -2,7 +2,7 @@ import pandas as pd
 
 
 SCREENING_FILE = "screening_output_final/screening_results.csv"
-RESUME_FILE = "final/final_resumes.csv"
+RESUME_FILE = "data/structured_resumes.csv"
 COLLEGE_FILE = "intermediate/colleges.csv"
 CITY_FILE = "intermediate/cities.csv"
 
@@ -99,6 +99,8 @@ def prepare_data():
 
     screening = pd.read_csv(SCREENING_FILE)
     resumes = pd.read_csv(RESUME_FILE)
+    if "degree_raw" not in resumes.columns:
+        resumes["degree_raw"] = resumes.get("primary_degree", resumes.get("degree"))
     colleges = pd.read_csv(COLLEGE_FILE)
     cities = pd.read_csv(CITY_FILE)
 
@@ -374,40 +376,18 @@ def calculate_fairness_for_threshold(base, threshold):
     return final_results
 
 
-def calculate_fairness():
-
-    base = prepare_data()
-
+def calculate_fairness_summaries(base=None):
+    """Calculate current descriptive summaries without writing any files."""
+    base = prepare_data() if base is None else base.copy()
     all_results = []
-
     for threshold in THRESHOLDS:
-
-        print(
-            f"\nRunning fairness analysis "
-            f"at threshold = {threshold}"
-        )
-
         results = calculate_fairness_for_threshold(
             base,
             threshold
         )
-
         all_results.append(results)
-
-    final_results = pd.concat(
-        all_results,
-        ignore_index=True
-    )
-
-    # Detailed results at 0.60
-    detailed_results = final_results[
-        final_results["threshold"] == 0.60
-    ].copy()
-
-    detailed_results.to_csv(
-        OUTPUT_FILE,
-        index=False
-    )
+    final_results = pd.concat(all_results, ignore_index=True) if all_results else pd.DataFrame()
+    detailed_results = final_results[final_results["threshold"] == 0.60].copy() if not final_results.empty else pd.DataFrame()
 
     # Threshold sensitivity summary
     sensitivity = (
@@ -443,8 +423,14 @@ def calculate_fairness():
             )
         )
         .reset_index()
-    )
+    ) if not final_results.empty else pd.DataFrame(columns=["threshold", "factor", "groups", "total_candidates", "selected_candidates", "minimum_selection_rate", "maximum_selection_rate", "minimum_disparate_impact", "maximum_disparate_impact"])
+    return detailed_results, sensitivity
 
+
+def calculate_fairness():
+    detailed_results, sensitivity = calculate_fairness_summaries()
+
+    detailed_results.to_csv(OUTPUT_FILE, index=False)
     sensitivity.to_csv(
         SENSITIVITY_FILE,
         index=False

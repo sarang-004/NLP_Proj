@@ -77,6 +77,27 @@ for name, df in [
             f"for the keys {KEYS}"
         )
 
+VERSION_COLUMNS = [
+    "base_score_methodology_version",
+    "variant_score_methodology_version",
+]
+if set(VERSION_COLUMNS).issubset(screening.columns):
+    if screening[VERSION_COLUMNS].isna().any().any() or (screening[VERSION_COLUMNS[0]] != screening[VERSION_COLUMNS[1]]).any():
+        raise ValueError("Screening input contains missing or incompatible base/variant score versions.")
+    known_versions = set(screening[VERSION_COLUMNS[0]].astype(str)) - {"", "legacy_unversioned"}
+    if known_versions:
+        for name, auxiliary in (("context", context), ("explainability", explainability)):
+            if not set(VERSION_COLUMNS).issubset(auxiliary.columns):
+                raise ValueError(f"{name} output has no score-version fields; refusing to mix it with versioned screening rows.")
+            compared = screening[KEYS + VERSION_COLUMNS].merge(
+                auxiliary[KEYS + VERSION_COLUMNS], on=KEYS, how="left", suffixes=("_screening", "_auxiliary"), validate="one_to_one"
+            )
+            for field in VERSION_COLUMNS:
+                if compared[f"{field}_auxiliary"].isna().any() or (
+                    compared[f"{field}_screening"].astype(str) != compared[f"{field}_auxiliary"].astype(str)
+                ).any():
+                    raise ValueError(f"{name} output has missing or incompatible {field} values.")
+
 
 # --------------------------------------------------
 # Select useful screening columns
@@ -105,6 +126,8 @@ screening_columns = [
 
     "score_delta",
 ]
+if set(VERSION_COLUMNS).issubset(screening.columns):
+    screening_columns.extend(VERSION_COLUMNS)
 
 screening = screening[screening_columns]
 

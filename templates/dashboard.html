@@ -8,6 +8,7 @@
 
 <style>
 * { box-sizing: border-box; }
+[hidden] { display:none !important; }
 body { margin:0; background:#f5f7fb; color:#172033; font-family:"Segoe UI",Arial,sans-serif; }
 .container { max-width:1200px; margin:auto; padding:30px 20px 60px; }
 .header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
@@ -49,9 +50,43 @@ h1 { margin:7px 0 8px; font-size:32px; }
 .case-value { font-size:19px; font-weight:700; }
 .case-score { margin-top:10px; font-size:31px; font-weight:800; }
 .case-arrow { align-self:center; text-align:center; font-size:28px; color:#98a2b3; }
+.tags { display:flex; flex-wrap:wrap; gap:7px; margin:12px 0; }
+.tag { display:inline-flex; padding:4px 9px; border:1px solid #dce2eb; border-radius:20px; background:#f7f8fa; color:#475467; font-size:12px; line-height:1.4; }
+.tag-relevant,.tag-verified { border-color:#b9dfca; background:#effaf3; color:#24633c; }
+.tag-potential,.tag-review,.tag-unverified { border-color:#ead9a6; background:#fff8e8; color:#755719; }
+.tag-unsupported,.tag-unavailable,.tag-unmatched,.tag-invalid,.tag-conflict { border-color:#f0c4c4; background:#fff4f4; color:#913535; }
 .small { color:#667085; font-size:12px; line-height:1.5; }
 .controls { display:flex; gap:9px; flex-wrap:wrap; margin-bottom:15px; }
 input { min-width:150px; padding:10px 12px; border:1px solid #d7dce5; border-radius:9px; font-size:14px; }
+.upload-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; align-items:start; }
+.upload-field { min-width:0; display:flex; flex-direction:column; gap:7px; }
+.upload-field > label:first-child { color:#344054; font-size:13px; font-weight:600; }
+.upload-field input:not([type="checkbox"]),.upload-field input[type="file"],.upload-field textarea { width:100%; min-width:0; min-height:44px; padding:11px 12px; border:1px solid #d7dce5; border-radius:9px; background:#fff; color:#172033; font:inherit; font-size:14px; }
+.upload-field input[type="file"] { padding:8px; }
+.upload-field textarea { min-height:100px; resize:vertical; line-height:1.5; }
+.upload-span-2 { grid-column:span 2; }
+.upload-span-3 { grid-column:1 / -1; }
+.upload-check { min-height:24px; justify-self:start; width:100%; display:flex; align-items:center; gap:9px; color:#475467; font-size:13px; line-height:1.4; }
+.upload-check input { min-width:0; width:16px; height:16px; margin:0; padding:0; border:0; accent-color:#5168b5; }
+.upload-check input:focus-visible,.upload-field input:focus-visible,.upload-field textarea:focus-visible,.jd-source-options input:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible { outline:3px solid #9db7ff; outline-offset:2px; }
+.upload-optional { grid-column:1 / -1; padding:13px 15px; border:1px solid #e3e8f0; border-radius:11px; background:#fafbfc; }
+.upload-optional summary { color:#344054; font-size:14px; font-weight:600; cursor:pointer; }
+.upload-optional[open] summary { margin-bottom:15px; }
+.upload-submit { justify-self:start; }
+.upload-help { grid-column:1 / -1; margin:0; padding:7px 0 0; color:#667085; font-size:12px; line-height:1.5; }
+.upload-error-list { margin:8px 0 0; padding:12px 16px 12px 34px; border:1px solid #f2c6c6; border-radius:9px; background:#fff7f7; color:#9b2c2c; font-size:13px; line-height:1.5; }
+.upload-caveat { margin:10px 0; padding:10px 13px; border:1px solid #ead9a6; border-radius:10px; background:#fffaf0; color:#624d16; font-size:13px; line-height:1.5; }
+.upload-caveat strong { display:block; margin-bottom:5px; }
+.upload-caveat ul { margin:5px 0 0; padding-left:20px; }
+.upload-caveat summary { cursor:pointer; font-weight:700; }
+.upload-summary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:12px 0 7px; }
+.upload-summary-item { min-width:0; padding:10px 12px; border:1px solid #e3e8f0; border-radius:10px; background:#fafbfc; }
+.upload-summary-label { color:#667085; font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.upload-summary-value { margin-top:3px; overflow-wrap:anywhere; font-size:14px; font-weight:650; }
+.upload-criteria { margin:8px 0 12px; padding:10px 13px; border:1px solid #dce5f5; border-radius:9px; background:#f7f9ff; color:#344563; font-size:13px; line-height:1.5; }
+.jd-source-options { display:flex; flex-wrap:wrap; gap:18px; }
+.jd-source-options label { display:inline-flex; align-items:center; gap:7px; color:#475467; font-size:14px; }
+.upload-field .jd-source-options input[type="radio"] { width:16px; height:16px; min-width:16px; margin:0; padding:0; border:0; border-radius:50%; accent-color:#5168b5; }
 button { border:none; padding:10px 17px; border-radius:9px; background:#5168b5; color:white; font-weight:600; cursor:pointer; }
 button:hover { background:#40549a; }
 button:disabled { opacity:.6; cursor:wait; }
@@ -59,6 +94,63 @@ table { width:100%; border-collapse:collapse; font-size:13px; }
 th,td { padding:10px 8px; text-align:left; vertical-align:top; border-bottom:1px solid #edf0f5; }
 th { background:#fafbfc; color:#667085; white-space:nowrap; }
 .table-wrapper { overflow-x:auto; }
+.candidate-list { display:grid; gap:12px; margin-top:14px; }
+.candidate-score-card { min-width:0; overflow:hidden; border:1px solid #e3e8f0; border-radius:12px; background:#fff; }
+.candidate-score-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 15px; background:#f8f9fc; border-bottom:1px solid #e3e8f0; }
+.candidate-identity { min-width:0; overflow-wrap:anywhere; font-weight:700; }
+.candidate-rank { display:inline-block; margin-right:7px; padding:3px 8px; border-radius:20px; background:#eaf0ff; color:#3655a8; font-size:12px; font-weight:700; }
+.candidate-final { flex:none; color:#253c81; font-size:20px; font-weight:800; font-variant-numeric:tabular-nums; }
+.candidate-final-wrap { flex:none; text-align:right; }
+.candidate-final-label { color:#667085; font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; }
+.factor-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:#e9edf3; }
+.factor-cell { min-width:0; padding:10px 13px; background:#fff; }
+.factor-name { color:#667085; font-size:12px; font-weight:650; }
+.factor-values { margin-top:4px; overflow-wrap:anywhere; font-size:13px; font-variant-numeric:tabular-nums; }
+.factor-values strong { color:#172033; }
+.candidate-details { margin:10px 12px 12px; padding:10px 12px; border:1px solid #e3e8f0; border-radius:9px; }
+.candidate-details summary { cursor:pointer; color:#344563; font-size:13px; font-weight:650; }
+.candidate-details p { line-height:1.55; }
+.upload-result-heading { margin:20px 0 4px; font-size:18px; }
+.comparison-details summary { cursor:pointer; }
+.comparison-rationale { margin:12px 0; padding:14px; border:1px solid #dce5f5; border-radius:10px; background:#f7f9ff; color:#263653; }
+.comparison-rationale h4 { margin:0 0 5px; font-size:16px; }
+.comparison-rationale > p { margin:5px 0 10px; color:#52617a; line-height:1.5; }
+.comparison-final-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:12px 0; }
+.comparison-final-card { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:6px 9px; min-width:0; padding:10px 12px; border:1px solid #e3e8f0; border-radius:10px; background:#fff; }
+.comparison-final-card b { min-width:0; overflow-wrap:anywhere; }
+.comparison-final-card strong { grid-column:3; grid-row:1 / span 2; color:#253c81; font-size:19px; font-variant-numeric:tabular-nums; }
+.comparison-final-card .small { grid-column:2; }
+.comparison-driver-list { display:grid; gap:9px; margin:12px 0; }
+.comparison-driver { border:1px solid #e0e6f0; border-radius:9px; background:#fff; overflow:hidden; }
+.comparison-driver-head { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:9px 11px; background:#fafbfe; border-bottom:1px solid #e8ecf3; }
+.comparison-driver-head strong { text-transform:capitalize; }
+.comparison-delta { flex:none; padding:3px 8px; border-radius:20px; background:#eaf0ff; color:#3655a8; font-size:12px; font-weight:700; }
+.comparison-driver-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:#e8ecf3; }
+.comparison-driver-person { min-width:0; padding:10px 11px; background:#fff; overflow-wrap:anywhere; }
+.comparison-driver-score { margin:4px 0; color:#344563; font-size:13px; font-variant-numeric:tabular-nums; }
+.comparison-driver-evidence { margin:0; color:#52617a; font-size:13px; line-height:1.45; }
+.comparison-no-difference { margin-top:10px; padding:9px 11px; border-radius:8px; background:#fff; color:#475467; font-size:13px; line-height:1.5; }
+.comparison-caveat { margin-top:10px !important; font-size:12px; }
+.comparison-table { margin-top:10px; }
+.comparison-table table { min-width:720px; }
+.comparison-table td { vertical-align:middle; }
+.comparison-table .score-cell { color:#253c81; font-size:17px; font-weight:750; font-variant-numeric:tabular-nums; }
+.evidence-status { display:inline-flex; align-items:center; padding:3px 8px; border:1px solid #dce2eb; border-radius:999px; background:#f7f8fa; color:#475467; font-size:12px; line-height:1.35; white-space:nowrap; }
+.evidence-status--available { border-color:#b9dfca; background:#effaf3; color:#24633c; }
+.evidence-status--partial { border-color:#ead9a6; background:#fff8e8; color:#755719; }
+.evidence-status--unavailable { border-color:#d7dce5; background:#f3f4f6; color:#596579; }
+.evidence-status--missing { border-color:#ead9a6; background:#fff8e8; color:#755719; }
+.detail-sections { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
+.detail-section { min-width:0; padding:10px 12px; border:1px solid #e3e8f0; border-radius:9px; background:#fff; }
+.detail-section summary,.methodology-section summary { cursor:pointer; color:#344563; font-size:13px; font-weight:650; }
+.detail-section[open] summary,.methodology-section[open] summary { margin-bottom:10px; }
+.methodology-section { margin-top:14px; padding:12px 14px; border:1px solid #e3e8f0; border-radius:10px; background:#f8f9fc; }
+.comparison-table button { padding:7px 11px; white-space:nowrap; }
+.comparison-factor { margin:10px 0; padding:10px 12px; border:1px solid #e3e8f0; border-radius:9px; }
+.comparison-factor summary { cursor:pointer; color:#344563; font-weight:650; }
+.comparison-factor-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:10px; }
+.comparison-evidence { min-width:0; padding:10px 12px; border-radius:8px; background:#f8f9fc; overflow-wrap:anywhere; }
+.comparison-evidence p { margin:5px 0; line-height:1.5; }
 .note { margin-top:14px; padding:14px; background:#f7f8fa; border-radius:10px; color:#475467; font-size:13px; line-height:1.6; }
 .status { margin-top:10px; color:#667085; font-size:12px; }
 .evidence-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:15px; }
@@ -68,9 +160,24 @@ th { background:#fafbfc; color:#667085; white-space:nowrap; }
     .metrics { grid-template-columns:1fr 1fr; }
     .two-column { grid-template-columns:1fr; }
     .how-grid { grid-template-columns:1fr 1fr; }
+    .upload-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .upload-span-3 { grid-column:1 / -1; }
+    .factor-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 @media(max-width:600px) {
     .metrics,.how-grid,.evidence-grid { grid-template-columns:1fr; }
+    .upload-grid { grid-template-columns:1fr; }
+    .upload-span-2,.upload-span-3,.upload-optional,.upload-help { grid-column:1; }
+    .upload-summary { grid-template-columns:1fr; }
+    .factor-grid { grid-template-columns:1fr 1fr; }
+    .candidate-score-head { align-items:flex-start; }
+    .candidate-final { font-size:18px; }
+    .comparison-factor-grid { grid-template-columns:1fr; }
+    .comparison-driver-grid { grid-template-columns:1fr; }
+    .comparison-driver-head { align-items:flex-start; flex-direction:column; }
+    .comparison-final-grid { grid-template-columns:1fr; }
+    .comparison-final-card { grid-template-columns:auto 1fr auto; }
+    .detail-sections { grid-template-columns:1fr; }
     .header { display:block; }
     .badge { display:inline-block; margin-top:12px; }
     .case-comparison { grid-template-columns:1fr; }
@@ -85,14 +192,79 @@ th { background:#fafbfc; color:#667085; white-space:nowrap; }
 <div class="header">
     <div>
         <div class="eyebrow">NLP Resume Screening Project</div>
-        <h1>Bias &amp; Fairness Audit</h1>
-        <p class="subtitle">
-            Understanding whether changing personal information can change
-            how an automated resume screening system evaluates a candidate.
-        </p>
+        <h1>Resume screening &amp; fairness audit</h1>
+        <p class="subtitle">Compare resume evidence against one job description, then explore the separate fairness audit.</p>
     </div>
     <div class="badge">LIVE CSV DATA</div>
 </div>
+
+<div class="section upload-section">
+    <h2 class="section-title">Evaluate uploaded resumes against one job</h2>
+    <p class="section-description">Upload resumes and provide one job description. Skills and minimum experience are detected from the JD unless you enter an override.</p>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <div class="upload-grid">
+            <div class="upload-field upload-span-2">
+                <label for="resumeFiles">Resume files</label>
+                <input id="resumeFiles" type="file" name="resumes" accept=".pdf,.docx,.txt" multiple required aria-label="Upload resumes">
+            </div>
+            <div class="upload-field">
+                <label for="jobTitleInput">Job title or role</label>
+                <input id="jobTitleInput" name="job_title" placeholder="e.g. Data analyst" required aria-label="Job title">
+            </div>
+            <div class="upload-field">
+                <label for="minimumExperienceInput">Minimum experience override <span class="small">(optional)</span></label>
+                <input id="minimumExperienceInput" name="minimum_experience" type="number" min="0" step="0.1" placeholder="Auto-detected from JD">
+                <label class="upload-check" for="noMinimumExperience"><input id="noMinimumExperience" type="checkbox">JD specifies no minimum experience</label>
+            </div>
+            <div class="upload-field upload-span-3">
+                <label>Job description source</label>
+                <div class="jd-source-options">
+                    <label><input type="radio" name="jd_source" value="text" checked> Paste text</label>
+                    <label><input type="radio" name="jd_source" value="pdf"> Upload PDF</label>
+                </div>
+            </div>
+            <div id="jdTextPanel" class="upload-field upload-span-3">
+                <label for="jobDescriptionInput">Job description text</label>
+                <textarea id="jobDescriptionInput" name="job_description" rows="6" required placeholder="Paste the full job description"></textarea>
+            </div>
+            <div id="jdPdfPanel" class="upload-field upload-span-3" hidden>
+                <label for="jobDescriptionPdfInput">Job description PDF</label>
+                <input id="jobDescriptionPdfInput" name="job_description_pdf" type="file" accept=".pdf,application/pdf" disabled>
+                <span class="small">Text-based PDFs are supported; scanned image PDFs need OCR and cannot be read here.</span>
+            </div>
+            <div class="upload-field upload-span-2">
+                <label for="requiredSkillsInput">Required skills override <span class="small">(optional)</span></label>
+                <input id="requiredSkillsInput" name="required_skills" placeholder="Auto-detected from JD; enter to override">
+                <label class="upload-check" for="noRequiredSkills"><input id="noRequiredSkills" type="checkbox">JD specifies no explicit required skills</label>
+            </div>
+            <div class="upload-field">
+                <label for="preferredDegreeInput">Preferred degree <span class="small">(optional)</span></label>
+                <input id="preferredDegreeInput" name="preferred_degree" placeholder="If specified in the JD">
+            </div>
+            <div class="upload-field">
+                <label for="acceptedDegreesInput">Accepted degrees <span class="small">(optional)</span></label>
+                <input id="acceptedDegreesInput" name="accepted_degrees" placeholder="Comma-separated">
+            </div>
+            <div class="upload-field">
+                <label for="preferredCourseInput">Preferred course <span class="small">(optional)</span></label>
+                <input id="preferredCourseInput" name="preferred_course" placeholder="If specified in the JD">
+            </div>
+            <div class="upload-field">
+                <label for="acceptedCoursesInput">Accepted courses <span class="small">(optional)</span></label>
+                <input id="acceptedCoursesInput" name="accepted_courses" placeholder="Comma-separated">
+            </div>
+            <button class="upload-submit" id="evaluateButton" type="submit">Evaluate resumes</button>
+            <p class="upload-help">Up to 10 PDF, DOCX, or TXT resumes · 12 MB maximum per file · uploads are processed in memory and not saved.</p>
+        </div>
+    </form>
+    <div id="uploadStatus" class="status" aria-live="polite"></div>
+    <div id="uploadedCandidateOverview"></div>
+    <div id="uploadedCandidateComparison"></div>
+    <div id="uploadSummary" class="upload-summary" hidden aria-live="polite"></div>
+    <div id="uploadCriteria" class="upload-criteria" hidden></div>
+    <div id="uploadWarnings"></div>
+</div>
+
 
 <div class="purpose">
     <h2>What are we checking?</h2>
@@ -108,12 +280,12 @@ th { background:#fafbfc; color:#667085; white-space:nowrap; }
     <div class="card">
         <div class="card-label">Candidates / cases tested</div>
         <div class="metric" id="totalCases">—</div>
-        <div class="card-description">Total counterfactual screening cases analysed.</div>
+        <div class="card-description">Unique scored and supplemental records; unmatched cases remain included.</div>
     </div>
     <div class="card">
-        <div class="card-label">Personal-attribute tests</div>
+        <div class="card-label">Verified direct-proxy tests</div>
         <div class="metric" id="directTests">—</div>
-        <div class="card-description">Name, age, city and college were tested.</div>
+        <div class="card-description">Cases reconciled with current authoritative screening results.</div>
     </div>
     <div class="card">
         <div class="card-label">Decision changes</div>
@@ -123,8 +295,14 @@ th { background:#fafbfc; color:#667085; white-space:nowrap; }
     <div class="card">
         <div class="card-label">Decision-change rate</div>
         <div class="metric" id="decisionRate">—</div>
-        <div class="card-description">Share of direct-proxy tests that changed the screening outcome.</div>
+        <div class="card-description">Share of verified direct-proxy cases crossing a supported threshold.</div>
     </div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Audit case validation</h2>
+    <p class="section-description">Supplemental cases are reconciled against authoritative detailed screening rows. Unmatched records remain visible and are marked for review.</p>
+    <div id="caseValidationSummary" class="metrics"></div>
 </div>
 
 <div class="section">
@@ -164,8 +342,8 @@ th { background:#fafbfc; color:#667085; white-space:nowrap; }
     <p class="section-description">The audit separates personal attributes from job-related requirements.</p>
     <div class="finding">
         <div class="finding-icon">🔴</div>
-        <div><h3>Personal attributes show model sensitivity</h3>
-        <p>Some direct-proxy tests crossed a screening threshold after a personal attribute changed. These cases deserve closer review.</p></div>
+        <div><h3>Review measured model sensitivity</h3>
+        <p>Only cases reconciled with authoritative scores contribute to threshold counts. Score changes indicate model sensitivity and are not proof of discrimination.</p></div>
     </div>
     <div class="finding">
         <div class="finding-icon">🟢</div>
@@ -233,12 +411,30 @@ th { background:#fafbfc; color:#667085; white-space:nowrap; }
 
 </div>
 
+<div class="section">
+    <h2 class="section-title">Intersectional analysis</h2>
+    <p class="section-description">Interaction is the deviation from additive individual changes under this scoring system; it is not proof of discrimination. Only value-compatible transformations are summarized.</p>
+    <div class="table-wrapper"><table><thead><tr><th>Joint change</th><th>Case</th><th>Values</th><th>Expected additive</th><th>Actual joint</th><th>Interaction</th><th>Validation</th></tr></thead><tbody id="intersectionTable"></tbody></table></div>
+</div>
+
+<div class="section">
+    <h2 class="section-title">Fairness summaries</h2>
+    <p class="section-description">Descriptive selection-rate comparisons at recorded score thresholds. These are not observed hiring outcomes.</p>
+    <div class="table-wrapper"><table><thead><tr><th>Threshold</th><th>Factor</th><th>Group</th><th>Sample</th><th>Selected</th><th>Rate</th><th>Reference ratio</th></tr></thead><tbody id="fairnessTable"></tbody></table></div>
+    <h3>Threshold sensitivity</h3>
+    <div class="table-wrapper"><table><thead><tr><th>Threshold</th><th>Factor</th><th>Groups</th><th>Sample records</th><th>Selection-rate range</th><th>Impact-ratio range</th></tr></thead><tbody id="fairnessSensitivityTable"></tbody></table></div>
+</div>
+
+</div>
+
 <script>
 "use strict";
 
 let dashboardData = null;
+let uploadData = null;
 
 function formatNumber(value) {
+    if (value === null || value === undefined || String(value).trim() === "") return "â€”";
     const number = Number(value);
     return Number.isFinite(number) ? number.toFixed(4) : "—";
 }
@@ -263,6 +459,130 @@ function escapeHTML(value) {
         '"': "&quot;",
         "'": "&#39;"
     })[character]);
+}
+
+function auditTone(value) {
+    const normalized = String(value || "").toLowerCase().replaceAll("_", " ");
+    if (normalized.includes("potentially biased") || normalized.includes("potential bias")) return "potential";
+    if (normalized.includes("job relevant")) return "relevant";
+    if (normalized.includes("unsupported")) return "unsupported";
+    if (normalized.includes("review")) return "review";
+    if (normalized.includes("unavailable")) return "unavailable";
+    if (normalized.includes("unverified")) return "unverified";
+    if (normalized.includes("unmatched")) return "unmatched";
+    if (normalized.includes("invalid")) return "invalid";
+    if (normalized.includes("conflict")) return "conflict";
+    if (normalized.includes("verified")) return "verified";
+    return "";
+}
+
+function candidateLabel(candidate) {
+    const name = String(candidate.candidate_name || "").trim();
+    return name && name !== candidate.resume_id ? `${name} (${candidate.resume_id})` : candidate.resume_id;
+}
+
+function factorWithoutScore(candidate, name) {
+    if (name === "experience") {
+        let evidence = candidate.experience?.evidence || {};
+        try { if (typeof evidence === "string") evidence = JSON.parse(evidence); } catch (_) { evidence = {}; }
+        const hasEvidence = candidate.experience?.professional_months != null ||
+            (candidate.experience?.records || []).length > 0 ||
+            (candidate.experience?.years != null && candidate.experience?.years !== "NA");
+        if (!hasEvidence) return "No dated experience evidence found in the resume.";
+        if (evidence.experience_requirement_type === "evidence_only_no_jd_duration")
+            return "Resume experience evidence found · not scored because the JD gives no experience duration.";
+        return "Resume experience evidence found · score not assigned because JD-relevant duration was not established.";
+    }
+    if (name === "education_course") {
+        const item = candidate.degree_course_evidence || {};
+        const degree = item.degree && item.degree !== "Not provided" ? `Degree: ${item.degree}` : "";
+        const course = item.course && item.course !== "Not provided" ? `Course: ${item.course}` : "";
+        const evidence = [degree, course].filter(Boolean).join(" · ");
+        return evidence ? `${evidence} · evidence only; no matching JD education/course criterion to score.` : "No degree or course evidence found in the resume.";
+    }
+    if (name === "projects")
+        return candidate.projects_available ? "Project evidence found in the resume." : "No project evidence found in the resume.";
+    if (name === "skills") return "No score-eligible skill criteria were identified in the JD.";
+    return "No evidence found in the resume.";
+}
+
+function factorEvidenceText(candidate, factor) {
+    if (factor === "skills") {
+        const evidence = (candidate.skill_evidence || []).map(item => {
+            const source = item.resume_excerpt ? "Resume excerpt: " + item.resume_excerpt : "No resume excerpt recorded";
+            return item.requirement + ": " + String(item.evidence_class || "evidence unavailable").replaceAll("_", " ") + " - " + source;
+        });
+        const missing = (candidate.missing_skills || []).map(skill => skill + ": not demonstrated in the supplied resume");
+        return [...evidence, ...missing].join("; ") || "No score-eligible skills or supporting evidence recorded.";
+    }
+    if (factor === "experience") {
+        let evidence = candidate.experience?.evidence || "";
+        try { if (typeof evidence === "string") evidence = JSON.parse(evidence); } catch (_) { return (evidence || "No experience evidence extracted") + "; status: " + (candidate.experience?.status || "unavailable") + "."; }
+        if (evidence && typeof evidence === "object") {
+            const technologies = (evidence.technology_specific || []).map(item => {
+                const duration = item.years !== undefined && item.years !== null ? item.years + " years explicitly tied" : item.approximate_project_duration_years !== undefined ? "about " + item.approximate_project_duration_years + " project years; requires review" : "duration not established";
+                return (item.technology || "Technology") + " " + (item.activity || "experience") + ": " + duration + (item.source_text ? "; source: " + item.source_text : "");
+            });
+            const roles = (evidence.experience_records || []).map(item => `${item.organization || "Organization unclear"} — ${item.role_title || "Role unclear"}: ${item.raw_date_text || "date text unavailable"}; ${item.duration_months ?? "?"} inclusive calendar months; ${String(item.experience_category || "unknown").replaceAll("_", " ")}${item.extraction_confidence === "review" ? "; needs review" : ""}${item.supporting_text ? "; evidence: " + item.supporting_text : ""}`);
+            const categories = Object.entries(evidence.combined_months_by_category || {}).map(([category, months]) => `${String(category).replaceAll("_", " ")}: ${months} months`);
+            return ["Scored professional total: " + (evidence.total_professional_years ?? candidate.experience?.years ?? "unavailable") + " years (" + (evidence.total_professional_months ?? candidate.experience?.professional_months ?? "unavailable") + " months; " + (evidence.duration_convention || candidate.experience?.duration_convention || "inclusive calendar months") + ")",
+                evidence.reported_total_professional_years != null ? "Profile-stated: " + evidence.reported_total_professional_years + "+ years" : "",
+                "Category totals: " + (categories.join(", ") || "none extracted"),
+                "Requirement basis: " + (evidence.experience_requirement_type || "not identified"),
+                evidence.required_activity ? "JD activity: " + evidence.required_activity + (evidence.activity_requirement_text ? " (" + evidence.activity_requirement_text + ")" : "") : "",
+                evidence.note || "",
+                ...roles, ...technologies, "Status: " + (candidate.experience?.status || "unavailable")].filter(Boolean).join("; ");
+        }
+        return (evidence || "No experience evidence extracted") + "; status: " + (candidate.experience?.status || "unavailable") + ".";
+    }
+    if (factor === "education_course") {
+        const item = candidate.degree_course_evidence || {};
+        const profile = item.profile || {};
+        return "Degree: " + (profile.degree_evidence || item.degree || "not provided") + "; level " + (profile.degree_level || "not established") + "; subject " + (profile.degree_subject || "not established") + "; specialization " + (profile.degree_specialization || "not established") + "; decision " + (profile.status || item.degree_status || "unavailable") + "; JD says " + (profile.jd_preference || "no education preference classified") + "; score " + (item.degree_score == null ? "Unavailable" : formatNumber(item.degree_score)) + ". " + (profile.explanation || "Degree and course share the displayed combined factor contribution.");
+    }
+    if (factor === "projects") {
+        return candidate.projects_available ? "Extracted project evidence: " + (candidate.project_evidence || "No project details extracted") : "No project evidence was extracted; this factor is unavailable and excluded.";
+    }
+    return (candidate.semantic_evidence || "Resume-to-JD semantic similarity evidence unavailable.") + " This is an aggregate similarity signal; the model does not attribute it to a particular phrase or resume section.";
+}
+function factorEvidenceSummary(candidate, factor) {
+    if (factor === "skills") {
+        const supporting = (candidate.skill_evidence || []).filter(item => item.resume_excerpt).slice(0, 2)
+            .map(item => `${item.requirement}: ${String(item.resume_excerpt).replace(/\s+/g, " ").slice(0, 130)}`);
+        const missing = (candidate.missing_skills || []).slice(0, 1).map(item => `${item} not demonstrated`);
+        const parts = [...supporting, ...missing];
+        const total = (candidate.skill_evidence || []).length + (candidate.missing_skills || []).length;
+        return parts.length ? `${parts.join("; ")}${total > parts.length ? `; ${total - parts.length} more skill criteria in details` : ""}` : "No resume skill evidence extracted.";
+    }
+    if (factor === "experience") {
+        let evidence = candidate.experience?.evidence || "";
+        try { if (typeof evidence === "string") evidence = JSON.parse(evidence); } catch (_) {
+            const years = candidate.experience?.years;
+            const available = years !== null && years !== undefined && years !== "NA" && Number.isFinite(Number(years));
+            return available ? "Extracted " + Number(years).toFixed(2) + " total experience years; status: " + (candidate.experience?.status || "requires review") + "." : "No reliable experience duration was extracted from this resume; status: " + (candidate.experience?.status || "unavailable") + ".";
+        }
+        if (evidence && typeof evidence === "object") {
+            const years = evidence.total_professional_years ?? candidate.experience?.years;
+            const reported = evidence.reported_total_professional_years;
+            const specific = (evidence.technology_specific || []).slice(0, 1).map(item => {
+                const source = String(item.source_text || "").replace(/\s+/g, " ").slice(0, 130);
+                return `${item.technology || "Technology"}: ${item.years == null ? item.status || "duration unverified" : `${item.years} years`}${source ? `; resume evidence: ${source}` : ""}`;
+            });
+            const role = (evidence.experience_records || []).slice(0, 1).map(item => `${item.role_title || "Role unclear"}: ${item.raw_date_text || "dates unavailable"}, ${item.duration_months ?? "?"} inclusive months (${String(item.experience_category || "unknown").replaceAll("_", " ")})`);
+            const type = evidence.experience_requirement_type === "relevant_role" ? `JD activity ${evidence.required_activity || "specified"}; relevant duration ${evidence.relevant_role_months ?? "unavailable"} months` : evidence.experience_requirement_type === "technology_specific" ? "technology-specific years require explicit duration evidence" : "total professional experience";
+            return [`${years ?? "Not reported"} total professional years`, type, reported != null ? `profile states ${reported}+ years` : "", ...role, ...specific].filter(Boolean).join("; ");
+        }
+        return "No experience evidence extracted.";
+    }
+    if (factor === "education_course") {
+        const item = candidate.degree_course_evidence || {};
+        const profile = item.profile || {};
+        return `Degree: ${profile.degree_evidence || item.degree || "not provided"}; level ${profile.degree_level || "not established"}; subject ${profile.degree_subject || "not established"}; specialization ${profile.degree_specialization || "not established"}; decision ${profile.status || item.degree_status || "unavailable"}; JD classification ${profile.jd_preference || "not stated"} (${profile.jd_source_text || "no source text"}); score ${item.degree_score == null ? "Unavailable" : formatNumber(item.degree_score)}. ${profile.explanation || "No contextual education explanation recorded."}`;
+    }
+    if (factor === "projects") {
+        return candidate.projects_available ? String(candidate.project_evidence || "Project evidence extracted").replace(/\s+/g, " ").slice(0, 160) : "No project evidence extracted.";
+    }
+    return "Aggregate resume-to-JD semantic similarity; the system cannot identify a particular phrase as the cause of this value.";
 }
 
 async function loadDashboard() {
@@ -293,6 +613,9 @@ function renderDashboard(data) {
     document.getElementById("decisionRate").textContent =
         (direct ? flips / direct * 100 : 0).toFixed(1) + "%";
 
+    renderValidationCounts(metrics);
+    renderIntersectionality(data.intersectionality || [], data.intersectionality_summary || []);
+    renderFairness(data.fairness || [], data.fairness_sensitivity || []);
     renderSemanticChart(data.semantic || {});
     renderThresholdChart(data.thresholds || {});
     renderFlipTable(data.flips || []);
@@ -336,9 +659,7 @@ function renderThresholdChart(values) {
     const container = document.getElementById("thresholdChart");
     container.innerHTML = "";
 
-    [["0.55", Number(values["0.55"] || 0)],
-     ["0.60", Number(values["0.60"] || 0)],
-     ["0.65", Number(values["0.65"] || 0)]].forEach(([threshold, count]) => {
+    Object.entries(values).forEach(([threshold, count]) => {
         const safeCount = Number.isFinite(count) ? count : 0;
         const explanation = safeCount === 0
             ? "No direct-proxy cases crossed this boundary"
@@ -353,6 +674,85 @@ function renderThresholdChart(values) {
                 <div class="threshold-count">${safeCount}</div>
             </div>`);
     });
+}
+
+function appendCells(row, values) {
+    values.forEach(value => {
+        const cell = document.createElement("td");
+        cell.textContent = value === null || value === undefined || value === "" ? "Unavailable" : String(value);
+        row.appendChild(cell);
+    });
+}
+
+function renderValidationCounts(metrics) {
+    const container = document.getElementById("caseValidationSummary");
+    container.replaceChildren();
+    const items = [
+        ["Unique cases", metrics.total_cases], ["Verified", metrics.verified_cases],
+        ["Unmatched", metrics.unmatched_cases], ["Invalid authoritative cases", metrics.invalid_cases],
+        ["Conflicting supplemental records", metrics.supplemental_conflicts],
+        ["Requires review", metrics.review_required_cases],
+        ["Source variants without scores", metrics.source_variants_without_screening_results]
+    ];
+    items.forEach(([label, value]) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        const title = document.createElement("div");
+        title.className = "card-label";
+        title.textContent = label;
+        const metric = document.createElement("div");
+        metric.className = "metric";
+        metric.textContent = Number(value || 0).toLocaleString();
+        card.append(title, metric);
+        container.appendChild(card);
+    });
+}
+
+function renderIntersectionality(rows, summaries) {
+    const body = document.getElementById("intersectionTable");
+    body.replaceChildren();
+    const valid = Array.isArray(rows) ? rows : [];
+    const aggregate = Array.isArray(summaries) ? summaries : [];
+    if (!valid.length) {
+        const tr = document.createElement("tr");
+        appendCells(tr, ["No compatible intersectional cases are available.", "", "", "", "", "", ""]);
+        body.appendChild(tr);
+        return;
+    }
+    aggregate.forEach(row => {
+        const tr = document.createElement("tr");
+        appendCells(tr, [row.proxy_type, `Aggregate (n=${row.cases})`, "Compatible transformations", formatNumber(row.mean_expected_delta), formatNumber(row.mean_actual_joint_delta), formatNumber(row.mean_interaction_effect), "Transformation matched"]);
+        body.appendChild(tr);
+    });
+    valid.forEach(row => {
+        const tr = document.createElement("tr");
+        const values = `${row.factor_a}: ${row.factor_a_original_value} → ${row.factor_a_variant_value}; ${row.factor_b}: ${row.factor_b_original_value} → ${row.factor_b_variant_value}`;
+        appendCells(tr, [row.proxy_type, `${row.resume_id} / ${row.job_id}`, values, formatNumber(row.expected_additive_delta), formatNumber(row.actual_joint_delta), formatNumber(row.interaction_effect), row.match_status]);
+        body.appendChild(tr);
+    });
+}
+
+function renderFairness(rows, sensitivities) {
+    const body = document.getElementById("fairnessTable");
+    const sensitivityBody = document.getElementById("fairnessSensitivityTable");
+    body.replaceChildren();
+    sensitivityBody.replaceChildren();
+    (Array.isArray(rows) ? rows : []).forEach(row => {
+        const tr = document.createElement("tr");
+        appendCells(tr, [row.threshold, row.factor, row.group, row.total_candidates, row.selected_candidates, formatNumber(row.selection_rate), formatNumber(row.disparate_impact_ratio)]);
+        body.appendChild(tr);
+    });
+    (Array.isArray(sensitivities) ? sensitivities : []).forEach(row => {
+        const tr = document.createElement("tr");
+        appendCells(tr, [row.threshold, row.factor, row.groups, row.total_candidates, `${formatNumber(row.minimum_selection_rate)} – ${formatNumber(row.maximum_selection_rate)}`, `${formatNumber(row.minimum_disparate_impact)} – ${formatNumber(row.maximum_disparate_impact)}`]);
+        sensitivityBody.appendChild(tr);
+    });
+    if (!body.children.length) {
+        const tr = document.createElement("tr"); appendCells(tr, ["No fairness summary is available.", "", "", "", "", "", ""]); body.appendChild(tr);
+    }
+    if (!sensitivityBody.children.length) {
+        const tr = document.createElement("tr"); appendCells(tr, ["No threshold sensitivity data is available.", "", "", "", "", ""]); sensitivityBody.appendChild(tr);
+    }
 }
 
 function renderFlipTable(rows) {
@@ -495,24 +895,25 @@ async function compareCandidates() {
         const delta = scoreA - scoreB;
 
         const components = [
-            ["Skills", "skill_contribution"],
-            ["Experience", "experience_contribution"],
-            ["Education and course", "education_course_contribution"],
-            ["Projects", "project_contribution"],
-            ["Semantic similarity", "semantic_contribution"]
+            ["Skills", "skill_score", "skill_contribution"],
+            ["Experience", "experience_score", "experience_contribution"],
+            ["Education/course (combined model factor)", "education_course_score", "education_course_contribution"],
+            ["Projects", "project_score", "project_contribution"],
+            ["Semantic similarity", "semantic_score", "semantic_contribution"]
         ];
 
-        const componentRows = components.map(([label, key]) => {
-            const av = safeNumber(a[key]);
-            const bv = safeNumber(b[key]);
-            const difference = av - bv;
-            return `<tr>
-                <td>${escapeHTML(label)}</td>
-                <td>${formatNumber(av)}</td>
-                <td>${formatNumber(bv)}</td>
-                <td>${difference >= 0 ? "+" : ""}${formatNumber(difference)}</td>
-            </tr>`;
-        }).join("");
+        const componentDifferences = components.map(([label, scoreKey, contributionKey]) => ({
+            label, scoreA: a[scoreKey], scoreB: b[scoreKey],
+            contributionA: a[contributionKey], contributionB: b[contributionKey],
+            delta: safeNumber(a[contributionKey]) - safeNumber(b[contributionKey])
+        })).sort((x, y) => Math.abs(y.delta) - Math.abs(x.delta));
+        const componentRows = componentDifferences.map(item => `<tr>
+            <td>${escapeHTML(item.label)}</td><td>${formatNumber(item.scoreA)}</td><td>${formatNumber(item.scoreB)}</td>
+            <td>${formatNumber(item.contributionA)}</td><td>${formatNumber(item.contributionB)}</td>
+            <td>${item.delta >= 0 ? "+" : ""}${formatNumber(item.delta)}</td>
+        </tr>`).join("");
+        const contributionDrivers = componentDifferences.filter(item => Math.abs(item.delta) > 1e-9).slice(0, 2)
+            .map(item => `${item.label} (${item.delta >= 0 ? "+" : ""}${formatNumber(item.delta)})`);
 
         function parseList(value) {
             if (Array.isArray(value)) return value;
@@ -581,12 +982,13 @@ async function compareCandidates() {
                 <b>Score difference (A − B):</b>
                 ${Number.isFinite(delta) ? (delta >= 0 ? "+" : "") + formatNumber(delta) : "Not available"}<br>
                 <b>Interpretation:</b> ${escapeHTML(interpretation)}
+                <br><b>Largest weighted contribution differences:</b> ${escapeHTML(contributionDrivers.join("; ") || "None recorded")}
             </div>
             <h3>Weighted component contributions</h3>
-            <p class="small">Contributions are weighted values. Education and course are combined here to avoid counting their combined contribution twice.</p>
+            <p class="small">Scores and weighted contributions are shown separately. Education and course share one modeled score and contribution; their evidence is listed separately below.</p>
             <div class="table-wrapper">
                 <table>
-                    <thead><tr><th>Component</th><th>Candidate A</th><th>Candidate B</th><th>A − B</th></tr></thead>
+                    <thead><tr><th>Factor</th><th>A score</th><th>B score</th><th>A contribution</th><th>B contribution</th><th>A − B contribution</th></tr></thead>
                     <tbody>${componentRows}</tbody>
                 </table>
             </div>
@@ -599,6 +1001,254 @@ async function compareCandidates() {
     } catch (error) {
         result.innerHTML = `<div class="note">${escapeHTML(error.message || "Could not load the comparison. Check Flask and the API route.")}</div>`;
         console.error("Candidate comparison error:", error);
+    } finally {
+        button.disabled = false;
+    }
+}
+
+function renderUploadedEvaluation(data) {
+    const status = document.getElementById("uploadStatus");
+    const criteria = data.criteria;
+    if (!criteria || !Array.isArray(criteria.required_skills) || !Object.prototype.hasOwnProperty.call(criteria, "experience_source")) {
+        uploadData = null;
+        status.textContent = "This Flask process is running older upload code. Stop and restart Flask, then submit the resumes again so the job description is used for skills and experience.";
+        document.getElementById("uploadCriteria").hidden = true;
+        document.getElementById("uploadWarnings").replaceChildren();
+        document.getElementById("uploadedCandidateOverview").replaceChildren();
+        document.getElementById("uploadedCandidateComparison").replaceChildren();
+        return;
+    }
+    uploadData = data;
+    status.textContent = "Evaluation complete.";
+    const summary = document.getElementById("uploadSummary");
+    summary.innerHTML = `<div class="upload-summary-item"><div class="upload-summary-label">Candidates evaluated</div><div class="upload-summary-value">${escapeHTML(data.candidate_count)}</div></div><div class="upload-summary-item"><div class="upload-summary-label">Job</div><div class="upload-summary-value">${escapeHTML(data.job_title)}</div></div><div class="upload-summary-item"><div class="upload-summary-label">Status · data handling</div><div class="upload-summary-value">Complete · uploads not persisted</div></div>`;
+    summary.hidden = false;
+    const criteriaBox = document.getElementById("uploadCriteria");
+    const skillSource = criteria.required_skills_source === "user_override" ? "override" : "from JD";
+    const experienceSource = criteria.experience_source === "user_override" ? "override" : "from JD";
+    const skillList = Array.isArray(criteria.required_skills) && criteria.required_skills.length
+        ? criteria.required_skills.join(", ") : "none detected";
+    const experience = criteria.experience_source === "not_detected"
+        ? "not detected" : `${criteria.minimum_experience_years} years (${experienceSource})`;
+    criteriaBox.textContent = `Criteria used — skills: ${skillList}${skillList === "none detected" ? "" : ` (${skillSource})`}; minimum experience: ${experience}.`;
+    criteriaBox.hidden = false;
+    const warningBox = document.getElementById("uploadWarnings");
+    const messages = [...(data.warnings || []), ...(data.file_errors || []).map(item => `${item.candidate_id}: ${item.message}`)];
+    if (messages.length) {
+        warningBox.innerHTML = `<details class="upload-caveat"><summary>Scoring notes and extraction warnings (${messages.length})</summary><ul>${messages.map(message => `<li>${escapeHTML(message)}</li>`).join("")}</ul></details>`;
+    } else {
+        warningBox.replaceChildren();
+    }
+
+    const overview = document.getElementById("uploadedCandidateOverview");
+    const componentNames = [["skills", "Skills"], ["experience", "Experience"], ["education_course", "Education/course"], ["projects", "Projects"], ["semantic", "Semantic similarity"]];
+    let cards = `<h3 class="upload-result-heading">Candidate details</h3><div class="candidate-list">`;
+    cards += (data.candidates || []).map((candidate, candidateIndex) => {
+        const factors = componentNames.map(([name, label]) => {
+            const score = candidate.component_scores?.[name];
+            const contribution = candidate.weighted_contributions?.[name];
+            return `<div class="factor-cell"><div class="factor-name">${label}</div><div class="factor-values">${score === null || score === undefined ? escapeHTML(factorWithoutScore(candidate, name)) : `<strong>${formatNumber(score)}</strong> score · ${formatNumber(contribution)} contribution`}</div></div>`;
+        }).join("");
+        const skillEvidence = candidate.skill_evidence?.length ? candidate.skill_evidence.map(item => `<li><b>${escapeHTML(item.requirement)}</b> (${escapeHTML(item.jd_requirement_category || "uncertain")}): ${escapeHTML(item.evidence_class.replaceAll("_", " "))}<br><span class="small">JD: ${escapeHTML(item.jd_source_text || "Structured requirement")}${item.resume_excerpt ? `<br>Resume: “${escapeHTML(item.resume_excerpt)}”` : ""}</span></li>`).join("") : "<li>No score-eligible skill requirements.</li>";
+        const missing = candidate.missing_skills?.length ? candidate.missing_skills.map(x => `<li>${escapeHTML(x)} — not demonstrated in the supplied resume</li>`).join("") : "<li>None</li>";
+        const degreeCourse = candidate.degree_course_evidence || {};
+        const requirementRecords = candidate.requirement_context?.requirements || [];
+        const requirementDetails = requirementRecords.length ? requirementRecords.map(item => `<li><b>${escapeHTML(item.category.replaceAll("_", " "))}</b>${item.criterion ? ` · ${escapeHTML(item.criterion)}` : ""}: ${escapeHTML(item.source_text)}</li>`).join("") : "<li>No JD statements were classified.</li>";
+        const effectiveWeightText = Object.entries(candidate.effective_weights || {}).map(([name, weight]) => `${name}: ${formatNumber(weight)}`).join(" · ") || "Unavailable";
+        const readableSkillEvidence = candidate.skill_evidence?.length ? candidate.skill_evidence.map(item => `<li><b>${escapeHTML(item.requirement)}</b>: ${escapeHTML(String(item.match_status || "uncertain").replaceAll("_", " "))} · ${escapeHTML(String(item.evidence_type || "unknown").replaceAll("_", " "))} (${escapeHTML(item.resume_section || "section unavailable")})<br><span class="small">JD: ${escapeHTML(item.jd_source_text || "Structured requirement")}${item.jd_duration_years != null ? `<br>JD duration: ${escapeHTML(item.jd_duration_years)} years` : "<br>JD duration/proficiency: not specified"}${item.resume_excerpt ? `<br>Resume evidence: “${escapeHTML(item.resume_excerpt)}”` : "<br>No supporting resume excerpt extracted"}</span></li>`).join("") : "<li>No score-eligible skill requirements.</li>";
+        const preferredEvidence = candidate.preferred_qualification_evidence?.length ? candidate.preferred_qualification_evidence.map(item => `<li><b>${escapeHTML(item.requirement)}</b> · ${escapeHTML(String(item.evidence_type).replaceAll("_", " "))} · ${escapeHTML(item.resume_section)}: “${escapeHTML(item.resume_excerpt)}” <span class="small">(evidence only; not numerically scored)</span></li>`).join("") : "<li>No explicit evidence extracted for the JD's preferred learning qualification. Absence from this resume is not proof the candidate lacks it.</li>";
+        let experienceDetails = candidate.experience?.evidence || "No experience evidence extracted.";
+        try {
+            const parsed = typeof experienceDetails === "string" ? JSON.parse(experienceDetails) : experienceDetails;
+            if (parsed && typeof parsed === "object") {
+                const technologies = (parsed.technology_specific || []).map(item => {
+                    const duration = item.years !== undefined ? `${item.years} years explicitly tied` : item.approximate_project_duration_years !== undefined ? `about ${item.approximate_project_duration_years} project years; requires review` : "duration not established";
+                    return `${item.technology} ${item.activity || "experience"}: ${duration}`;
+                });
+                const roles = (parsed.experience_records || []).map(item => `${item.organization || "Organization unclear"} — ${item.role_title || "Role unclear"}: ${item.raw_date_text || "date text unavailable"}; ${item.duration_months ?? "?"} inclusive calendar months; ${String(item.experience_category || "unknown").replaceAll("_", " ")}; ${item.supporting_text || "No supporting excerpt extracted"}`);
+                const categories = Object.entries(parsed.combined_months_by_category || {}).map(([category, months]) => `${String(category).replaceAll("_", " ")}: ${months} months`).join(", ");
+                experienceDetails = [`Total dated professional experience (internships included): ${parsed.total_professional_years ?? "unavailable"} years (${parsed.total_professional_months ?? "unavailable"} months; ${parsed.duration_convention || "inclusive calendar months"}; ${parsed.experience_source || "source unknown"}, as of ${parsed.as_of || "unknown"})`,
+                    `Internship duration: ${parsed.internship_months ?? "not extracted"} months; JD-relevant duration: ${parsed.relevant_role_months ?? (parsed.experience_requirement_type === "total_professional" ? parsed.total_professional_months ?? "unavailable" : "not established")} months`,
+                    parsed.duration_ratio_numerator_months != null && parsed.duration_ratio_denominator_months != null ? `Scoring ratio: ${parsed.duration_ratio_numerator_months} / ${parsed.duration_ratio_denominator_months} months = ${formatNumber(parsed.duration_ratio)} (capped at 1.0)` : "Scoring ratio: unavailable because relevant duration could not be established",
+                    parsed.reported_total_professional_years != null ? `Profile-stated: ${parsed.reported_total_professional_years}+ years` : "",
+                    `Category totals: ${categories || "none extracted"}`,
+                    `Requirement basis: ${parsed.experience_requirement_type || "not identified"}`,
+                    parsed.required_activity ? `JD activity: ${parsed.required_activity} (${parsed.activity_requirement_text || ""})` : "",
+                    parsed.note || "",
+                    parsed.uncertain_duration_records?.length ? `Uncertain duration records: ${parsed.uncertain_duration_records.map(item => `${item.role_title || "Role unclear"} (${item.raw_date_text || "date unclear"})`).join(", ")}` : "",
+                    ...roles, ...technologies].filter(Boolean).join("; ");
+            }
+        } catch (_) { /* Keep the source evidence string visible if it is not serialized JSON. */ }
+        const unavailable = candidate.unavailable_evidence?.length ? escapeHTML(candidate.unavailable_evidence.join(", ")) : "None recorded by the conservative extractors";
+        const weightRows = componentNames.map(([name, label]) => `<li>${label}: ${candidate.component_scores?.[name] == null ? escapeHTML(factorWithoutScore(candidate, name)) : `score ${formatNumber(candidate.component_scores[name])}`}; effective weight ${formatNumber(candidate.effective_weights?.[name])}; weighted contribution ${formatNumber(candidate.weighted_contributions?.[name])}</li>`).join("");
+        const labelsByFactor = Object.fromEntries(componentNames);
+        const excludedFactors = (candidate.excluded_factors || []).map(name => labelsByFactor[name] || name).join(", ") || "None";
+        const educationProfile = degreeCourse.profile || {};
+        const configuredWeightText = Object.entries(candidate.configured_weights || {}).map(([name, weight]) => `${name}: ${formatNumber(weight)}`).join(" · ") || "Unavailable";
+        const evidenceCompleteness = candidate.evidence_completeness || {};
+        const evidenceFactorSummary = Object.entries(evidenceCompleteness.factor_status || {}).map(([name, status]) => `${name.replaceAll("_", " ")}: ${status.replaceAll("_", " ")}`).join(" · ") || "No evidence summary available";
+        const skillCalculation = candidate.skill_score_calculation || {};
+        const skillWeights = candidate.skill_evidence?.length ? candidate.skill_evidence.map(item => `<li>${escapeHTML(item.requirement)} · ${escapeHTML(item.jd_requirement_category || "uncertain")} weight ${formatNumber(item.criterion_weight)} · evidence credit ${formatNumber(item.weighted_evidence_credit)}</li>`).join("") : "<li>No skill criteria to score.</li>";
+        return `<article class="candidate-score-card"><details class="candidate-details" id="candidate-detail-${candidateIndex}"><summary><span class="candidate-rank">Rank ${escapeHTML(candidate.rank)}</span>${escapeHTML(candidateLabel(candidate))}${candidate.candidate_name_source === "filename" ? ' <span class="small">(name not identified in resume)</span>' : ""} — view supporting details</summary><div class="detail-sections">
+            <details class="detail-section"><summary>Skills</summary><p><b>Skill-factor calculation:</b> weighted evidence total ${formatNumber(skillCalculation.weighted_evidence_total)} / total criterion weight ${formatNumber(skillCalculation.criterion_weight_total)} = ${formatNumber(skillCalculation.score)}. Required criteria have weight 1.0 and preferred criteria 0.5.</p><ul>${skillWeights}</ul><p><b>Extracted evidence</b></p><ul>${readableSkillEvidence}</ul><p><b>Not demonstrated in this resume</b></p><ul>${missing}</ul></details>
+            <details class="detail-section"><summary>Experience</summary><p><b>Factor:</b> ${candidate.component_scores?.experience == null ? escapeHTML(factorWithoutScore(candidate, "experience")) : `${formatNumber(candidate.component_scores.experience)} score · ${formatNumber(candidate.weighted_contributions?.experience)} contribution`}</p><p><b>Evidence:</b> ${escapeHTML(experienceDetails)} (${escapeHTML(candidate.experience?.status || "unavailable")})</p></details>
+            <details class="detail-section"><summary>Education</summary><p><b>Decision:</b> ${escapeHTML(educationProfile.explanation || "Education matching details unavailable.")} JD status: ${escapeHTML(educationProfile.jd_preference || "not classified")}; criterion: ${escapeHTML(educationProfile.jd_source_text || "not provided")}.</p><p><b>Degree:</b> ${escapeHTML(educationProfile.degree_evidence || degreeCourse.degree || "Not provided")} · level: ${escapeHTML(educationProfile.degree_level || "not extracted")} · subject: ${escapeHTML(educationProfile.degree_subject || "not established")} · specialization: ${escapeHTML(educationProfile.degree_specialization || "not established")} · match: ${escapeHTML(educationProfile.status || degreeCourse.degree_status || "not determined")} · score: ${degreeCourse.degree_score == null ? "unavailable" : formatNumber(degreeCourse.degree_score)}${educationProfile.matched_credential?.degree_evidence ? ` · matching credential: ${escapeHTML(educationProfile.matched_credential.degree_evidence)}` : ""}</p><p><b>Course:</b> ${escapeHTML(degreeCourse.course || "Not provided")} (${degreeCourse.course_score == null ? (degreeCourse.course_status === "No JD requirement" ? "Not scored; no JD course criterion" : "No score; no course evidence") : formatNumber(degreeCourse.course_score)}; ${escapeHTML(degreeCourse.course_status || "status not determined")})</p><ul>${preferredEvidence}</ul></details>
+            <details class="detail-section"><summary>Scoring details</summary><p><b>Final calculation:</b> ${escapeHTML(candidate.formula)} = ${formatNumber(candidate.final_score)}. Denominator ${formatNumber(candidate.score_denominator_weight ?? candidate.denominator_weight)}; unavailable factors are excluded, not treated as zero or full credit.</p><p><b>Evidence completeness:</b> ${evidenceCompleteness.criteria_with_resume_evidence ?? 0} of ${evidenceCompleteness.scored_criterion_count ?? 0} scored criteria have extracted resume evidence${evidenceCompleteness.criterion_evidence_coverage == null ? "" : ` (${formatNumber(evidenceCompleteness.criterion_evidence_coverage)} coverage)`}. ${escapeHTML(evidenceFactorSummary)}. ${escapeHTML(evidenceCompleteness.coverage_note || "Coverage is not a qualification or fit score.")}</p><p><b>Configured weights:</b> ${escapeHTML(configuredWeightText)}</p><p><b>Effective weights:</b> ${escapeHTML(effectiveWeightText)}. Excluded factors: ${escapeHTML(excludedFactors)}.</p><ul>${weightRows}</ul><p><b>JD requirement classifications${candidate.requirement_context?.jd_flexible_qualifications ? " (qualification list marked flexible)" : ""}</b></p><ul>${requirementDetails}</ul></details>
+            <details class="detail-section"><summary>Evidence</summary><p><b>Project evidence:</b> ${escapeHTML(candidate.projects_available ? candidate.project_evidence : "No project evidence found in the resume.")}</p><p class="small">${escapeHTML(candidate.project_similarity_evidence || "Project similarity is an aggregate signal and does not prove a specific qualification.")}</p><p><b>Semantic evidence:</b> ${escapeHTML(candidate.semantic_evidence || "No semantic evidence recorded.")}</p><p><b>Fields not extracted:</b> ${unavailable}</p></details>
+          </div></details></article>`;
+    }).join("");
+    const candidates = data.candidates || [];
+    const factorIndicator = (candidate, name) => {
+        const value = candidate.component_scores?.[name];
+        if (value === null || value === undefined || !Number.isFinite(Number(value))) {
+            return `<span class="evidence-status evidence-status--unavailable">${escapeHTML(factorWithoutScore(candidate, name))}</span>`;
+        }
+        return `<span class="evidence-status evidence-status--available">${formatNumber(value)} score</span>`;
+    };
+    const comparisonWarning = data.score_comparability?.directly_comparable === false
+        ? `<div class="upload-caveat" role="status"><b>Scores are not directly comparable · ranking is provisional.</b> ${escapeHTML(data.score_comparability.warning || "Unavailable factors changed candidates’ effective weights.")} ${escapeHTML(data.score_comparability.ranking_interpretation || "Interpret the displayed order as an arithmetic ranking only.")}</div>`
+        : `<p class="small">Scores use the same effective factor weights for this evaluation. They summarize extracted evidence against this JD; they are not probabilities of hiring success.</p>`;
+    const rows = candidates.map((candidate, index) => `<tr><td><span class="candidate-rank">Rank ${escapeHTML(candidate.rank)}</span></td><td><b>${escapeHTML(candidateLabel(candidate))}</b>${candidate.candidate_name_source === "filename" ? '<div class="small">Name not identified in resume; showing filename</div>' : ""}</td><td class="score-cell">${formatNumber(candidate.final_score)}</td><td>${factorIndicator(candidate, "skills")}</td><td>${factorIndicator(candidate, "experience")}</td><td>${factorIndicator(candidate, "education_course")}</td><td><button type="button" aria-controls="candidate-detail-${index}" onclick="openCandidateDetails(${index})">View details</button></td></tr>`).join("");
+    overview.innerHTML = `<h3 class="upload-result-heading">Candidate comparison · ${escapeHTML(data.job_title)}</h3>${comparisonWarning}<div class="table-wrapper comparison-table"><table><thead><tr><th scope="col">Rank</th><th scope="col">Candidate</th><th scope="col">Overall score</th><th scope="col">Skills</th><th scope="col">Experience</th><th scope="col">Education</th><th scope="col">Details</th></tr></thead><tbody>${rows}</tbody></table></div><p class="small">A score summarizes evidence detected for this JD; it is not a probability of hiring success or a guarantee of job performance.</p><div id="candidateCardsMount"></div><details class="methodology-section"><summary>Technical methodology and score limitations</summary><p>Upload methodology: ${escapeHTML(data.scoring_methodology_version || "unavailable")}. ${escapeHTML(data.scoring_formula || "The final score uses configured weights over available factors.")}</p><p>Required skills have within-factor weight 1.0; preferred skills have weight 0.5. General, responsibility-only, and uncertain skill mentions provide context rather than score credit. Outer factor weights remain configured as before.</p><p>Unavailable factors are excluded and remaining configured weights normalized for each candidate. When exclusions differ, overall scores and rank are provisional. Project and semantic similarity are aggregate model signals and do not prove a specific qualification or identify a specific phrase as the cause.</p></details>`;
+
+    const comparison = document.getElementById("uploadedCandidateComparison");
+    if (candidates.length < 2) {
+        comparison.innerHTML = '<div class="note">One candidate was evaluated. The ranking and factor indicators are shown above; a candidate-to-candidate comparison needs at least two readable resumes.</div>';
+        overview.querySelector("#candidateCardsMount").before(comparison);
+        overview.querySelector("#candidateCardsMount").innerHTML = cards + "</div>";
+        return;
+    }
+    const options = candidates.map(candidate => `<option value="${escapeHTML(candidate.resume_id)}">${escapeHTML(candidateLabel(candidate))} · rank ${candidate.rank}</option>`).join("");
+    comparison.innerHTML = `<section class="comparison-rationale" aria-label="Candidate comparison explanation"><h3 class="upload-result-heading">What explains the score differences?</h3><div class="controls"><label>Candidate A <select id="uploadCompareA" aria-label="First candidate">${options}</select></label><label>Candidate B <select id="uploadCompareB" aria-label="Second candidate">${options}</select></label><button type="button" onclick="compareUploadedCandidates()">Compare selected candidates</button></div><div id="uploadCompareResult" aria-live="polite" class="note">Loading factor differences…</div></section>`;
+    const selectB = document.getElementById("uploadCompareB");
+    if (selectB.options.length > 1) selectB.selectedIndex = 1;
+    overview.querySelector("#candidateCardsMount").before(comparison);
+    overview.querySelector("#candidateCardsMount").innerHTML = cards + "</div>";
+    compareUploadedCandidates();
+}
+
+function openCandidateDetails(index) {
+    const details = document.getElementById(`candidate-detail-${index}`);
+    if (!details) return;
+    details.open = true;
+    details.scrollIntoView({behavior: "smooth", block: "center"});
+    details.querySelector("summary")?.focus({preventScroll: true});
+}
+
+function compareUploadedCandidates() {
+    const aId = document.getElementById("uploadCompareA")?.value;
+    const bId = document.getElementById("uploadCompareB")?.value;
+    const result = document.getElementById("uploadCompareResult");
+    const candidates = uploadData?.candidates || [];
+    const a = candidates.find(item => item.resume_id === aId);
+    const b = candidates.find(item => item.resume_id === bId);
+    if (!a || !b || a === b) { result.textContent = "Choose two distinct candidates from this same-JD evaluation."; return; }
+
+    const difference = Number(a.final_score) - Number(b.final_score);
+    const factorNames = ["skills", "experience", "education_course", "projects", "semantic"];
+    const factorLabels = {skills: "Skills", experience: "Experience", education_course: "Education and course", projects: "Projects", semantic: "Semantic similarity"};
+    const changes = factorNames.map(name => ({
+        name,
+        a: Number(a.weighted_contributions?.[name] ?? 0),
+        b: Number(b.weighted_contributions?.[name] ?? 0),
+        delta: Number(a.weighted_contributions?.[name] ?? 0) - Number(b.weighted_contributions?.[name] ?? 0)
+    }));
+    const winner = difference > 0 ? a : difference < 0 ? b : Number(a.rank) <= Number(b.rank) ? a : b;
+    const other = winner === a ? b : a;
+    const winnerIsA = winner === a;
+    const ordered = [...changes].sort((x, y) => Math.abs(y.delta) - Math.abs(x.delta));
+    const scoreText = value => {
+        if (value === null || value === undefined || String(value).trim() === "") return "Unavailable";
+        const number = Number(value);
+        return Number.isFinite(number) ? number.toFixed(4) : "Unavailable";
+    };
+    const driverCards = ordered.filter(item => Math.abs(item.delta) > 1e-9).map(item => {
+        const winnerContribution = winnerIsA ? item.a : item.b;
+        const otherContribution = winnerIsA ? item.b : item.a;
+        const relativeDelta = winnerIsA ? item.delta : -item.delta;
+        const impact = relativeDelta > 0
+            ? "+" + scoreText(Math.abs(relativeDelta)) + " contribution to rank " + winner.rank
+            : scoreText(Math.abs(relativeDelta)) + " more contribution to " + candidateLabel(other);
+        const winnerEvidence = factorEvidenceSummary(winner, item.name);
+        const otherEvidence = factorEvidenceSummary(other, item.name);
+        return '<article class="comparison-driver"><div class="comparison-driver-head"><strong>' + factorLabels[item.name] +
+            '</strong><span class="comparison-delta">' + impact + '</span></div><div class="comparison-driver-grid">' +
+            '<div class="comparison-driver-person"><b>' + escapeHTML(candidateLabel(winner)) + '</b><div class="comparison-driver-score">Factor score ' +
+            scoreText(winner.component_scores?.[item.name]) + ' | contribution ' + scoreText(winnerContribution) +
+            '</div><p class="comparison-driver-evidence">' + escapeHTML(winnerEvidence) + '</p></div>' +
+            '<div class="comparison-driver-person"><b>' + escapeHTML(candidateLabel(other)) + '</b><div class="comparison-driver-score">Factor score ' +
+            scoreText(other.component_scores?.[item.name]) + ' | contribution ' + scoreText(otherContribution) +
+            '</div><p class="comparison-driver-evidence">' + escapeHTML(otherEvidence) + '</p></div></div></article>';
+    }).join("");
+
+    const unchanged = changes.filter(item => Math.abs(item.delta) <= 1e-9).map(item => {
+        const label = factorLabels[item.name];
+        const scoreA = a.component_scores?.[item.name];
+        const scoreB = b.component_scores?.[item.name];
+        if (scoreA == null && scoreB == null) return label + " unavailable for both";
+        if (scoreText(scoreA) === scoreText(scoreB)) return label + " tied at score " + scoreText(scoreA) + " and contribution " + scoreText(item.a);
+        return label + " had no contribution difference; scores were " + scoreText(scoreA) + " and " + scoreText(scoreB);
+    });
+    const factorDetails = changes.map(item => {
+        return '<details class="comparison-factor"><summary>' + factorLabels[item.name] +
+            ': A score ' + scoreText(a.component_scores?.[item.name]) + ', contribution ' + scoreText(item.a) +
+            '; B score ' + scoreText(b.component_scores?.[item.name]) + ', contribution ' + scoreText(item.b) +
+            '</summary><div class="comparison-factor-grid"><div class="comparison-evidence"><b>' + escapeHTML(candidateLabel(a)) +
+            '</b><p>' + escapeHTML(factorEvidenceText(a, item.name)) + '</p></div><div class="comparison-evidence"><b>' +
+            escapeHTML(candidateLabel(b)) + '</b><p>' + escapeHTML(factorEvidenceText(b, item.name)) +
+            '</p></div></div></details>';
+    }).join("");
+
+    const weightsDiffer = factorNames.some(name => Number(a.effective_weights?.[name] || 0) !== Number(b.effective_weights?.[name] || 0));
+    const weightSummary = candidate => factorNames.map(name => factorLabels[name] + " " + scoreText(candidate.effective_weights?.[name])).join(" · ");
+    const comparabilityNotice = weightsDiffer ? '<div class="upload-caveat" role="status"><b>Scores are not directly comparable:</b> unavailable evidence changed the effective weights. ' + escapeHTML(candidateLabel(a)) + ' denominator ' + scoreText(a.score_denominator_weight) + '; excluded ' + escapeHTML((a.excluded_factors || []).join(", ") || "none") + '. ' + escapeHTML(candidateLabel(b)) + ' denominator ' + scoreText(b.score_denominator_weight) + '; excluded ' + escapeHTML((b.excluded_factors || []).join(", ") || "none") + '. The displayed order is the arithmetic order of individually normalized scores and should be treated as provisional, not a like-for-like comparison.</div>' : '';
+    result.innerHTML = comparabilityNotice + '<div class="comparison-final-grid"><div class="comparison-final-card"><span class="candidate-rank">Rank ' +
+        escapeHTML(a.rank) + '</span><b>' + escapeHTML(candidateLabel(a)) + '</b><strong>' + scoreText(a.final_score) +
+        '</strong><span class="small">Final score</span><span class="small">Effective weights: ' + escapeHTML(weightSummary(a)) + '</span></div><div class="comparison-final-card"><span class="candidate-rank">Rank ' +
+        escapeHTML(b.rank) + '</span><b>' + escapeHTML(candidateLabel(b)) + '</b><strong>' + scoreText(b.final_score) +
+        '</strong><span class="small">Final score</span><span class="small">Effective weights: ' + escapeHTML(weightSummary(b)) + '</span></div></div>' +
+        '<section class="comparison-rationale" aria-label="Why candidates ranked this way"><h4>Why ' + escapeHTML(candidateLabel(winner)) +
+        ' ranked ' + escapeHTML(winner.rank) + '</h4><p>Final score lead: +' + scoreText(Math.abs(difference)) +
+        '. The factor cards show what added to that lead and what offset it, using extracted resume evidence.</p>' +
+        (driverCards ? '<div class="comparison-driver-list">' + driverCards + '</div>' : '<p>Factor contributions are tied.</p>') +
+        (unchanged.length ? '<div class="comparison-no-difference"><b>Other factors:</b> ' + escapeHTML(unchanged.join("; ")) + '. They did not change the score gap.</div>' : '') +
+        '<p class="comparison-caveat">This explains the model score arithmetic, not overall candidate quality. Semantic similarity is an aggregate signal and has no phrase-level explanation.</p></section>' +
+        '<details class="comparison-details"><summary>Full evidence and calculations</summary>' + factorDetails + '</details>';
+}
+async function submitUploadEvaluation(event) {
+    event.preventDefault();
+    const form = document.getElementById("uploadForm");
+    const button = document.getElementById("evaluateButton");
+    const status = document.getElementById("uploadStatus");
+    if (!form.reportValidity()) return;
+    button.disabled = true;
+    status.textContent = "Extracting and scoring uploaded resumes…";
+    document.getElementById("uploadCriteria").hidden = true;
+    document.getElementById("uploadSummary").hidden = true;
+    document.getElementById("uploadWarnings").replaceChildren();
+    document.getElementById("uploadedCandidateOverview").replaceChildren();
+    document.getElementById("uploadedCandidateComparison").replaceChildren();
+    try {
+        const response = await fetch("/api/evaluate", {method: "POST", body: new FormData(form)});
+        const data = await response.json();
+        if (!response.ok) {
+            status.textContent = data.error || "Evaluation failed.";
+            const fileErrors = data.file_errors || [];
+            if (fileErrors.length) {
+                const list = document.createElement("ul");
+                list.className = "upload-error-list";
+                for (const item of fileErrors) {
+                    const entry = document.createElement("li");
+                    entry.textContent = `${item.candidate_id || "Resume"}: ${item.message || "Could not read this file."}`;
+                    list.appendChild(entry);
+                }
+                document.getElementById("uploadWarnings").replaceChildren(list);
+            }
+            return;
+        }
+        renderUploadedEvaluation(data);
+    } catch (error) {
+        status.textContent = error.message || "Evaluation failed.";
     } finally {
         button.disabled = false;
     }
@@ -627,47 +1277,99 @@ function searchCase() {
     }
 
     const row = jobID ? matches[0] : matches.find(item =>
-        ["name", "age", "city", "college"].includes(
-            String(item.proxy_type || "").toLowerCase()
-        )
+        ["name", "age", "city", "college"].includes(String(item.proxy_type || "").toLowerCase()) && item.case_validation_status === "verified"
     ) || matches[0];
 
-    const baseScore = Number(row.base_score);
-    const variantScore = Number(row.variant_score);
-    const delta = Number.isFinite(Number(row.delta))
-        ? Number(row.delta) : variantScore - baseScore;
+    const baseScore = row.base_score;
+    const variantScore = row.variant_score;
+    const delta = row.score_delta !== undefined && row.score_delta !== ""
+        ? row.score_delta : (Number(variantScore) - Number(baseScore));
+    const evidence = Array.isArray(row.supporting_evidence)
+        ? row.supporting_evidence.map(item => `<li>${escapeHTML(item)}</li>`).join("")
+        : `<li>${escapeHTML(row.case_validation_reason || "No supporting evidence recorded")}</li>`;
 
     const resultHTML = document.createElement("div");
     resultHTML.innerHTML = `
         <div class="case-comparison">
             <div class="case-box">
                 <div class="case-label">ORIGINAL</div>
-                <div class="case-value">Original resume</div>
+                <div class="case-value">${escapeHTML(row.original_value || "Original value unavailable")}</div>
                 <div class="case-score">${formatNumber(baseScore)}</div>
                 <div class="small">Original screening score</div>
             </div>
             <div class="case-arrow">→</div>
             <div class="case-box">
                 <div class="case-label">COUNTERFACTUAL</div>
-                <div class="case-value">${escapeHTML(row.proxy_value || "Changed attribute")}</div>
+                <div class="case-value">${escapeHTML(row.variant_value || row.proxy_value || "Changed value unavailable")}</div>
                 <div class="case-score">${formatNumber(variantScore)}</div>
                 <div class="small">Counterfactual screening score</div>
             </div>
         </div>
         <div class="tags">
             <span class="tag">${escapeHTML(row.proxy_type || "Unknown attribute")}</span>
-            <span class="tag">${escapeHTML(row.context || "Context not available")}</span>
-            <span class="tag">${escapeHTML(row.component || "Component not available")}</span>
+            <span class="tag tag-${auditTone(row.context_classification || row.context)}">${escapeHTML(row.context_classification || row.context || "Context not available")}</span>
+            <span class="tag">${escapeHTML(row.primary_changed_component || row.component || "Component not available")}</span>
+            <span class="tag tag-${auditTone(row.case_validation_status)}">${escapeHTML(row.case_validation_status || "Status unavailable")}</span>
         </div>
         <div class="note">
             <b>Resume:</b> ${escapeHTML(row.resume_id || "")}
             &nbsp; <b>Job:</b> ${escapeHTML(row.job_id || "")}<br><br>
             <b>Score change:</b> ${delta >= 0 ? "+" : ""}${formatNumber(delta)}<br><br>
+            <b>Job requirement:</b> ${escapeHTML(row.contextual_job_requirement || "Unavailable")}<br>
+            <b>Context rationale:</b> ${escapeHTML(row.context_rationale || row.case_validation_reason || "Unavailable")}<br>
+            <b>Supplemental score reconciliation:</b> ${escapeHTML(row.supplemental_validation_status || "No supplemental row")} — ${escapeHTML(row.supplemental_validation_reason || "No conflicting supplemental score was found.")}<br>
             <b>Audit explanation:</b> ${escapeHTML(row.explanation || "No explanation available for this case.")}
+            <ul>${evidence}</ul>
         </div>`;
     result.replaceChildren(resultHTML);
 }
 
+(function organizeScreeningWorkspace() {
+    const container = document.querySelector(".container");
+    const uploadSection = document.querySelector(".upload-section");
+    const purpose = document.querySelector(".purpose");
+    if (container && uploadSection && purpose) container.insertBefore(uploadSection, purpose);
+
+    const grid = document.querySelector("#uploadForm .upload-grid");
+    if (!grid || grid.querySelector(".form-advanced")) return;
+    const optionalIds = ["minimumExperienceInput", "requiredSkillsInput", "preferredDegreeInput", "acceptedDegreesInput", "preferredCourseInput", "acceptedCoursesInput"];
+    const fields = optionalIds.map(id => document.getElementById(id)?.closest(".upload-field")).filter(Boolean);
+    const advanced = document.createElement("details");
+    advanced.className = "form-advanced";
+    const summary = document.createElement("summary");
+    summary.textContent = "Scoring overrides and optional criteria";
+    advanced.append(summary);
+    const fieldGrid = document.createElement("div");
+    fieldGrid.className = "form-advanced-grid";
+    fields.forEach(field => fieldGrid.append(field));
+    advanced.append(fieldGrid);
+    const button = document.getElementById("evaluateButton");
+    grid.insertBefore(advanced, button);
+})();
+
+document.getElementById("uploadForm")?.addEventListener("submit", submitUploadEvaluation);
+function updateJobDescriptionSource() {
+    const source = document.querySelector('input[name="jd_source"]:checked')?.value || "text";
+    const textMode = source === "text";
+    document.getElementById("jdTextPanel").hidden = !textMode;
+    document.getElementById("jdPdfPanel").hidden = textMode;
+    const textInput = document.getElementById("jobDescriptionInput");
+    const pdfInput = document.getElementById("jobDescriptionPdfInput");
+    textInput.disabled = !textMode;
+    textInput.required = textMode;
+    pdfInput.disabled = textMode;
+    pdfInput.required = !textMode;
+}
+document.querySelectorAll('input[name="jd_source"]').forEach(input => input.addEventListener("change", updateJobDescriptionSource));
+document.getElementById("noMinimumExperience")?.addEventListener("change", event => {
+    const input = document.getElementById("minimumExperienceInput");
+    input.disabled = event.currentTarget.checked;
+});
+document.getElementById("noRequiredSkills")?.addEventListener("change", event => {
+    const input = document.getElementById("requiredSkillsInput");
+    input.disabled = event.currentTarget.checked;
+});
+updateJobDescriptionSource();
 loadDashboard();
 setInterval(loadDashboard, 30000);
 </script>

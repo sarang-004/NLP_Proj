@@ -102,6 +102,66 @@ def extract_degrees(education: str) -> list[str]:
     return result
 
 
+def education_profile(education: str) -> dict[str, Any]:
+    """Separate credential level, field of study, and specialization evidence."""
+    text = education or ""
+    degree = extract_degree(text)
+    match = next((item for item in degree_matches(text) if item[1] == degree), None)
+    start = match[0].start() if match else 0
+    if match:
+        prefix_start = max(text.rfind("\n", 0, start), text.rfind(";", 0, start), text.rfind("|", 0, start)) + 1
+        if re.search(r"\bintegrated\s*$", text[prefix_start:start], re.I):
+            start = prefix_start
+    degree_start = match[0].start() if match else start
+    following_degree = min((item[0].start() for item in degree_matches(text) if item[0].start() > degree_start), default=len(text))
+    end = min(following_degree, start + 240)
+    credential = text[start:end]
+    level = "integrated_master" if re.search(r"\bintegrated\b", credential, re.I) and degree in {"M.Tech", "M.E.", "M.Sc", "M.A."} else (
+        "master" if degree in {"M.Tech", "M.E.", "MCA", "MBA", "M.Com", "LLM", "M.Sc", "M.A.", "MMS"} else
+        "doctorate" if degree == "Ph.D" else "bachelor" if degree in {"B.Tech", "B.E.", "BCA", "B.Com", "B.Sc", "B.A.", "BFA", "LLB", "B.A. LL.B.", "BBA LL.B.", "Bachelor's Degree"} else "unknown")
+    subject = ""
+    subject_area = credential
+    subject_area = re.sub(r"\b(?:with\s+)?(?:speciali[sz]ation|speciali[sz]ed in|major|minor|concentration)\b.*", "", subject_area, flags=re.I)
+    for pattern, canonical in COURSE_PATTERNS:
+        found = re.search(pattern, subject_area, re.I)
+        if found:
+            subject = canonical
+            break
+    specialization_match = re.search(r"\bwith\s+speciali[sz]ation\s+(?:in\s+)?([^,;\n]+)", credential, re.I)
+    if not specialization_match:
+        specialization_match = re.search(r"\bwith\s+([^,;\n]+?)\s+speciali[sz]ation\b", credential, re.I)
+    _, specialization = course_for_degree(text, match[0] if match else None)
+    if specialization_match:
+        specialization = re.split(r"[,;|]|\s+(?=(?:19|20)\d{2}\b)", specialization_match.group(1).strip(), maxsplit=1)[0].strip()
+    else:
+        parenthetical = re.search(r"\(([^()\n]+)\)", credential)
+        if parenthetical:
+            raw_specialization = parenthetical.group(1).strip()
+            specialization_term = next((canonical for pattern, canonical in COURSE_PATTERNS
+                                        if re.fullmatch(pattern, raw_specialization, re.I)), None)
+            if specialization_term and specialization_term != subject:
+                specialization = raw_specialization
+    credentials = []
+    for degree_match, canonical in degree_matches(text):
+        credential_start = degree_match.start()
+        line_start = max(text.rfind("\n", 0, credential_start), text.rfind(";", 0, credential_start), text.rfind("|", 0, credential_start)) + 1
+        if re.search(r"\bintegrated\s*$", text[line_start:credential_start], re.I):
+            credential_start = line_start
+        following_degree = min((other.start() for other, _ in degree_matches(text) if other.start() > degree_match.start()), default=len(text))
+        next_start = min(following_degree, credential_start + 240)
+        evidence = text[credential_start:next_start]
+        credential_level = "integrated_master" if re.search(r"\bintegrated\b", evidence, re.I) and canonical in {"M.Tech", "M.E.", "M.Sc", "M.A."} else (
+            "master" if canonical in {"M.Tech", "M.E.", "MCA", "MBA", "M.Com", "LLM", "M.Sc", "M.A.", "MMS"} else
+            "doctorate" if canonical == "Ph.D" else "bachelor" if canonical in {"B.Tech", "B.E.", "BCA", "B.Com", "B.Sc", "B.A.", "BFA", "LLB", "B.A. LL.B.", "BBA LL.B.", "Bachelor's Degree"} else "unknown")
+        field = re.sub(r"\bwith\s+(?:speciali[sz]ation\s+(?:in\s+)?[^,;\n]+|[^,;\n]+?\s+speciali[sz]ation)\b.*", "", evidence, flags=re.I)
+        field_subject = next((subject for pattern, subject in COURSE_PATTERNS if re.search(pattern, field, re.I)), "")
+        credentials.append({"degree_title": canonical, "degree_level": credential_level,
+                            "degree_subject": field_subject, "degree_evidence": evidence.strip()})
+    return {"degree_title": degree if degree != NA else "", "degree_level": level,
+            "degree_subject": subject, "degree_specialization": specialization if specialization != NA else "",
+            "degree_evidence": credential.strip(), "degree_credentials": credentials}
+
+
 COURSE_PATTERNS = [
     (r"computer science\s*(?:and|&)\s*engineering|\bCSE\b", "Computer Science and Engineering"),
     (r"computer science", "Computer Science"),
@@ -135,9 +195,13 @@ def course_for_degree(education: str, degree_match: re.Match[str] | None) -> tup
         section = re.split(r"\b(?:University|College|Institute|Institution)\b|,\s*(?:Mumbai|Pune|Chennai|Delhi|Kolkata|Hyderabad|Jaipur|Bangalore|Bengaluru|Guwahati|Indore|Nashik|Nagpur|Maharashtra|Tamil Nadu|Punjab|Rajasthan|Karnataka|Andhra Pradesh)\b", section, maxsplit=1, flags=re.I)[0]
     else:
         section = text
-    labeled = re.search(r"\b(?:speciali[sz]ation|course|major|branch)\s*[:=-]\s*([^,;\n]+)", section, re.I)
+    labeled = re.search(r"\bwith\s+speciali[sz]ation\s+(?:in\s+)?([^,;\n]+)", section, re.I)
+    if not labeled:
+        labeled = re.search(r"\b(?:speciali[sz]ation|course|major|branch)\s*[:=-]\s*([^,;\n]+)", section, re.I)
+    if not labeled:
+        labeled = re.search(r"\bwith\s+([^,;\n]+?)\s+speciali[sz]ation\b", section, re.I)
     if labeled:
-        raw = labeled.group(1).strip()
+        raw = re.split(r"[,;|]|\s+(?=(?:19|20)\d{2}\b)", labeled.group(1).strip(), maxsplit=1)[0].strip()
         if re.search(r"\b(?:manager|engineer|developer|consultant|analyst|lead|administrator)\b", raw, re.I):
             return NA, NA
         return COURSE_ALIASES.get(raw.lower(), raw), raw
@@ -208,31 +272,283 @@ MONTHS = {name.lower()[:3]: i for i, name in enumerate(
 MONTHS["sep"] = 9
 
 
+EXPERIENCE_CATEGORY_PROFESSIONAL = {
+    "full_time_employment", "part_time_employment", "contract_or_freelance", "internship"
+}
+EXPERIENCE_DURATION_CONVENTION = "inclusive_calendar_months"
+
+
+def _experience_month_index(value: str, as_of: date, end: bool = False) -> tuple[int, int, bool] | None:
+    """Parse a month/year endpoint, or a year-only endpoint without guessing a month."""
+    text = re.sub(r"\s+", " ", value.strip().rstrip(".,"))
+    if re.fullmatch(r"(?:present|current|now|till date|to date|ongoing)", text, re.I):
+        return as_of.month, as_of.year, True
+    month_name = re.fullmatch(
+        r"(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|"
+        r"Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\.?\s+(\d{4})", text, re.I,
+    )
+    if month_name:
+        return MONTHS[month_name.group(1).lower()[:3]], int(month_name.group(2)), False
+    numeric = re.fullmatch(r"(\d{4})[-/.](\d{1,2})", text)
+    if numeric and 1 <= int(numeric.group(2)) <= 12:
+        return int(numeric.group(2)), int(numeric.group(1)), False
+    numeric = re.fullmatch(r"(\d{1,2})[/.](\d{4})", text)
+    if numeric and 1 <= int(numeric.group(1)) <= 12:
+        return int(numeric.group(1)), int(numeric.group(2)), False
+    year = re.fullmatch(r"(\d{4})", text)
+    if year:
+        return (12 if end else 1), int(year.group(1)), False
+    return None
+
+
+def _classify_experience_role(header: str, section: str, nearby: str) -> str:
+    text = f"{header} {nearby}".casefold()
+    if section == "project" or re.search(r"\b(?:academic|personal) project\b", text):
+        return "academic_or_personal_project"
+    if re.search(r"\b(?:student chapter|student council|club|society|student lead|senior core|president|secretary|volunteer|extracurricular|campus representative)\b", text):
+        return "student_leadership_or_extracurricular"
+    if re.search(r"\b(?:intern|internship|trainee)\b", text):
+        return "internship"
+    if re.search(r"\b(?:part[ -]?time|working student)\b", text):
+        return "part_time_employment"
+    if re.search(r"\b(?:contract(?:or)?|freelance|self[ -]?employed)\b", text):
+        return "contract_or_freelance"
+    if re.search(r"\b(?:full[ -]?time|permanent employee)\b", text):
+        return "full_time_employment"
+    return "unknown_or_requires_review"
+
+
+def extract_experience_records(text: str, resume_id: str = "", as_of: date | None = None) -> dict[str, Any]:
+    """Extract role-linked date ranges and category durations from resume text.
+
+    Durations use inclusive calendar months. Combined category totals union
+    overlapping intervals so concurrent roles do not double-count elapsed time.
+    Internships are included in the application's professional total; student
+    leadership, projects, and unclassified roles remain separate.
+    """
+    if not present(text):
+        return {"records": [], "combined_months_by_category": {}, "total_professional_months": None,
+                "duration_convention": EXPERIENCE_DURATION_CONVENTION}
+    as_of = as_of or date.today()
+    original_source = str(text)
+    source = original_source.translate(str.maketrans({
+        "\u2010": "-", "\u2011": "-", "\u2012": "-", "\u2013": "-", "\u2014": "-",
+        "\u2015": "-", "\u2212": "-", "\ufffd": "-", "\u2022": "|", "\u25cf": "|", "\u25aa": "|",
+    }))
+    source = str(text).replace("â€“", "-").replace("â€”", "-")
+    source = source.replace("\ufffd", " | ")
+    source = re.sub(r"[\u2022\u25cf\u25aa]", " | ", source)
+    source = original_source.translate(str.maketrans({
+        "\u2010": "-", "\u2011": "-", "\u2012": "-", "\u2013": "-", "\u2014": "-",
+        "\u2015": "-", "\u2212": "-", "\ufffd": "-", "\u2022": "|", "\u25cf": "|", "\u25aa": "|",
+    }))
+    month = r"(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)"
+    endpoint = rf"(?:{month}\.?\s+\d{{4}}|\d{{4}}[-/.]\d{{1,2}}|\d{{1,2}}[/.]\d{{4}}|\d{{4}}|present|current|now|ongoing|till\s+date|to\s+date)"
+    ranges = re.compile(rf"(?P<start>{endpoint})\s*(?:[-\u2010-\u2015\u2212]|\bto\b|\bthrough\b)\s*(?P<end>{endpoint})", re.I)
+    lines = source.splitlines()
+    headings = {
+        "experience": "employment", "workexperience": "employment", "employment": "employment",
+        "professionalexperience": "employment", "internship": "employment", "internships": "employment",
+        "projects": "project", "project": "project", "academicprojects": "project",
+        "education": "education", "certifications": "other", "certification": "other",
+        "certificates": "other", "certificate": "other", "training": "other",
+    }
+    records: list[dict[str, Any]] = []
+    for match in ranges.finditer(source):
+        line_start = source.rfind("\n", 0, match.start()) + 1
+        line_end = source.find("\n", match.end())
+        if line_end < 0:
+            line_end = len(source)
+        prefix = source[line_start:match.start()].strip(" \t|:-")
+        end_line = source[match.end():line_end].strip(" \t|:-")
+        line_no = source.count("\n", 0, match.start())
+        section = "unknown"
+        for prior in lines[:line_no + 1]:
+            key = re.sub(r"[^a-z]", "", prior.casefold())
+            if key in headings:
+                section = headings[key]
+            else:
+                for heading, value in headings.items():
+                    if len(key) <= len(heading) + 30 and key.startswith(heading):
+                        section = value
+                        break
+        if prefix:
+            header = prefix
+        else:
+            # A range may be wrapped onto its own line. Associate only with a
+            # nearby non-date line that contains role/company-like text.
+            previous = [line.strip(" \t|:-") for line in lines[max(0, line_no - 3):line_no] if line.strip()]
+            previous = [line for line in previous if not re.fullmatch(rf"{endpoint}\s*[-\u2010-\u2015\u2212]?", line, re.I)]
+            header = previous[-1] if previous else ""
+        header = re.sub(r"\s+", " ", header).strip(" |:-")
+        if not header or re.fullmatch(r"(?:experience|employment|projects?|education)", header, re.I):
+            continue
+        if re.search(r"\b(?:B\s*\.?\s*Tech|B\s*\.?\s*E\.?|M\s*\.?\s*Tech|M\s*\.?\s*E\.?|expected\s+(?:to\s+)?(?:graduate|graduation)|graduated)\b", header, re.I):
+            continue
+        if section in {"education", "other"}:
+            continue
+        start = _experience_month_index(match.group("start"), as_of)
+        end = _experience_month_index(match.group("end"), as_of, end=True)
+        if not start or not end:
+            raw_date = re.sub(r"\s+", " ", original_source[match.start():match.end()]).strip()
+            records.append({
+                "resume_id": resume_id, "organization": None, "role_title": header or None,
+                "raw_date_text": raw_date,
+                "start_month": start[0] if start else None, "start_year": start[1] if start else None,
+                "end_month": end[0] if end else None, "end_year": end[1] if end else None,
+                "is_current": bool(end and end[2]), "experience_category": "unknown_or_requires_review",
+                "duration_months": None, "extraction_confidence": "review",
+                "supporting_text": f"{header} {raw_date}".strip()[:600],
+            })
+            continue
+            continue
+        start_month, start_year, _ = start
+        end_month, end_year, is_current = end
+        start_index = start_year * 12 + start_month - 1
+        end_index = end_year * 12 + end_month - 1
+        if end_index < start_index or end_index - start_index >= 80 * 12:
+            raw_date = re.sub(r"\s+", " ", original_source[match.start():match.end()]).strip()
+            records.append({
+                "resume_id": resume_id, "organization": None, "role_title": header or None,
+                "raw_date_text": raw_date, "start_month": start_month, "start_year": start_year,
+                "end_month": end_month, "end_year": end_year, "is_current": is_current,
+                "experience_category": "unknown_or_requires_review", "duration_months": None,
+                "extraction_confidence": "review", "supporting_text": f"{header} {raw_date}".strip()[:600],
+            })
+            continue
+        raw_date = re.sub(r"\s+", " ", original_source[match.start():match.end()]).strip()
+
+        pieces = [piece.strip(" |:-") for piece in re.split(r"\s*\|\s*", header) if piece.strip(" |:-")]
+        title_match = re.search(
+            r"(?i)\b(?:[\w&/+.-]+\s+){0,5}(?:intern|internship|trainee|senior core|student lead|"
+            r"software engineer|software developer|quality assurance engineer|QA engineer|developer|engineer|"
+            r"analyst|manager|consultant|tester|administrator|president|secretary|volunteer)\b[^|]*$", header,
+        )
+        role_title = title_match.group(0).strip(" |:-") if title_match else (pieces[-1] if len(pieces) > 1 else "")
+        if role_title and re.search(r"-", role_title):
+            role_title = re.split(r"\s*-\s*", role_title)[-1].strip()
+        organization = ""
+        if len(pieces) > 1:
+            organization = pieces[0]
+        elif role_title and role_title != header:
+            organization = header[:header.rfind(role_title)].strip(" |:-")
+        elif section == "employment":
+            organization = header
+        organization = re.sub(r",\s*(?:chennai|india|kerala|vellore|tamil nadu)(?:\s*,.*)?$", "", organization, flags=re.I).strip(" ,")
+        following = []
+        next_range = ranges.search(source, match.end())
+        context_end = next_range.start() if next_range else min(len(source), match.end() + 1000)
+        for candidate in source[match.end():context_end].splitlines():
+            candidate = candidate.strip()
+            if not candidate:
+                continue
+            key = re.sub(r"[^a-z]", "", candidate.casefold())
+            if key in headings:
+                break
+            if not candidate.startswith("|") and re.search(
+                r"\b(?:intern|internship|senior core|student lead|software engineer|software developer|QA engineer|analyst|manager|consultant|tester)\b",
+                candidate, re.I,
+            ):
+                break
+            if len(" ".join(following)) + len(candidate) > 500:
+                break
+            following.append(candidate)
+        nearby = source[line_start:line_end] + " " + " ".join(following)
+        category = _classify_experience_role(f"{organization} {role_title} {header}", section, "")
+        duration_months = end_index - start_index + 1
+        records.append({
+            "resume_id": resume_id,
+            "organization": organization or None,
+            "role_title": role_title or header,
+            "raw_date_text": raw_date,
+            "start_month": start_month,
+            "start_year": start_year,
+            "end_month": end_month,
+            "end_year": end_year,
+            "is_current": is_current,
+            "experience_category": category,
+            "duration_months": duration_months,
+            "extraction_confidence": "high" if organization and role_title else "review",
+            "supporting_text": re.sub(r"\s+", " ", f"{header} {match.group(0)} {nearby}").strip()[:600],
+            "_start_index": start_index,
+            "_end_index": end_index,
+        })
+
+    by_category: dict[str, int] = {}
+    for category in dict.fromkeys(record["experience_category"] for record in records):
+        intervals = sorted((r["_start_index"], r["_end_index"]) for r in records
+                           if r["experience_category"] == category and r.get("duration_months") is not None)
+        if not intervals:
+            continue
+        merged: list[list[int]] = []
+        for start, end in intervals:
+            if merged and start <= merged[-1][1] + 1:
+                merged[-1][1] = max(merged[-1][1], end)
+            else:
+                merged.append([start, end])
+        by_category[category] = sum(end - start + 1 for start, end in merged)
+    professional_intervals = sorted(
+        (r["_start_index"], r["_end_index"]) for r in records
+        if r["experience_category"] in EXPERIENCE_CATEGORY_PROFESSIONAL and r.get("duration_months") is not None
+    )
+    merged_professional: list[list[int]] = []
+    for start, end in professional_intervals:
+        if merged_professional and start <= merged_professional[-1][1] + 1:
+            merged_professional[-1][1] = max(merged_professional[-1][1], end)
+        else:
+            merged_professional.append([start, end])
+    professional_months = sum(end - start + 1 for start, end in merged_professional) if merged_professional else None
+    for record in records:
+        record.pop("_start_index", None)
+        record.pop("_end_index", None)
+    return {
+        "records": records,
+        "combined_months_by_category": by_category,
+        "total_professional_months": professional_months,
+        "duration_convention": EXPERIENCE_DURATION_CONVENTION,
+    }
+
+
 def extract_experience_years(text: str, as_of: date | None = None) -> str:
     """Extract explicit employment periods, union overlaps, and reject project/skill durations."""
     if not present(text):
         return NA
     source = str(text)
     as_of = as_of or date.today()
+    source = source.translate(str.maketrans({
+        "\u2010": "-", "\u2011": "-", "\u2012": "-", "\u2013": "-", "\u2014": "-",
+        "\u2015": "-", "\u2212": "-", "\ufffd": "-",
+    }))
     month = r"(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)"
-    atom = rf"(?:{month}\.?\s+\d{{4}}|\d{{4}})"
-    range_pattern = re.compile(rf"(?P<start>{atom})\s*(?:to|through|[-\u2013])\s*(?P<end>{atom}|present|current|till\s+date|to\s+date)", re.I)
+    atom = rf"(?:{month}\.?\s+\d{{4}}|\d{{1,2}}[./]\d{{4}}|\d{{4}})"
+    range_pattern = re.compile(rf"(?P<start>{atom})\s*(?:to|through|[-\u2010-\u2015\u2212])\s*(?P<end>{atom}|now|present|current|till\s+date|to\s+date|ongoing)", re.I)
 
     def parse_month(value: str, end: bool = False) -> int | None:
-        if re.search(r"present|current|till\s+date|to\s+date", value, re.I):
+        if re.search(r"\bnow\b|present|current|till\s+date|to\s+date", value, re.I):
             return as_of.year * 12 + as_of.month - 1
         m = re.fullmatch(rf"({month})\.?\s+(\d{{4}})", value.strip(), re.I)
         if m:
             return int(m.group(2)) * 12 + MONTHS[m.group(1).lower()[:3]] - 1
+        m = re.fullmatch(r"(\d{1,2})[./](\d{4})", value.strip())
+        if m and 1 <= int(m.group(1)) <= 12:
+            return int(m.group(2)) * 12 + int(m.group(1)) - 1
         m = re.fullmatch(r"(\d{4})", value.strip())
         return int(m.group(1)) * 12 + (11 if end else 0) if m else None
 
     intervals = []
     for match in range_pattern.finditer(source):
         context = source[max(0, match.start() - 140):min(len(source), match.end() + 100)]
-        if re.search(r"\b(?:project|skill|duration\s*:|client/project)\b", context, re.I):
+        line_start = source.rfind("\n", 0, match.start()) + 1
+        line_end = source.find("\n", match.end())
+        date_line = source[line_start:line_end if line_end >= 0 else len(source)]
+        if re.search(r"\b(?:project|skill|duration\s*:|client/project)\b", date_line, re.I):
             continue
-        if not re.search(r"\b(?:worked|working|employed|joined|employment|currently|position|designation|as\s+(?:a|an))\b", context, re.I):
+        has_employment_context = bool(re.search(r"\b(?:worked|working|employed|joined|employment|currently|position|designation|intern(?:ship)?|experience|as\s+(?:a|an))\b", context, re.I))
+        if re.search(r"\b(?:project|certification|certificate|coursework|education)\b", context, re.I):
+            has_employment_context = False
+        header = source[line_start:match.start()]
+        has_company_date_header = bool(re.fullmatch(r"\s*[A-Za-z][A-Za-z0-9 &.,'()/+-]{1,60}\s*\(\s*", header))
+        if not has_employment_context and not has_company_date_header:
             continue
         start, end = parse_month(match.group("start")), parse_month(match.group("end"), True)
         if start is not None and end is not None and start <= end and end - start < 80 * 12:
@@ -245,7 +561,7 @@ def extract_experience_years(text: str, as_of: date | None = None) -> str:
                 merged[-1] = (merged[-1][0], max(merged[-1][1], end))
             else:
                 merged.append((start, end))
-        months_total = sum(end - start for start, end in merged)
+        months_total = sum(end - start + 1 for start, end in merged)
         return str(round(months_total / 12, 2)) if months_total <= 80 * 12 else NA
 
     total = re.search(r"\btotal\s+(?:professional\s+)?experience\s*[:=-]\s*(\d+(?:\.\d+)?)\s*(years?|months?)\b", source, re.I)
@@ -309,22 +625,42 @@ def extract_projects(text: str) -> list[str]:
     return titles
 
 
-def structure_resume(row: dict[str, Any]) -> dict[str, Any]:
+def structure_resume(row: dict[str, Any], as_of: date | None = None) -> dict[str, Any]:
+    evaluation_date = as_of or date.today()
     text = value_or_na(row.get("resume_text"))
     education = value_or_na(row.get("education_raw"))
     degree = extract_degree(education)
     course, course_raw = extract_course(education)
     detected_degrees = extract_degrees(education)
     skills = extract_skills(row.get("skills_raw", ""))
+    experience_details = extract_experience_records(
+        row.get("experience_raw", ""), resume_id=str(row.get("resume_id", "")), as_of=evaluation_date
+    )
+    professional_months = experience_details["total_professional_months"]
+    if professional_months is not None:
+        experience = str(round(professional_months / 12.0, 4))
+    elif experience_details["records"]:
+        # Known dates in leadership, projects, or ambiguous roles remain visible
+        # but do not silently become professional employment duration.
+        experience = NA
+    else:
+        experience = extract_experience_years(row.get("experience_raw", ""), as_of=evaluation_date)
+    experience_date_source = bool(experience_details["records"])
     return {
         "resume_id": value_or_na(row.get("resume_id")), "name": value_or_na(row.get("name")),
         "age": extract_age(text), "college": value_or_na(row.get("college")),
         "college_tier": value_or_na(row.get("college_tier")), "city": value_or_na(row.get("city")),
         "city_tier": value_or_na(row.get("city_tier")), "degree": degree,
+        **education_profile(education),
         "detected_degrees": "|".join(detected_degrees) if detected_degrees else NA,
         "course": course, "specialization": course, "course_raw": course_raw,
         "institution_extracted": NA, "education_year": NA,
-        "total_experience_years": extract_experience_years(row.get("experience_raw", "")),
+        "total_experience_years": experience,
+        "experience_records": experience_details["records"],
+        "experience_months_by_category": experience_details["combined_months_by_category"],
+        "total_professional_experience_months": experience_details["total_professional_months"],
+        "experience_duration_convention": experience_details["duration_convention"],
+        "experience_as_of": evaluation_date.isoformat(),
         "employment_gap_months": value_or_na(row.get("employment_gap_months")),
         "skills": "|".join(skills) if skills else NA,
         "projects": "|".join(extract_projects(text)) or NA,
@@ -337,8 +673,8 @@ def structure_resume(row: dict[str, Any]) -> dict[str, Any]:
         "skills_extracted": "|".join(skills),
         "skills_clean_new": "|".join(skills),
         "projects_extracted": "|".join(extract_projects(text)),
-        "total_experience_years_final": "" if extract_experience_years(row.get("experience_raw", "")) == NA else extract_experience_years(row.get("experience_raw", "")),
-        "age_final": "" if extract_age(text) == NA else extract_age(text), "experience_source": "explicit_text" if extract_experience_years(row.get("experience_raw", "")) != NA else NA,
+        "total_experience_years_final": "" if experience == NA else experience,
+        "age_final": "" if extract_age(text) == NA else extract_age(text), "experience_source": "employment_dates" if experience != NA and experience_date_source else "explicit_text" if experience != NA else NA,
         "age_source": "explicit_text" if extract_age(text) != NA else NA,
     }
 

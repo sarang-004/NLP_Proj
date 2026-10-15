@@ -269,51 +269,10 @@ def calculate_semantic_score(
     resume,
     job_description
 ):
-
-    resume_chunks = chunk_text(
-        preprocess(resume)
-    )
-
-    jd_chunks = chunk_text(
-        preprocess(job_description)
-    )
-
-    if not resume_chunks or not jd_chunks:
-        return 0.0
-
-    resume_embeddings = model.encode(
-        resume_chunks,
-        normalize_embeddings=True
-    )
-
-    jd_embeddings = model.encode(
-        jd_chunks,
-        normalize_embeddings=True
-    )
-
-    similarity_matrix = cosine_similarity(
-        resume_embeddings,
-        jd_embeddings
-    )
-
-    # Best resume match for each JD chunk
-    best_matches = np.max(
-        similarity_matrix,
-        axis=0
-    )
-
-    semantic_score = np.mean(
-        best_matches
-    )
-
-    # Keep score between 0 and 1
-    semantic_score = np.clip(
-        semantic_score,
-        0,
-        1
-    )
-
-    return float(semantic_score)
+    from screening.upload_workflow import evaluate_uploads, make_upload_job
+    job = make_upload_job({"job_title": "Resume screening", "job_description": job_description})
+    result = evaluate_uploads([("Candidate", resume)], job, model)[0]
+    return float(result["component_scores"]["semantic"])
 
 
 # ============================================================
@@ -324,30 +283,11 @@ def calculate_skill_score(
     resume,
     job_description
 ):
-
-    resume_skills = extract_skills(
-        resume
-    )
-
-    required_skills = extract_skills(
-        job_description
-    )
-
-    if not required_skills:
-        return 0.0
-
-    matched_skills = (
-        resume_skills &
-        required_skills
-    )
-
-    score = (
-        len(matched_skills)
-        /
-        len(required_skills)
-    )
-
-    return float(score)
+    from screening.upload_workflow import evaluate_uploads, make_upload_job
+    job = make_upload_job({"job_title": "Resume screening", "job_description": job_description})
+    result = evaluate_uploads([("Candidate", resume)], job, model)[0]
+    value = result["component_scores"]["skills"]
+    return float(value) if value is not None else None
 
 
 # ============================================================
@@ -358,35 +298,19 @@ def screen_resume(
     resume,
     job_description
 ):
-
-    semantic_score = calculate_semantic_score(
-        resume,
-        job_description
-    )
-
-    skills_score = calculate_skill_score(
-        resume,
-        job_description
-    )
-
-    final_score = (
-        SEMANTIC_WEIGHT * semantic_score
-        +
-        SKILLS_WEIGHT * skills_score
-    )
-
+    from screening.upload_workflow import evaluate_uploads, make_upload_job
+    job = make_upload_job({"job_title": "Resume screening", "job_description": job_description})
+    result = evaluate_uploads([("Candidate", resume)], job, model)[0]
     return {
-        "semantic_score": round(
-            semantic_score, 2
-        ),
-
-        "skills_score": round(
-            skills_score, 2
-        ),
-
-        "final_score": round(
-            final_score, 2
-        )
+        "score_methodology_version": result["score_methodology_version"],
+        "semantic_score": result["component_scores"]["semantic"],
+        "skills_score": result["component_scores"]["skills"],
+        "experience_score": result["component_scores"]["experience"],
+        "education_course_score": result["component_scores"]["education_course"],
+        "projects_score": result["component_scores"]["projects"],
+        "effective_weights": result["effective_weights"],
+        "weighted_contributions": result["weighted_contributions"],
+        "final_score": result["final_score"],
     }
 
 

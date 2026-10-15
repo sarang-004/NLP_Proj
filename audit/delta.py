@@ -5,6 +5,17 @@ def calculate_deltas(input_file, output_file):
 
     df = pd.read_csv(input_file)
 
+    version_columns = {"base_score_methodology_version", "variant_score_methodology_version"}
+    if version_columns.issubset(df.columns):
+        incompatible = df["base_score_methodology_version"].astype(str) != df["variant_score_methodology_version"].astype(str)
+        if incompatible.any():
+            raise ValueError("Cannot calculate counterfactual deltas across scoring methodology versions.")
+        df["score_methodology_version"] = df["base_score_methodology_version"]
+    else:
+        # Existing validated outputs predate score versioning; retain them as
+        # explicitly legacy/unversioned instead of relabeling them as v2.
+        df["score_methodology_version"] = "legacy_unversioned"
+
     # Calculate score difference
     df["delta"] = (
         df["variant_score"] - df["base_score"]
@@ -20,6 +31,7 @@ def calculate_deltas(input_file, output_file):
             "proxy_value",
             "base_score",
             "variant_score",
+            "score_methodology_version",
             "delta"
         ]
     ].copy()

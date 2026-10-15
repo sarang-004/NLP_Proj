@@ -1,265 +1,136 @@
-import pandas as pd
+"""Generate a consolidated report from the validated project outputs.
+
+This module summarizes recorded results only. It does not infer hiring
+outcomes or treat score sensitivity as proof of discrimination.
+"""
+
 from pathlib import Path
-
-
-OUTPUT_DIR = Path("outputs")
-
-
-def generate_report():
-
-    # Load audit results
-    bias_df = pd.read_csv(
-        OUTPUT_DIR / "bias_results.csv"
-    )
-
-    fairness_summary = pd.read_csv(
-        OUTPUT_DIR / "fairness_summary.csv"
-    )
-
-    context_df = pd.read_csv(
-        OUTPUT_DIR / "context_results.csv"
-    )
-
-    intersection_df = pd.read_csv(
-        OUTPUT_DIR / "intersectionality_results.csv"
-    )
-
-    fairness_df = pd.read_csv(
-        OUTPUT_DIR / "fairness_results.csv"
-    )
-
-    report_path = OUTPUT_DIR / "audit_report.txt"
-
-    with open(report_path, "w", encoding="utf-8") as report:
-
-        report.write("=" * 60 + "\n")
-        report.write("AUTOMATED RESUME BIAS AUDIT REPORT\n")
-        report.write("=" * 60 + "\n\n")
-
-        # --------------------------------------------------
-        # DATASET SUMMARY
-        # --------------------------------------------------
-
-        report.write("1. DATASET SUMMARY\n")
-        report.write("-" * 40 + "\n")
-
-        total_cases = len(bias_df)
-        unique_resumes = bias_df["resume_id"].nunique()
-
-        report.write(
-            f"Unique resumes analysed: {unique_resumes}\n"
-        )
-
-        report.write(
-            f"Counterfactual cases analysed: {total_cases}\n\n"
-        )
-
-        # --------------------------------------------------
-        # FACTOR ANALYSIS
-        # --------------------------------------------------
-
-        report.write("2. CONTEXTUAL FACTOR ANALYSIS\n")
-        report.write("-" * 40 + "\n")
-
-        for _, row in fairness_summary.iterrows():
-
-            report.write(
-                f"\nFactor: {row['proxy_type']}\n"
-            )
-
-            report.write(
-                f"Mean delta: {row['mean_delta']:.4f}\n"
-            )
-
-            report.write(
-                f"Median delta: {row['median_delta']:.4f}\n"
-            )
-
-            report.write(
-                f"Standard deviation: "
-                f"{row['std_delta']:.4f}\n"
-            )
-
-            report.write(
-                f"Cases: {int(row['cases'])}\n"
-            )
-
-            report.write(
-                f"Negative cases: "
-                f"{int(row['negative_cases'])}\n"
-            )
-
-            report.write(
-                f"Positive cases: "
-                f"{int(row['positive_cases'])}\n"
-            )
-
-        # --------------------------------------------------
-        # LARGEST EFFECT
-        # --------------------------------------------------
-
-        largest_negative = fairness_summary.loc[
-            fairness_summary["mean_delta"].idxmin()
-        ]
-
-        report.write("\n\n3. LARGEST NEGATIVE EFFECT\n")
-        report.write("-" * 40 + "\n")
-
-        report.write(
-            f"Factor: {largest_negative['proxy_type']}\n"
-        )
-
-        report.write(
-            f"Mean delta: "
-            f"{largest_negative['mean_delta']:.4f}\n"
-        )
-
-        # --------------------------------------------------
-        # CONTEXT ANALYSIS
-        # --------------------------------------------------
-
-        report.write("\n\n4. CONTEXT ANALYSIS\n")
-        report.write("-" * 40 + "\n")
-
-        context_counts = (
-            context_df["context_classification"]
-            .value_counts()
-        )
-
-        for classification, count in context_counts.items():
-
-            report.write(
-                f"{classification}: {count}\n"
-            )
-
-        # Potentially concerning cases
-        unsupported = context_df[
-            context_df["context_classification"]
-            == "Not Supported"
-        ]
-
-        report.write(
-            f"\nPotentially unsupported contextual cases: "
-            f"{len(unsupported)}\n"
-        )
-
-        # --------------------------------------------------
-        # INTERSECTIONALITY
-        # --------------------------------------------------
-
-        report.write("\n\n5. INTERSECTIONAL ANALYSIS\n")
-        report.write("-" * 40 + "\n")
-
-        avg_expected = (
-            intersection_df["expected_effect"].mean()
-        )
-
-        avg_actual = (
-            intersection_df[
-                "actual_intersection_effect"
-            ].mean()
-        )
-
-        avg_interaction = (
-            intersection_df[
-                "interaction_effect"
-            ].mean()
-        )
-
-        report.write(
-            f"Average expected effect: "
-            f"{avg_expected:.4f}\n"
-        )
-
-        report.write(
-            f"Average actual intersection effect: "
-            f"{avg_actual:.4f}\n"
-        )
-
-        report.write(
-            f"Average interaction effect: "
-            f"{avg_interaction:.4f}\n"
-        )
-
-        # --------------------------------------------------
-        # FAIRNESS
-        # --------------------------------------------------
-
-        report.write("\n\n6. GROUP FAIRNESS\n")
-        report.write("-" * 40 + "\n")
-
-        for _, row in fairness_df.iterrows():
-
-            report.write(
-                f"\nGroup: {row['group']}\n"
-            )
-
-            report.write(
-                f"Candidates: "
-                f"{int(row['total_candidates'])}\n"
-            )
-
-            report.write(
-                f"Selected: "
-                f"{int(row['selected_candidates'])}\n"
-            )
-
-            report.write(
-                f"Average score: "
-                f"{row['average_score']:.4f}\n"
-            )
-
-            report.write(
-                f"Selection rate: "
-                f"{row['selection_rate']:.4f}\n"
-            )
-
-            report.write(
-                f"Disparate impact ratio: "
-                f"{row['disparate_impact_ratio']:.4f}\n"
-            )
-
-        # --------------------------------------------------
-        # VISUALIZATIONS
-        # --------------------------------------------------
-
-        report.write("\n\n7. GENERATED VISUALIZATIONS\n")
-        report.write("-" * 40 + "\n")
-
-        plots = [
-            "mean_delta.png",
-            "base_vs_variant.png",
-            "intersectionality.png",
-            "selection_rates.png"
-        ]
-
-        for plot in plots:
-
-            report.write(
-                f"outputs/plots/{plot}\n"
-            )
-
-        # --------------------------------------------------
-        # FINAL NOTE
-        # --------------------------------------------------
-
-        report.write("\n\n8. INTERPRETATION NOTE\n")
-        report.write("-" * 40 + "\n")
-
-        report.write(
-            "A score difference alone does not establish "
-            "unfair discrimination. Contextual factors "
-            "should be interpreted against job requirements "
-            "and relevant candidate qualifications. "
-            "Unsupported score differences should be "
-            "flagged for further investigation.\n"
-        )
-
-    print(
-        f"\nAudit report generated successfully:\n"
-        f"{report_path}"
-    )
+import math
+
+import pandas as pd
+
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+OUTPUT_DIR = PROJECT_ROOT / "outputs"
+SCREENING_DIR = PROJECT_ROOT / "screening_output_final"
+
+
+def _read(name: str) -> pd.DataFrame:
+    path = OUTPUT_DIR / name
+    return pd.read_csv(path) if path.exists() else pd.DataFrame()
+
+
+def _number(value, digits=4):
+    try:
+        value = float(value)
+        return f"{value:.{digits}f}" if math.isfinite(value) else "unavailable"
+    except (TypeError, ValueError):
+        return "unavailable"
+
+
+def generate_report(output_path=None):
+    """Write a reproducible text report based on current CSV outputs."""
+    detailed = pd.read_csv(SCREENING_DIR / "screening_results_detailed.csv") if (SCREENING_DIR / "screening_results_detailed.csv").exists() else pd.DataFrame()
+    base = pd.read_csv(SCREENING_DIR / "screening_decision_results.csv") if (SCREENING_DIR / "screening_decision_results.csv").exists() else pd.DataFrame()
+    unified = _read("unified_audit.csv")
+    from app import load_dashboard
+    dashboard = load_dashboard()
+    context = pd.DataFrame(dashboard["cases"])
+    fairness = pd.DataFrame(dashboard["fairness"])
+    sensitivity = pd.DataFrame(dashboard["fairness_sensitivity"])
+    intersections = pd.DataFrame(dashboard["intersectionality"])
+    intersection_summary = pd.DataFrame(dashboard["intersectionality_summary"])
+    validation = pd.read_csv(SCREENING_DIR / "counterfactual_scoring_validation.csv") if (SCREENING_DIR / "counterfactual_scoring_validation.csv").exists() else pd.DataFrame()
+    explanation_validation_path = OUTPUT_DIR / "explainability" / "explainability_validation.csv"
+    explanation_validation = pd.read_csv(explanation_validation_path) if explanation_validation_path.exists() else pd.DataFrame()
+
+    lines = [
+        "AUTOMATED RESUME SCREENING AND COUNTERFACTUAL AUDIT",
+        "=" * 58,
+        "",
+        "Scope and interpretation",
+        "This report summarizes stored screening and audit outputs. A score change or decision flip measures model sensitivity under a tested transformation; it does not establish discrimination, job suitability, or predictive validity.",
+        "",
+        "Dataset and screening methodology",
+        f"Base candidate-job results: {len(base)}",
+        f"Detailed counterfactual screening results: {len(detailed)}",
+        f"Unified audit rows: {len(unified)}",
+        f"Unique audit cases including unmatched supplemental rows: {dashboard['metrics']['total_cases']}; verified: {dashboard['metrics']['verified_cases']}; unmatched: {dashboard['metrics']['unmatched_cases']}; invalid: {dashboard['metrics']['invalid_cases']}; conflicting supplemental scores: {dashboard['metrics']['supplemental_conflicts']}.",
+        "Scoring components recorded by the pipeline: skills, experience, education/course, projects, and semantic similarity.",
+        "The audit consumes stored scores and does not change the screening formula or ranking.",
+        "",
+        "Factor explanations",
+    ]
+    if not explanation_validation.empty:
+        row = explanation_validation.iloc[0]
+        lines += [f"Base explanations: {row.get('explanations_generated', 'unavailable')} / {row.get('base_candidates', 'unavailable')}; missing screening details: {row.get('missing_screening_details', 'unavailable')}."]
+    else:
+        lines += ["Explanation validation output is unavailable."]
+
+    lines += ["", "Counterfactual results"]
+    if not unified.empty and "proxy_type" in unified:
+        for proxy, group in unified.groupby("proxy_type", dropna=False):
+            delta_col = "score_delta" if "score_delta" in group else "delta"
+            deltas = pd.to_numeric(group.get(delta_col), errors="coerce")
+            lines.append(f"{proxy}: n={deltas.notna().sum()}, mean delta={_number(deltas.mean())}, median delta={_number(deltas.median())}.")
+    else:
+        lines.append("Unified counterfactual audit output is unavailable.")
+    if not validation.empty:
+        checked = int(validation["status"].astype(str).str.lower().eq("passed").sum()) if "status" in validation else 0
+        lines.append(f"Single-attribute validation: {checked} passed rows out of {len(validation)} records in the validation file.")
+    covered = set(detailed.get("proxy_type", pd.Series(dtype=str)).astype(str))
+    for attribute in ("name", "age", "college", "city", "course", "degree", "experience", "employment_gap_months"):
+        lines.append(f"{attribute} counterfactual coverage: {'scored' if attribute in covered or any(f'{attribute}+' in item or f'+{attribute}' in item for item in covered) else 'not present in current authoritative detailed scores'}.")
+
+    lines += ["", "Decision flips and threshold sensitivity"]
+    lines.append(f"Verified direct-proxy cases: {dashboard['metrics']['direct_proxy_tests']}.")
+    lines.append(f"Cases flipping at one or more supported thresholds: {dashboard['metrics']['decision_flips']}.")
+    for threshold, count in dashboard["thresholds"].items():
+        lines.append(f"{threshold}: {count} verified threshold flips.")
+
+    lines += ["", "Contextual findings"]
+    if not context.empty and "context_classification" in context:
+        counts = context["context_classification"].fillna("Unavailable").value_counts(dropna=False)
+        lines.extend(f"{label}: {count}" for label, count in counts.items())
+        lines.append("Context labels are evidence-based audit classifications, not legal determinations.")
+    else:
+        lines.append("Context output is unavailable.")
+
+    lines += ["", "Intersectional results"]
+    if not intersections.empty:
+        status = intersections.get("match_status", pd.Series(dtype=str)).value_counts()
+        lines.append(f"Joint cases: {len(intersections)}; matched individual-effect comparisons: {int(status.get('matched', 0))}; unmatched: {len(intersections) - int(status.get('matched', 0))}.")
+        if not intersection_summary.empty:
+            for _, row in intersection_summary.iterrows():
+                lines.append(f"{row.get('proxy_type', 'unknown')}: n={row.get('cases', 'unavailable')}, mean interaction={_number(row.get('mean_interaction_effect'))}, mean absolute interaction={_number(row.get('mean_absolute_interaction'))}.")
+        lines.append("Transformation compatibility was checked against original and variant values. Interaction effect is the deviation from an additive expectation under the tested scoring system; it is not proof of discrimination.")
+    else:
+        lines.append("Intersectionality output is unavailable.")
+
+    lines += ["", "Fairness metrics and limitations"]
+    if not fairness.empty:
+        lines.append(f"Recorded group-threshold metric rows: {len(fairness)}.")
+        if {"factor", "group", "total_candidates", "selection_rate"}.issubset(fairness.columns):
+            for (factor, group), rows in fairness.groupby(["factor", "group"], dropna=False):
+                row = rows.iloc[0]
+                lines.append(f"{factor} / {group}: n={row.get('total_candidates', 'unavailable')}, selection rate={_number(row.get('selection_rate'))}, disparate impact ratio={_number(row.get('disparate_impact_ratio'))}.")
+    else:
+        lines.append("Fairness group metrics are unavailable.")
+    if not sensitivity.empty:
+        lines.append(f"Threshold sensitivity rows: {len(sensitivity)} at the thresholds recorded in the source output.")
+    lines.append("The dataset contains no ground-truth hiring outcomes. Group metrics describe these records and thresholds only; sample size, representation, and missing or proxy attributes limit interpretation.")
+
+    lines += ["", "Data quality, uncertainty, and responsible use"]
+    if not unified.empty and {"resume_id", "job_id", "variant_id"}.issubset(unified.columns):
+        lines.append(f"Unified audit rows with duplicate resume/job/variant keys: {int(unified.duplicated(['resume_id', 'job_id', 'variant_id']).sum())}.")
+    lines.append("Do not use protected or proxy attributes as hiring criteria. Review cases with unsupported context, missing evidence, or consequential score changes with qualified human reviewers.")
+    lines.append("No LLM-generated assessments are included; this report contains measured outputs and their limitations only.")
+
+    destination = Path(output_path) if output_path else OUTPUT_DIR / "audit_report.txt"
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return destination
 
 
 if __name__ == "__main__":
-    generate_report()
+    print(f"Report generated: {generate_report()}")

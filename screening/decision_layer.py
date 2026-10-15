@@ -39,12 +39,23 @@ from run_screening import (  # noqa: E402
     score,
     patch_text,
 )
+from screening.requirements import METHOD_VERSION
+
+UPLOAD_SKILL_CATEGORY_WEIGHTS = {"explicit_minimum": 1.0, "preferred": 0.5,
+                                "explicit_structured_requirement": 1.0}
 
 MISSING = {"", "NA", "N/A", "NAN", "NONE", "NULL"}
 
 
 def present(value: Any) -> bool:
     return clean(value).strip().upper() not in MISSING
+
+
+def safe_score_delta(variant: Any, base: Any) -> float | None:
+    """Return a factor delta only when both values are comparable numbers."""
+    if variant is None or base is None or pd.isna(variant) or pd.isna(base):
+        return None
+    return round(float(variant) - float(base), 6)
 
 
 def first_value(row: pd.Series, columns: list[str], default: Any = "") -> Any:
@@ -165,19 +176,40 @@ def factor_evidence(row: pd.Series, job: pd.Series, scored: dict[str, Any]) -> d
     have = resume_skills(row)
     required = sorted(required_skills(job))
     matched_pairs, missing = [], []
+    skill_evidence = {item["requirement"]: item for item in row.get("_skill_evidence", [])}
     for requirement in required:
         matches = sorted(skill for skill in have if skill_match(requirement, skill))
         if matches:
-            matched_pairs.append({"required_skill": requirement, "resume_skill": matches[0]})
+            detail = skill_evidence.get(requirement, {})
+            matched_pairs.append({"required_skill": requirement, "resume_skill": matches[0],
+                                  "evidence_class": detail.get("evidence_class", "listed_mention"),
+                                  "resume_excerpt": detail.get("resume_excerpt", "")})
         else:
             missing.append(requirement)
 
     degree = first_value(row, ["primary_degree", "degree"], "")
     course = first_value(row, ["course_final", "course", "specialization"], "")
-    degree_score = qualification_score(degree, job.get("preferred_degree", ""), job.get("accepted_degrees", ""))
-    course_score = qualification_score(course, job.get("preferred_course", ""), job.get("accepted_courses", ""))
+    degree_specified = present(job.get("preferred_degree", "")) or present(job.get("accepted_degrees", ""))
+    course_specified = present(job.get("preferred_course", "")) or present(job.get("accepted_courses", ""))
+    education_profile = row.get("_education_evidence", {})
+    contextual_education = bool(job.get("education_requirements"))
+    degree_score = (education_profile.get("score") if contextual_education else
+                    qualification_score(degree, job.get("preferred_degree", ""), job.get("accepted_degrees", "")) if degree_specified and present(degree) else None)
+    course_score = qualification_score(course, job.get("preferred_course", ""), job.get("accepted_courses", "")) if course_specified and present(course) else None
     candidate_exp = experience_years(row)
     required_exp = num(job.get("minimum_total_experience_years", 0))
+    experience_detail = row.get("_experience_evidence", {})
+    experience_type = experience_detail.get("experience_requirement_type", "technology_specific") if isinstance(experience_detail, dict) else "technology_specific"
+    if required_exp <= 0 and scored["experience_score"] is None:
+        experience_status = "Evidence only; JD has no duration requirement" if experience_detail.get("experience_records") or experience_detail.get("total_professional_months") is not None else "JD has no duration requirement; no duration evidence extracted"
+    elif scored["experience_score"] is not None:
+        experience_status = "Meets requirement" if scored["experience_score"] >= 1 else "Below requirement"
+    elif experience_type == "relevant_role":
+        experience_status = "Insufficient relevant role duration evidence"
+    elif experience_type == "total_professional":
+        experience_status = "Total professional duration unavailable"
+    else:
+        experience_status = "Insufficient technology-specific duration evidence"
     projects = project_text(row)
     project_available = bool(clean(projects))
 
@@ -189,34 +221,43 @@ def factor_evidence(row: pd.Series, job: pd.Series, scored: dict[str, Any]) -> d
         "matched_skill_count": len(matched_pairs),
         "candidate_experience_years": round(candidate_exp, 4),
         "required_experience_years": round(required_exp, 4),
-        "experience_status": "Meets requirement" if required_exp <= 0 or candidate_exp >= required_exp else "Below requirement",
-        "experience_evidence": f"{candidate_exp:.2f} years reported; {required_exp:.2f} years required",
+        "experience_status": experience_status,
+        "experience_evidence": json.dumps(experience_detail or {
+            "total_professional_years": candidate_exp,
+            "reported_total_professional_years": row.get("reported_total_experience_years"),
+            "experience_source": row.get("experience_source", "unknown"),
+            "as_of": row.get("experience_as_of"),
+            "required_years": required_exp,
+            "note": "Total years are used only for an unqualified total-experience minimum."
+        }, ensure_ascii=False, default=str),
         "degree": clean(degree) if present(degree) else "Not provided",
-        "degree_score": round(degree_score, 6),
-        "degree_status": "Not provided" if not present(degree) else "Preferred" if degree_score == 1 else "Accepted" if degree_score == 0.8 else "Not accepted",
+        "degree_score": round(degree_score, 6) if degree_score is not None else None,
+        "degree_status": education_profile.get("status", "") if contextual_education else "No JD requirement" if not degree_specified else "Resume information unavailable" if not present(degree) else "Preferred" if degree_score == 1 else "Accepted" if degree_score == 0.8 else "Not in supplied accepted list",
         "course": clean(course) if present(course) else "Not provided",
-        "course_score": round(course_score, 6),
-        "course_status": "Not provided" if not present(course) else "Preferred" if course_score == 1 else "Accepted" if course_score == 0.8 else "Not accepted",
+        "course_score": round(course_score, 6) if course_score is not None else None,
+        "course_status": "No JD requirement" if not course_specified else "Resume information unavailable" if not present(course) else "Preferred" if course_score == 1 else "Accepted" if course_score == 0.8 else "Not in supplied accepted list",
+        "degree_requirement_status": "specified" if degree_specified else "not specified",
+        "course_requirement_status": "specified" if course_specified else "not specified",
+        "skill_evidence": row.get("_skill_evidence", []),
+        "skill_score_calculation": row.get("_skill_score_calculation", {}),
+        "jd_requirement_context": job.get("requirements", {}),
         "projects_available": project_available,
         "project_evidence": clean(projects) if project_available else "No project evidence extracted",
-        "semantic_evidence": "Resume-to-JD semantic similarity; this similarity signal is not a causal explanation.",
+        "project_similarity_evidence": ("Project score is cosine similarity between extracted project text and the JD. The extracted project text is shown for review; similarity does not prove that a named project satisfies a specific JD qualification." if project_available else "No project text was extracted, so the project factor is unavailable."),
+        "semantic_evidence": "Semantic score is cosine similarity between the full resume text and JD, mapped to 0–1. It is an aggregate model signal, not proof of a specific qualification and not attributable to a particular phrase.",
     }
 
 
-def evaluate(row: pd.Series, job: pd.Series, model: Any) -> dict[str, Any]:
-    scored = score(row, job, model)  # Canonical scoring; do not recalculate final_score here.
+def evaluate(row: pd.Series, job: pd.Series, model: Any, *, upload_screening: bool = False) -> dict[str, Any]:
+    skill_weights = UPLOAD_SKILL_CATEGORY_WEIGHTS if upload_screening else None
+    scored = score(row, job, model, skill_category_weights=skill_weights)  # Canonical scoring; do not recalculate final_score here.
     evidence = factor_evidence(row, job, scored)
 
-    available_weights = {
-        key: weight for key, weight in WEIGHTS.items()
-        if not (key == "projects" and not evidence["projects_available"])
-    }
-    denominator = sum(available_weights.values())
-    effective = {key: value / denominator for key, value in available_weights.items()}
-    effective.setdefault("projects", 0.0)
+    effective = scored["effective_weights"]
 
-    degree_contribution = effective["education_course"] * evidence["degree_score"] / 2
-    course_contribution = effective["education_course"] * evidence["course_score"] / 2
+    applicable_education = [x for x in (evidence["degree_score"], evidence["course_score"]) if x is not None]
+    degree_contribution = effective["education_course"] * evidence["degree_score"] / len(applicable_education) if evidence["degree_score"] is not None and applicable_education else 0.0
+    course_contribution = effective["education_course"] * evidence["course_score"] / len(applicable_education) if evidence["course_score"] is not None and applicable_education else 0.0
     output = {
         "resume_id": clean(row.get("resume_id")),
         "job_id": clean(job.get("job_id")),
@@ -224,6 +265,7 @@ def evaluate(row: pd.Series, job: pd.Series, model: Any) -> dict[str, Any]:
         "name": clean(row.get("name")),
         "source_category": clean(row.get("source_category")),
         "skill_score": scored["skills_score"],
+        "skill_score_calculation": evidence["skill_score_calculation"],
         "experience_score": scored["experience_score"],
         "education_score": evidence["degree_score"],
         "course_score": evidence["course_score"],
@@ -231,13 +273,18 @@ def evaluate(row: pd.Series, job: pd.Series, model: Any) -> dict[str, Any]:
         "project_score": scored["projects_score"],
         "semantic_score": scored["semantic_score"],
         "final_score": scored["final_score"],
-        "skill_contribution": round(effective["skills"] * scored["skills_score"], 6),
-        "experience_contribution": round(effective["experience"] * scored["experience_score"], 6),
+        "score_methodology_version": scored["score_methodology_version"],
+        "score_formula": scored["score_formula"],
+        "score_denominator_weight": scored["score_denominator_weight"],
+        "configured_weights": scored["configured_weights"],
+        "effective_weights": scored["effective_weights"],
+        "skill_contribution": scored["weighted_contributions"]["skills"],
+        "experience_contribution": scored["weighted_contributions"]["experience"],
         "education_contribution": round(degree_contribution, 6),
         "course_contribution": round(course_contribution, 6),
-        "education_course_contribution": round(effective["education_course"] * scored["education_course_score"], 6),
-        "project_contribution": round(effective["projects"] * scored["projects_score"], 6),
-        "semantic_contribution": round(effective["semantic"] * scored["semantic_score"], 6),
+        "education_course_contribution": scored["weighted_contributions"]["education_course"],
+        "project_contribution": scored["weighted_contributions"]["projects"],
+        "semantic_contribution": scored["weighted_contributions"]["semantic"],
         "effective_skill_weight": round(effective["skills"], 6),
         "effective_experience_weight": round(effective["experience"], 6),
         "effective_education_course_weight": round(effective["education_course"], 6),
@@ -369,6 +416,8 @@ def main() -> None:
             job = pd.Series(job_by_id[job_id])
             variant_score = evaluate(variant, job, model)
             base_score = base_result_by_id[parent_id]
+            if variant_score["score_methodology_version"] != base_score["score_methodology_version"]:
+                raise ValueError("Counterfactual and base scores use incompatible scoring methodologies.")
             variant_id = clean(cf.get("counterfactual_id", cf.get("cf_id", ""))) or f"{parent_id}_CF_{len(cf_records)+1}"
             record = {
                 "resume_id": parent_id,
@@ -384,18 +433,20 @@ def main() -> None:
                 "base_projects_score": base_score["project_score"],
                 "base_semantic_score": base_score["semantic_score"],
                 "base_score": base_score["final_score"],
+                "base_score_methodology_version": base_score["score_methodology_version"],
                 "variant_skills_score": variant_score["skill_score"],
                 "variant_experience_score": variant_score["experience_score"],
                 "variant_education_course_score": variant_score["education_course_score"],
                 "variant_projects_score": variant_score["project_score"],
                 "variant_semantic_score": variant_score["semantic_score"],
                 "variant_score": variant_score["final_score"],
+                "variant_score_methodology_version": variant_score["score_methodology_version"],
                 "score_delta": round(variant_score["final_score"] - base_score["final_score"], 6),
-                "skills_delta": round(variant_score["skill_score"] - base_score["skill_score"], 6),
-                "experience_delta": round(variant_score["experience_score"] - base_score["experience_score"], 6),
-                "education_course_delta": round(variant_score["education_course_score"] - base_score["education_course_score"], 6),
-                "projects_delta": round(variant_score["project_score"] - base_score["project_score"], 6),
-                "semantic_delta": round(variant_score["semantic_score"] - base_score["semantic_score"], 6),
+                "skills_delta": safe_score_delta(variant_score["skill_score"], base_score["skill_score"]),
+                "experience_delta": safe_score_delta(variant_score["experience_score"], base_score["experience_score"]),
+                "education_course_delta": safe_score_delta(variant_score["education_course_score"], base_score["education_course_score"]),
+                "projects_delta": safe_score_delta(variant_score["project_score"], base_score["project_score"]),
+                "semantic_delta": safe_score_delta(variant_score["semantic_score"], base_score["semantic_score"]),
                 "base_education_score": base_score["education_score"],
                 "variant_education_score": variant_score["education_score"],
                 "base_course_score": base_score["course_score"],
@@ -411,6 +462,13 @@ def main() -> None:
                 "project_evidence": variant_score["project_evidence"],
                 "semantic_evidence": variant_score["semantic_evidence"],
             }
+            for factor in WEIGHTS:
+                record[f"base_effective_{factor}_weight"] = base_score[f"effective_{factor}_weight"]
+                record[f"variant_effective_{factor}_weight"] = variant_score[f"effective_{factor}_weight"]
+                contribution_name = {"skills": "skill", "projects": "project"}.get(factor, factor)
+                record[f"base_{factor}_contribution"] = base_score[f"{contribution_name}_contribution"]
+                record[f"variant_{factor}_contribution"] = variant_score[f"{contribution_name}_contribution"]
+            record["score_methodology_version"] = base_score["score_methodology_version"]
             cf_records.append(record)
             # Validate single-attribute variants; combined changes are allowed and marked for intersectional analysis.
             declared = [x.strip() for x in clean(cf["changed_attribute"]).split("+") if x.strip()]
@@ -471,7 +529,7 @@ def main() -> None:
     # Rich, single-candidate and multi-candidate decision results.
     def serialize_lists(frame: pd.DataFrame) -> pd.DataFrame:
         output = frame.copy()
-        for column in ["matched_skills", "missing_skills", "matched_skill_pairs"]:
+        for column in ["matched_skills", "missing_skills", "matched_skill_pairs", "skill_evidence", "jd_requirement_context"]:
             if column in output:
                 output[column] = output[column].apply(lambda value: json.dumps(value, ensure_ascii=False))
         return output
@@ -485,7 +543,8 @@ def main() -> None:
     if cf_records:
         detailed = pd.DataFrame(cf_records)
         detailed.to_csv(outdir / "screening_results_detailed.csv", index=False)
-        detailed[["resume_id", "job_id", "variant_id", "proxy_type", "proxy_value", "base_score", "variant_score"]].to_csv(
+        detailed[["resume_id", "job_id", "variant_id", "proxy_type", "proxy_value", "base_score", "variant_score",
+                  "base_score_methodology_version", "variant_score_methodology_version"]].to_csv(
             outdir / "screening_results.csv", index=False
         )
         detailed.groupby("proxy_type").agg(

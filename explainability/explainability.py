@@ -528,6 +528,41 @@ def main():
     jobs = pd.read_csv(args.jobs)
     detailed = pd.read_csv(args.detailed)
 
+    version_fields = {"base_score_methodology_version", "variant_score_methodology_version"}
+    if version_fields.issubset(detailed.columns):
+        mismatch = detailed["base_score_methodology_version"].astype(str) != detailed["variant_score_methodology_version"].astype(str)
+        if mismatch.any():
+            raise ValueError("Cannot explain counterfactuals whose base and variant use different scoring versions.")
+    versions = set(detailed.get("base_score_methodology_version", pd.Series(dtype=str)).dropna().astype(str))
+    if "evidence-v2" in versions:
+        # The decision layer already stores the authoritative component scores,
+        # exact normalization, requirement classifications, and evidence. Do
+        # not reconstruct those values using this legacy explanation script's
+        # older, duplicated rules.
+        canonical_path = os.path.join(os.path.dirname(args.detailed), "screening_decision_results.json")
+        if not os.path.exists(canonical_path):
+            raise FileNotFoundError("Evidence-v2 explanation requires screening_decision_results.json from the same scoring run.")
+        with open(canonical_path, encoding="utf-8") as handle:
+            canonical = json.load(handle)
+        records = [{**row, "overall_score": row.get("final_score"),
+                    "overall_explanation": row.get("decision_note", "Evidence and factor contributions are stored in this canonical scoring record.")}
+                   for row in canonical]
+        with open(os.path.join(args.outdir, "explanations.json"), "w", encoding="utf-8") as handle:
+            json.dump(records, handle, indent=2, ensure_ascii=False, default=str)
+        pd.DataFrame([flatten_for_csv(row) for row in records]).to_csv(os.path.join(args.outdir, "explanations.csv"), index=False)
+        pd.DataFrame([{"base_candidates": len(base), "explanations_generated": len(records),
+                       "missing_screening_details": max(0, len(base) - len(records)),
+                       "explanation_coverage": round(len(records) / len(base), 6) if len(base) else 0.0,
+                       "score_methodology_version": "evidence-v2"}]).to_csv(
+                           os.path.join(args.outdir, "explainability_validation.csv"), index=False)
+        if not args.skip_counterfactuals:
+            counterfactual_records = detailed.to_dict("records")
+            with open(os.path.join(args.outdir, "counterfactual_explanations.json"), "w", encoding="utf-8") as handle:
+                json.dump(counterfactual_records, handle, indent=2, ensure_ascii=False, default=str)
+            pd.DataFrame([flatten_for_csv(row) for row in counterfactual_records]).to_csv(
+                os.path.join(args.outdir, "counterfactual_explanations.csv"), index=False)
+        return
+
     if "job_id" not in base.columns:
         role_to_job = dict(zip(jobs["source_category"], jobs["job_id"]))
         base["job_id"] = base["source_category"].map(role_to_job)
